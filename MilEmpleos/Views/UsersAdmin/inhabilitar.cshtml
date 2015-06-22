@@ -1,0 +1,38 @@
+﻿@model IdentitySample.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "Inhabilitar Usuario";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>¿Seguro que quieres inhabilitar este usuario?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Inhabilitar" class="btn btn-danger" /> 
+        </div>
+    }
+
+</div>
+
+<br style="clear:both;" />
+<div class=" col-md-12">
+    @Html.ActionLink("Listado de Usurios", "ListaUsers", null, new { @class = "btn btn-default btn-sm active" })
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+</div>

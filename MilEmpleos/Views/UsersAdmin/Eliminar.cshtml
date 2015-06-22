@@ -1,0 +1,30 @@
+﻿@model IdentitySample.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "Borrar Usuario de Consulta";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>¿Seguro que quieres borrar este Usuario de Consulta?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Borrar" class="btn btn-default" />         
+        </div>
+    @Html.ActionLink("Listado de Usurios", "ListaUsers", null, new { @class = "btn btn-default btn-lg active" })
+    }
+</div>

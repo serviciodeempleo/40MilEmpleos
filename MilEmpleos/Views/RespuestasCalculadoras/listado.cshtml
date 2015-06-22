@@ -1,0 +1,65 @@
+﻿@model IEnumerable<MilEmpleos.Models.ResultadoCalculadora>
+
+@{
+    ViewBag.Title = "VALIDACIÓN DE REQUISITOS MÍNIMOS DE LAS VACANTES";
+    string rootpath = HttpContext.Current.Request.ApplicationPath;
+    if (rootpath == "/") { rootpath = ""; }
+}
+
+<h2>@ViewBag.Title</h2>
+@if (Request.IsAuthenticated && User.IsInRole("Admin"))
+{
+    <p>
+        @Html.ActionLink("Descargar listado completo", "excelrespuestas", new{ @class="btn btn-danger"}) | @Html.ActionLink("Descargar listado Consultas Pila", "ExcelconsultasPila", new { @class = "btn btn-danger" })
+    </p>
+}
+<table border="1" class="table table-hover table-nomargin dataTable table-bordered ">
+    <thead>
+        <tr>
+            <th>
+                Nit
+            </th>
+            <th>
+                Razón Social:
+            </th>
+            <th aria-sort="descending">
+                Fecha Registro
+            </th>
+            <th>
+                Descripcion
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.RespuestasCalculadora.Nit
+                </td>
+
+                <td>
+                    @item.RespuestasCalculadora.RazonSocial
+                </td>
+                <td>
+                    @item.RespuestasCalculadora.FechaRegistro.ToString(@"yyyy/MM/dd HH\:mm\:ss tt")
+                </td>
+                <td>
+                    @if (@item.RespuestasCalculadora.DescripcionVacante.Length > 50)
+                    {
+                        @item.RespuestasCalculadora.DescripcionVacante.Substring(0, 50)
+                    }
+                    else
+                    {
+                        @item.RespuestasCalculadora.DescripcionVacante
+                    }
+
+                </td>
+
+                <td>
+                    <a class="btn btn-default btn-group-xs" id="descargarreporte" href="@rootpath/RespuestasCalculadoras/Index/@item.id.ToString()">Ver Resultado</a>
+                </td>
+            </tr>
+        }
+
+</table>

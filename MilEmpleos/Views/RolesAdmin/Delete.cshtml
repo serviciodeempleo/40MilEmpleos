@@ -1,0 +1,39 @@
+﻿@model IdentitySample.Models.ApplicationRole
+
+@{
+    ViewBag.Title = "Borrar";
+}
+
+<h2>Borrar.</h2>
+
+<h3>¿Seguro que quieres borrar este Rol? </h3>
+<p>La eliminación de este rol inhabilitara todos los usuarios de este rol.</p>
+<div>
+    <h4>Borrar Rol.</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+           Rol
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            Descripcíon
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Borrar" class="btn btn-default" /> |
+            @Html.ActionLink("Roles", "Index")
+        </div>
+    }
+</div>

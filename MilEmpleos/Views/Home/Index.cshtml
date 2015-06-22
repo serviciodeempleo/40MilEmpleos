@@ -1,0 +1,108 @@
+﻿@model MilEmpleos.Models.Consulta
+@{
+    ViewBag.Title = "Consulta Pila";
+    string rootpath = HttpContext.Current.Request.ApplicationPath;
+    if (rootpath == "/") { rootpath = ""; }
+}
+ <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<div class="row">
+    <div class="col-md-3 LOGOMIL">
+        <div>
+            <img src="@rootpath/Content/images/EsTalento.JPG" style="  width: 16em;  margin-top: 5em;  margin-left: -1em;">
+        </div>
+    </div>
+    <div class="col-md-4">
+        <form id="formID1" onsubmit=" find(); return false;">
+
+            <div class="form-horizontal" style="margin-top: 5em">
+                <h2>Consulta Pila</h2>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.TipoDocumento, "Tipo Documento", htmlAttributes: new { @class = "control-label" })
+                        <div class="col-md-12">
+                            @Html.DropDownList("TipoDocumento", null, htmlAttributes: new { @class = "form-control", @id = "TipoDocumento", @required = "required", @disabled = "disabled" })
+                            @Html.ValidationMessageFor(model => model.TipoDocumento, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DocumentoNumero, "Documento Número", htmlAttributes: new { @class = "control-label" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.DocumentoNumero, new { htmlAttributes = new { @class = "form-control validate[custom[onlyNumber],custom[cedula],minSize[6],maxSize[12]]", @id = "NoDocumento", @required = "required"}})
+                            @Html.ValidationMessageFor(model => model.DocumentoNumero,"", new { @class = "text-danger"})
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-12">
+                        <input type="submit" value="Consultar" onsubmit="find();" class="btn btn-danger  btn-large active" />
+                    </div>
+                </div>
+            </div>
+        </form>
+
+</div>
+
+    <div class="col-md-5">
+        <div style="margin-top: 2.5em;" id="prosperidadpara" >
+            <img src='@rootpath/Content/images/40milempleos.jpg' style="width: 28em; opacity: .1;" />
+        </div>
+        <div id="Datos" style="margin-top: 3em;">
+ 
+        </div>
+        <div id="accordion">
+            
+        </div>
+    </div>
+
+    
+</div>
+<script>
+    $('body').css('background-image', 'none');
+    var uri = '../api/WSPilas';
+    function formatItem(item) {
+        return '<h3>Último período cotización continua</h3><div><p><table class="table table-striped table-condensed"><thead><tr><th>Meses</th><th>Fecha inicio</th><th>Fecha fin</th></tr></th></tr></thead><tbody><tr><td>' + item.Meses_ultimo_periodo_cotizado + '</td><td>' + item.ultimo_periodo_cotizado_fecha_inicio.substring(0, 10) + '</td><td>' + item.ultimo_periodo_cotizado_fecha_fin.substring(0, 10) + '</td></tr></tbody></table></p></div>';
+    }
+    $("#accordion").accordion();
+    function find() {
+        if ($("#formID1").validationEngine('validate')) {
+            var Td = $('#TipoDocumento').val();
+            var documento = $('#NoDocumento').val();
+            $.getJSON(uri + '/' + documento)
+              .done(function (data) {
+                  $('#prosperidadpara').addClass("hidden");
+                  $('#accordion').empty();
+                  $('#Datos').empty();
+                  if (data.Meses_ultimo_periodo_cotizado > 0) {
+                      $('#Datos').append('<div><h4>Número de Documento: <small>' + data.NumeroDocumento + '</small></h4><h4>Nombre: <small>' + data.PrimerNombre + ' ' + data.SegundoNombre + ' ' + data.PrimerApellido + ' ' + data.SegundoApellido + '</small></h4><h4>Total Cotizado: <small>' + data.TiempoTotalRegistroMeses + ' Meses</small></h4></div>');
+                      if (data.TiempoTotalRegistroMeses > 0) {
+                          $('#accordion').append(formatItem(data));
+                      } else {
+                          $('#accordion').append('<h3>Último período cotización continua</h3><div><h3 class="alert-danger">No presenta registro </h3></div>');
+                      }
+                  } else {
+                      $('#accordion').append('<div><div class="alert-danger"><h4>No presenta registro</h4></div><h4>Tipo documento: <small>' + data.TipoDocumento + '</small></h4><h4>Número de Documento: <small>' + data.NumeroDocumento + '</small><h4><p class="alert-info" id="nota"><small><b>Nota:</b> Recuerde que la información resultante pertenece a los últimos 72 periodos y esta segmentada para jóvenes entre 18 y 28 años. Con fecha de corte: @ViewBag.fecha_Actualizacion</small></p></div>');
+                      $('#nota').removeClass('hidden');
+                  }
+                  $('#accordion').accordion("refresh", {
+                      heightStyle: "content"
+                  });
+                  $('#accordion').accordion("option", "active", 0);
+                  return false;
+              })
+              .fail(function (jqXHR, textStatus, err) {
+                  $('#Pila').text('Error: ' + err);
+              });
+        }
+    }
+
+
+</script>
+<script type="text/javascript">
+    $(function () {
+        if ((String(document.referrer).length - window.location.href.length == -10)) {
+            history.go(1)
+        }
+    });
+</script>

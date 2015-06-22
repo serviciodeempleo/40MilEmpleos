@@ -1,0 +1,1777 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MilEmpleosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ActividadesPuestoDeTrabajo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ActividadesPuestoDeTrabajo" Type="varchar" MaxLength="80" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ActividadNivEduDes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ActividadId" Type="int" Nullable="false" />
+          <Property Name="DestrezaId" Type="int" Nullable="false" />
+          <Property Name="ValorDestreza" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ActividadNivEduHab">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ActividadId" Type="int" Nullable="false" />
+          <Property Name="HabilidadId" Type="int" Nullable="false" />
+          <Property Name="ValorHabilidad" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ActNivEdu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ActividadId" Type="int" Nullable="false" />
+          <Property Name="NivelEducativoId" Type="int" Nullable="false" />
+          <Property Name="Mutipliacdor" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="actulizacionPila">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fecha_Actualizacion" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Discriminator" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="City" Type="nvarchar(max)" />
+          <Property Name="State" Type="nvarchar(max)" />
+          <Property Name="PostalCode" Type="nvarchar(max)" />
+          <Property Name="CentroId" Type="int" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="PasswordChange" Type="bit" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Centros">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CentroEmpleo" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="128" />
+          <Property Name="Dominio" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Consulta">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DocumentoNumero" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaConsulta" Type="datetime" Nullable="false" />
+          <Property Name="UsuerID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CentroID" Type="int" Nullable="false" />
+          <Property Name="TipoDocumento" Type="char" MaxLength="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ContenidoActividadFormacion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContenidoActividadFormacion" Type="varchar" MaxLength="400" Nullable="false" />
+        </EntityType>
+        <EntityType Name="department">
+          <Key>
+            <PropertyRef Name="IdCodigo" />
+          </Key>
+          <Property Name="IdCodigo" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Destrezas">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Destreza" Type="varchar" MaxLength="80" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Habilidad">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HabilidadRequerida" Type="varchar" MaxLength="80" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JovenesPorTutor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JovenesPorTutor" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="municipality">
+          <Key>
+            <PropertyRef Name="IdCodigo" />
+          </Key>
+          <Property Name="IdCodigo" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="department_id" Type="varchar" MaxLength="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NivelEducativo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NivelEducativo" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="PassPrestadores">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Prestador" Type="varchar" MaxLength="300" />
+          <Property Name="ClaveINI" Type="varchar" MaxLength="200" />
+          <Property Name="UsurioCorreo" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Pila">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipoDocumento" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="NumeroDocumento" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="PrimerNombre" Type="varchar" MaxLength="50" />
+          <Property Name="SegundoNombre" Type="varchar" MaxLength="50" />
+          <Property Name="PrimerApellido" Type="varchar" MaxLength="50" />
+          <Property Name="SegundoApellido" Type="varchar" MaxLength="50" />
+          <Property Name="TiempoTotalRegistroMeses" Type="int" />
+          <Property Name="ultimo_periodo_cotizado_fecha_inicio" Type="date" />
+          <Property Name="ultimo_periodo_cotizado_fecha_fin" Type="date" />
+          <Property Name="Meses_ultimo_periodo_cotizado" Type="int" />
+        </EntityType>
+        <EntityType Name="Ponderacion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PreguntaId" Type="int" Nullable="false" />
+          <Property Name="RespuestaId" Type="int" Nullable="false" />
+          <Property Name="PorcentageRespuesta" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PonderacionMunicipio">
+          <Key>
+            <PropertyRef Name="IdCodigo" />
+          </Key>
+          <Property Name="IdCodigo" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="Ponderacion" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RespuestaPila">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Registrado" Type="bit" Nullable="false" />
+          <Property Name="Nombres" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Apellidos" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FechaRespuestaPila" Type="datetime" Nullable="false" />
+          <Property Name="TiempoTotalRegistroMeses" Type="int" Nullable="false" />
+          <Property Name="UltimoPeriodo_fecha_inicio" Type="date" Nullable="false" />
+          <Property Name="UltimoPeriodo_fecha_fin" Type="date" Nullable="false" />
+          <Property Name="Meses_UltimoPeriodo" Type="int" />
+          <Property Name="TipoDocumento" Type="char" MaxLength="2" />
+          <Property Name="NoDocumento" Type="varchar" MaxLength="20" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CentroId" Type="int" Nullable="false" />
+          <Property Name="ConsutaId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RespuestasCalculadora">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RazonSocial" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Nit" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TelefonoEmpresa" Type="int" Nullable="false" />
+          <Property Name="NombreContacto" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="DescripcionVacante" Type="varchar" MaxLength="1500" Nullable="false" />
+          <Property Name="NivelEducativoRequeridoVacante" Type="int" Nullable="false" />
+          <Property Name="NumeroPuestosTrabajo" Type="int" Nullable="false" />
+          <Property Name="OficinaRecursosHumanos" Type="bit" Nullable="false" />
+          <Property Name="TamanoPlantaEmpresa" Type="int" Nullable="false" />
+          <Property Name="HabilidadRequerida" Type="int" Nullable="false" />
+          <Property Name="DestrezasRequeridas" Type="int" Nullable="false" />
+          <Property Name="TipoConocimientoRequerido" Type="int" Nullable="false" />
+          <Property Name="ActividadesPuestoDeTrabajo" Type="int" Nullable="false" />
+          <Property Name="JovenesPorTutor" Type="int" Nullable="false" />
+          <Property Name="VacanteNueva" Type="bit" Nullable="false" />
+          <Property Name="PuestoTrabajoPermanente" Type="bit" Nullable="false" />
+          <Property Name="ContenidoActividadFormacion" Type="int" Nullable="false" />
+          <Property Name="SalarioAdicional" Type="bit" Nullable="false" />
+          <Property Name="SalarioAdicionalRango" Type="int" Nullable="false" />
+          <Property Name="Municipio" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="UserId" Type="char" MaxLength="128" Nullable="false" />
+          <Property Name="CentroId" Type="int" Nullable="false" />
+          <Property Name="FechaRegistro" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ResultadoCalculadora">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CapitalHumano" Type="float" Nullable="false" />
+          <Property Name="CaracteristicasEmpresa" Type="float" Nullable="false" />
+          <Property Name="CaracteristicasPuesto" Type="float" Nullable="false" />
+          <Property Name="Total" Type="float" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CentroId" Type="int" Nullable="false" />
+          <Property Name="RespuestasCalculadoraId" Type="int" Nullable="false" />
+          <Property Name="FechaCalculo" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SalarioAdicionalRango">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SalarioAdicionalRango" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoConocimientoRequerido">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipoConocimientoRequerido" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoDocumento">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="TipoDocumento" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Actividad__Activ__32767D0B">
+          <End Role="ActividadesPuestoDeTrabajo" Type="Self.ActividadesPuestoDeTrabajo" Multiplicity="1" />
+          <End Role="ActividadNivEduDes" Type="Self.ActividadNivEduDes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActividadesPuestoDeTrabajo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ActividadNivEduDes">
+              <PropertyRef Name="ActividadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Actividad__Destr__345EC57D">
+          <End Role="Destrezas" Type="Self.Destrezas" Multiplicity="1" />
+          <End Role="ActividadNivEduDes" Type="Self.ActividadNivEduDes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Destrezas">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ActividadNivEduDes">
+              <PropertyRef Name="DestrezaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ActNivEdu__Activ__382F5661">
+          <End Role="ActividadesPuestoDeTrabajo" Type="Self.ActividadesPuestoDeTrabajo" Multiplicity="1" />
+          <End Role="ActNivEdu" Type="Self.ActNivEdu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActividadesPuestoDeTrabajo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ActNivEdu">
+              <PropertyRef Name="ActividadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ActNivEdu__Nivel__39237A9A">
+          <End Role="NivelEducativo" Type="Self.NivelEducativo" Multiplicity="1" />
+          <End Role="ActNivEdu" Type="Self.ActNivEdu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NivelEducativo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ActNivEdu">
+              <PropertyRef Name="NivelEducativoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Centro__UserID__4BAC3F29">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Centros" Type="Self.Centros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Centros">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Consulta__TipoDo__55F4C372">
+          <End Role="TipoDocumento" Type="Self.TipoDocumento" Multiplicity="1" />
+          <End Role="Consulta" Type="Self.Consulta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoDocumento">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Consulta">
+              <PropertyRef Name="TipoDocumento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Multiplic__Activ__2BC97F7C">
+          <End Role="ActividadesPuestoDeTrabajo" Type="Self.ActividadesPuestoDeTrabajo" Multiplicity="1" />
+          <End Role="ActividadNivEduHab" Type="Self.ActividadNivEduHab" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActividadesPuestoDeTrabajo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ActividadNivEduHab">
+              <PropertyRef Name="ActividadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Multiplic__Habil__2EA5EC27">
+          <End Role="Habilidad" Type="Self.Habilidad" Multiplicity="1" />
+          <End Role="ActividadNivEduHab" Type="Self.ActividadNivEduHab" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Habilidad">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ActividadNivEduHab">
+              <PropertyRef Name="HabilidadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__municipal__depar__12FDD1B2">
+          <End Role="department" Type="Self.department" Multiplicity="1" />
+          <End Role="municipality" Type="Self.municipality" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department">
+              <PropertyRef Name="IdCodigo" />
+            </Principal>
+            <Dependent Role="municipality">
+              <PropertyRef Name="department_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Respuesta__Activ__373B3228">
+          <End Role="ActividadesPuestoDeTrabajo" Type="Self.ActividadesPuestoDeTrabajo" Multiplicity="1" />
+          <End Role="RespuestasCalculadora" Type="Self.RespuestasCalculadora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActividadesPuestoDeTrabajo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RespuestasCalculadora">
+              <PropertyRef Name="ActividadesPuestoDeTrabajo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Respuesta__Centr__035179CE">
+          <End Role="Centros" Type="Self.Centros" Multiplicity="1" />
+          <End Role="RespuestaPila" Type="Self.RespuestaPila" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Centros">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RespuestaPila">
+              <PropertyRef Name="CentroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Respuesta__Centr__5772F790">
+          <End Role="Centros" Type="Self.Centros" Multiplicity="1" />
+          <End Role="RespuestasCalculadora" Type="Self.RespuestasCalculadora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Centros">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RespuestasCalculadora">
+              <PropertyRef Name="CentroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Respuesta__Conte__54CB950F">
+          <End Role="ContenidoActividadFormacion" Type="Self.ContenidoActividadFormacion" Multiplicity="1" />
+          <End Role="RespuestasCalculadora" Type="Self.RespuestasCalculadora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContenidoActividadFormacion">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RespuestasCalculadora">
+              <PropertyRef Name="ContenidoActividadFormacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Respuesta__Destr__214BF109">
+          <End Role="Destrezas" Type="Self.Destrezas" Multiplicity="1" />
+          <End Role="RespuestasCalculadora" Type="Self.RespuestasCalculadora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Destrezas">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RespuestasCalculadora">
+              <PropertyRef Name="DestrezasRequeridas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Respuesta__Habil__22401542">
+          <End Role="Habilidad" Type="Self.Habilidad" Multiplicity="1" />
+          <End Role="RespuestasCalculadora" Type="Self.RespuestasCalculadora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Habilidad">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RespuestasCalculadora">
+              <PropertyRef Name="HabilidadRequerida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Respuesta__Joven__2334397B">
+          <End Role="JovenesPorTutor" Type="Self.JovenesPorTutor" Multiplicity="1" />
+          <End Role="RespuestasCalculadora" Type="Self.RespuestasCalculadora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JovenesPorTutor">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RespuestasCalculadora">
+              <PropertyRef Name="JovenesPorTutor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Respuesta__Munic__2704CA5F">
+          <End Role="municipality" Type="Self.municipality" Multiplicity="1" />
+          <End Role="RespuestasCalculadora" Type="Self.RespuestasCalculadora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="municipality">
+              <PropertyRef Name="IdCodigo" />
+            </Principal>
+            <Dependent Role="RespuestasCalculadora">
+              <PropertyRef Name="Municipio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Respuesta__Nivel__24285DB4">
+          <End Role="NivelEducativo" Type="Self.NivelEducativo" Multiplicity="1" />
+          <End Role="RespuestasCalculadora" Type="Self.RespuestasCalculadora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NivelEducativo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RespuestasCalculadora">
+              <PropertyRef Name="NivelEducativoRequeridoVacante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Respuesta__Salar__251C81ED">
+          <End Role="SalarioAdicionalRango" Type="Self.SalarioAdicionalRango" Multiplicity="1" />
+          <End Role="RespuestasCalculadora" Type="Self.RespuestasCalculadora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SalarioAdicionalRango">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RespuestasCalculadora">
+              <PropertyRef Name="SalarioAdicionalRango" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Respuesta__TipoC__2610A626">
+          <End Role="TipoConocimientoRequerido" Type="Self.TipoConocimientoRequerido" Multiplicity="1" />
+          <End Role="RespuestasCalculadora" Type="Self.RespuestasCalculadora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoConocimientoRequerido">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RespuestasCalculadora">
+              <PropertyRef Name="TipoConocimientoRequerido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Respuesta__UserI__025D5595">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="RespuestaPila" Type="Self.RespuestaPila" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RespuestaPila">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Resultado__Centr__7167D3BD">
+          <End Role="Centros" Type="Self.Centros" Multiplicity="1" />
+          <End Role="ResultadoCalculadora" Type="Self.ResultadoCalculadora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Centros">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ResultadoCalculadora">
+              <PropertyRef Name="CentroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Resultado__Respu__725BF7F6">
+          <End Role="RespuestasCalculadora" Type="Self.RespuestasCalculadora" Multiplicity="1" />
+          <End Role="ResultadoCalculadora" Type="Self.ResultadoCalculadora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RespuestasCalculadora">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ResultadoCalculadora">
+              <PropertyRef Name="RespuestasCalculadoraId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Resultado__UserI__73501C2F">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="ResultadoCalculadora" Type="Self.ResultadoCalculadora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ResultadoCalculadora">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="mucipio">
+          <End Role="municipality" Type="Self.municipality" Multiplicity="1" />
+          <End Role="PonderacionMunicipio" Type="Self.PonderacionMunicipio" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="municipality">
+              <PropertyRef Name="IdCodigo" />
+            </Principal>
+            <Dependent Role="PonderacionMunicipio">
+              <PropertyRef Name="IdCodigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MilEmpleosModelStoreContainer">
+          <EntitySet Name="ActividadesPuestoDeTrabajo" EntityType="Self.ActividadesPuestoDeTrabajo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ActividadNivEduDes" EntityType="Self.ActividadNivEduDes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ActividadNivEduHab" EntityType="Self.ActividadNivEduHab" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ActNivEdu" EntityType="Self.ActNivEdu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="actulizacionPila" EntityType="Self.actulizacionPila" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Centros" EntityType="Self.Centros" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Consulta" EntityType="Self.Consulta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContenidoActividadFormacion" EntityType="Self.ContenidoActividadFormacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="department" EntityType="Self.department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Destrezas" EntityType="Self.Destrezas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Habilidad" EntityType="Self.Habilidad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JovenesPorTutor" EntityType="Self.JovenesPorTutor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="municipality" EntityType="Self.municipality" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NivelEducativo" EntityType="Self.NivelEducativo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PassPrestadores" EntityType="Self.PassPrestadores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pila" EntityType="Self.Pila" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ponderacion" EntityType="Self.Ponderacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PonderacionMunicipio" EntityType="Self.PonderacionMunicipio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RespuestaPila" EntityType="Self.RespuestaPila" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RespuestasCalculadora" EntityType="Self.RespuestasCalculadora" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ResultadoCalculadora" EntityType="Self.ResultadoCalculadora" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SalarioAdicionalRango" EntityType="Self.SalarioAdicionalRango" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoConocimientoRequerido" EntityType="Self.TipoConocimientoRequerido" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoDocumento" EntityType="Self.TipoDocumento" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Actividad__Activ__32767D0B" Association="Self.FK__Actividad__Activ__32767D0B">
+            <End Role="ActividadesPuestoDeTrabajo" EntitySet="ActividadesPuestoDeTrabajo" />
+            <End Role="ActividadNivEduDes" EntitySet="ActividadNivEduDes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Actividad__Destr__345EC57D" Association="Self.FK__Actividad__Destr__345EC57D">
+            <End Role="Destrezas" EntitySet="Destrezas" />
+            <End Role="ActividadNivEduDes" EntitySet="ActividadNivEduDes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ActNivEdu__Activ__382F5661" Association="Self.FK__ActNivEdu__Activ__382F5661">
+            <End Role="ActividadesPuestoDeTrabajo" EntitySet="ActividadesPuestoDeTrabajo" />
+            <End Role="ActNivEdu" EntitySet="ActNivEdu" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ActNivEdu__Nivel__39237A9A" Association="Self.FK__ActNivEdu__Nivel__39237A9A">
+            <End Role="NivelEducativo" EntitySet="NivelEducativo" />
+            <End Role="ActNivEdu" EntitySet="ActNivEdu" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Centro__UserID__4BAC3F29" Association="Self.FK__Centro__UserID__4BAC3F29">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Centros" EntitySet="Centros" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Consulta__TipoDo__55F4C372" Association="Self.FK__Consulta__TipoDo__55F4C372">
+            <End Role="TipoDocumento" EntitySet="TipoDocumento" />
+            <End Role="Consulta" EntitySet="Consulta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Multiplic__Activ__2BC97F7C" Association="Self.FK__Multiplic__Activ__2BC97F7C">
+            <End Role="ActividadesPuestoDeTrabajo" EntitySet="ActividadesPuestoDeTrabajo" />
+            <End Role="ActividadNivEduHab" EntitySet="ActividadNivEduHab" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Multiplic__Habil__2EA5EC27" Association="Self.FK__Multiplic__Habil__2EA5EC27">
+            <End Role="Habilidad" EntitySet="Habilidad" />
+            <End Role="ActividadNivEduHab" EntitySet="ActividadNivEduHab" />
+          </AssociationSet>
+          <AssociationSet Name="FK__municipal__depar__12FDD1B2" Association="Self.FK__municipal__depar__12FDD1B2">
+            <End Role="department" EntitySet="department" />
+            <End Role="municipality" EntitySet="municipality" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Respuesta__Activ__373B3228" Association="Self.FK__Respuesta__Activ__373B3228">
+            <End Role="ActividadesPuestoDeTrabajo" EntitySet="ActividadesPuestoDeTrabajo" />
+            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Respuesta__Centr__035179CE" Association="Self.FK__Respuesta__Centr__035179CE">
+            <End Role="Centros" EntitySet="Centros" />
+            <End Role="RespuestaPila" EntitySet="RespuestaPila" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Respuesta__Centr__5772F790" Association="Self.FK__Respuesta__Centr__5772F790">
+            <End Role="Centros" EntitySet="Centros" />
+            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Respuesta__Conte__54CB950F" Association="Self.FK__Respuesta__Conte__54CB950F">
+            <End Role="ContenidoActividadFormacion" EntitySet="ContenidoActividadFormacion" />
+            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Respuesta__Destr__214BF109" Association="Self.FK__Respuesta__Destr__214BF109">
+            <End Role="Destrezas" EntitySet="Destrezas" />
+            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Respuesta__Habil__22401542" Association="Self.FK__Respuesta__Habil__22401542">
+            <End Role="Habilidad" EntitySet="Habilidad" />
+            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Respuesta__Joven__2334397B" Association="Self.FK__Respuesta__Joven__2334397B">
+            <End Role="JovenesPorTutor" EntitySet="JovenesPorTutor" />
+            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Respuesta__Munic__2704CA5F" Association="Self.FK__Respuesta__Munic__2704CA5F">
+            <End Role="municipality" EntitySet="municipality" />
+            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Respuesta__Nivel__24285DB4" Association="Self.FK__Respuesta__Nivel__24285DB4">
+            <End Role="NivelEducativo" EntitySet="NivelEducativo" />
+            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Respuesta__Salar__251C81ED" Association="Self.FK__Respuesta__Salar__251C81ED">
+            <End Role="SalarioAdicionalRango" EntitySet="SalarioAdicionalRango" />
+            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Respuesta__TipoC__2610A626" Association="Self.FK__Respuesta__TipoC__2610A626">
+            <End Role="TipoConocimientoRequerido" EntitySet="TipoConocimientoRequerido" />
+            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Respuesta__UserI__025D5595" Association="Self.FK__Respuesta__UserI__025D5595">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="RespuestaPila" EntitySet="RespuestaPila" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Resultado__Centr__7167D3BD" Association="Self.FK__Resultado__Centr__7167D3BD">
+            <End Role="Centros" EntitySet="Centros" />
+            <End Role="ResultadoCalculadora" EntitySet="ResultadoCalculadora" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Resultado__Respu__725BF7F6" Association="Self.FK__Resultado__Respu__725BF7F6">
+            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
+            <End Role="ResultadoCalculadora" EntitySet="ResultadoCalculadora" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Resultado__UserI__73501C2F" Association="Self.FK__Resultado__UserI__73501C2F">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="ResultadoCalculadora" EntitySet="ResultadoCalculadora" />
+          </AssociationSet>
+          <AssociationSet Name="mucipio" Association="Self.mucipio">
+            <End Role="municipality" EntitySet="municipality" />
+            <End Role="PonderacionMunicipio" EntitySet="PonderacionMunicipio" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MilEmpleosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ActividadesPuestoDeTrabajo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ActividadesPuestoDeTrabajo1" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ActividadNivEduDes" Relationship="Self.FK__Actividad__Activ__32767D0B" FromRole="ActividadesPuestoDeTrabajo" ToRole="ActividadNivEduDes" />
+          <NavigationProperty Name="ActNivEdu" Relationship="Self.FK__ActNivEdu__Activ__382F5661" FromRole="ActividadesPuestoDeTrabajo" ToRole="ActNivEdu" />
+          <NavigationProperty Name="ActividadNivEduHab" Relationship="Self.FK__Multiplic__Activ__2BC97F7C" FromRole="ActividadesPuestoDeTrabajo" ToRole="ActividadNivEduHab" />
+          <NavigationProperty Name="RespuestasCalculadora" Relationship="Self.FK__Respuesta__Activ__373B3228" FromRole="ActividadesPuestoDeTrabajo" ToRole="RespuestasCalculadora" />
+        </EntityType>
+        <EntityType Name="ActividadNivEduDes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ActividadId" Type="Int32" Nullable="false" />
+          <Property Name="DestrezaId" Type="Int32" Nullable="false" />
+          <Property Name="ValorDestreza" Type="Double" Nullable="false" />
+          <NavigationProperty Name="ActividadesPuestoDeTrabajo" Relationship="Self.FK__Actividad__Activ__32767D0B" FromRole="ActividadNivEduDes" ToRole="ActividadesPuestoDeTrabajo" />
+          <NavigationProperty Name="Destrezas" Relationship="Self.FK__Actividad__Destr__345EC57D" FromRole="ActividadNivEduDes" ToRole="Destrezas" />
+        </EntityType>
+        <EntityType Name="ActividadNivEduHab">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ActividadId" Type="Int32" Nullable="false" />
+          <Property Name="HabilidadId" Type="Int32" Nullable="false" />
+          <Property Name="ValorHabilidad" Type="Double" Nullable="false" />
+          <NavigationProperty Name="ActividadesPuestoDeTrabajo" Relationship="Self.FK__Multiplic__Activ__2BC97F7C" FromRole="ActividadNivEduHab" ToRole="ActividadesPuestoDeTrabajo" />
+          <NavigationProperty Name="Habilidad" Relationship="Self.FK__Multiplic__Habil__2EA5EC27" FromRole="ActividadNivEduHab" ToRole="Habilidad" />
+        </EntityType>
+        <EntityType Name="ActNivEdu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ActividadId" Type="Int32" Nullable="false" />
+          <Property Name="NivelEducativoId" Type="Int32" Nullable="false" />
+          <Property Name="Mutipliacdor" Type="Double" Nullable="false" />
+          <NavigationProperty Name="ActividadesPuestoDeTrabajo" Relationship="Self.FK__ActNivEdu__Activ__382F5661" FromRole="ActNivEdu" ToRole="ActividadesPuestoDeTrabajo" />
+          <NavigationProperty Name="NivelEducativo" Relationship="Self.FK__ActNivEdu__Nivel__39237A9A" FromRole="ActNivEdu" ToRole="NivelEducativo" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CentroId" Type="Int32" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordChange" Type="Boolean" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Centros" Relationship="Self.FK__Centro__UserID__4BAC3F29" FromRole="AspNetUsers" ToRole="Centros" />
+          <NavigationProperty Name="ResultadoCalculadora" Relationship="Self.FK__Resultado__UserI__73501C2F" FromRole="AspNetUsers" ToRole="ResultadoCalculadora" />
+          <NavigationProperty Name="RespuestaPila" Relationship="MilEmpleosModel.FK__Respuesta__UserI__025D5595" FromRole="AspNetUsers" ToRole="RespuestaPila" />
+          </EntityType>
+        <EntityType Name="Centros">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CentroEmpleo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Dominio" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK__Centro__UserID__4BAC3F29" FromRole="Centros" ToRole="AspNetUsers" />
+          <NavigationProperty Name="RespuestasCalculadora" Relationship="Self.FK__Respuesta__Centr__5772F790" FromRole="Centros" ToRole="RespuestasCalculadora" />
+          <NavigationProperty Name="ResultadoCalculadora" Relationship="Self.FK__Resultado__Centr__7167D3BD" FromRole="Centros" ToRole="ResultadoCalculadora" />
+          <NavigationProperty Name="RespuestaPila" Relationship="MilEmpleosModel.FK__Respuesta__Centr__035179CE" FromRole="Centros" ToRole="RespuestaPila" />
+        </EntityType>
+        <EntityType Name="Consulta">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DocumentoNumero" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FechaConsulta" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UsuerID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CentroID" Type="Int32" Nullable="false" />
+          <Property Name="TipoDocumento" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TipoDocumento1" Relationship="Self.FK__Consulta__TipoDo__55F4C372" FromRole="Consulta" ToRole="TipoDocumento" />
+        </EntityType>
+        <EntityType Name="ContenidoActividadFormacion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContenidoActividadFormacion1" Type="String" MaxLength="400" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="RespuestasCalculadora" Relationship="Self.FK__Respuesta__Conte__54CB950F" FromRole="ContenidoActividadFormacion" ToRole="RespuestasCalculadora" />
+        </EntityType>
+        <EntityType Name="department">
+          <Key>
+            <PropertyRef Name="IdCodigo" />
+          </Key>
+          <Property Name="IdCodigo" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="municipality" Relationship="Self.FK__municipal__depar__12FDD1B2" FromRole="department" ToRole="municipality" />
+        </EntityType>
+        <EntityType Name="Destrezas">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Destreza" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ActividadNivEduDes" Relationship="Self.FK__Actividad__Destr__345EC57D" FromRole="Destrezas" ToRole="ActividadNivEduDes" />
+          <NavigationProperty Name="RespuestasCalculadora" Relationship="Self.FK__Respuesta__Destr__214BF109" FromRole="Destrezas" ToRole="RespuestasCalculadora" />
+        </EntityType>
+        <EntityType Name="Habilidad">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HabilidadRequerida" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ActividadNivEduHab" Relationship="Self.FK__Multiplic__Habil__2EA5EC27" FromRole="Habilidad" ToRole="ActividadNivEduHab" />
+          <NavigationProperty Name="RespuestasCalculadora" Relationship="Self.FK__Respuesta__Habil__22401542" FromRole="Habilidad" ToRole="RespuestasCalculadora" />
+        </EntityType>
+        <EntityType Name="JovenesPorTutor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JovenesPorTutor1" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="RespuestasCalculadora" Relationship="Self.FK__Respuesta__Joven__2334397B" FromRole="JovenesPorTutor" ToRole="RespuestasCalculadora" />
+        </EntityType>
+        <EntityType Name="municipality">
+          <Key>
+            <PropertyRef Name="IdCodigo" />
+          </Key>
+          <Property Name="IdCodigo" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="department_id" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="department" Relationship="Self.FK__municipal__depar__12FDD1B2" FromRole="municipality" ToRole="department" />
+          <NavigationProperty Name="RespuestasCalculadora" Relationship="Self.FK__Respuesta__Munic__2704CA5F" FromRole="municipality" ToRole="RespuestasCalculadora" />
+          <NavigationProperty Name="PonderacionMunicipio" Relationship="Self.mucipio" FromRole="municipality" ToRole="PonderacionMunicipio" />
+        </EntityType>
+        <EntityType Name="NivelEducativo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NivelEducativo1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ActNivEdu" Relationship="Self.FK__ActNivEdu__Nivel__39237A9A" FromRole="NivelEducativo" ToRole="ActNivEdu" />
+          <NavigationProperty Name="RespuestasCalculadora" Relationship="Self.FK__Respuesta__Nivel__24285DB4" FromRole="NivelEducativo" ToRole="RespuestasCalculadora" />
+        </EntityType>
+        <EntityType Name="PassPrestadores">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Prestador" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="ClaveINI" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="UsurioCorreo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Ponderacion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PreguntaId" Type="Int32" Nullable="false" />
+          <Property Name="RespuestaId" Type="Int32" Nullable="false" />
+          <Property Name="PorcentageRespuesta" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PonderacionMunicipio">
+          <Key>
+            <PropertyRef Name="IdCodigo" />
+          </Key>
+          <Property Name="IdCodigo" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ponderacion" Type="Double" Nullable="false" />
+          <NavigationProperty Name="municipality" Relationship="Self.mucipio" FromRole="PonderacionMunicipio" ToRole="municipality" />
+        </EntityType>
+        <EntityType Name="RespuestasCalculadora">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RazonSocial" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nit" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TelefonoEmpresa" Type="Int32" Nullable="false" />
+          <Property Name="NombreContacto" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DescripcionVacante" Type="String" MaxLength="1500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NivelEducativoRequeridoVacante" Type="Int32" Nullable="false" />
+          <Property Name="NumeroPuestosTrabajo" Type="Int32" Nullable="false" />
+          <Property Name="OficinaRecursosHumanos" Type="Boolean" Nullable="false" />
+          <Property Name="TamanoPlantaEmpresa" Type="Int32" Nullable="false" />
+          <Property Name="HabilidadRequerida" Type="Int32" Nullable="false" />
+          <Property Name="DestrezasRequeridas" Type="Int32" Nullable="false" />
+          <Property Name="TipoConocimientoRequerido" Type="Int32" Nullable="false" />
+          <Property Name="ActividadesPuestoDeTrabajo" Type="Int32" Nullable="false" />
+          <Property Name="JovenesPorTutor" Type="Int32" Nullable="false" />
+          <Property Name="VacanteNueva" Type="Boolean" Nullable="false" />
+          <Property Name="PuestoTrabajoPermanente" Type="Boolean" Nullable="false" />
+          <Property Name="ContenidoActividadFormacion" Type="Int32" Nullable="false" />
+          <Property Name="SalarioAdicional" Type="Boolean" Nullable="false" />
+          <Property Name="SalarioAdicionalRango" Type="Int32" Nullable="false" />
+          <Property Name="Municipio" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CentroId" Type="Int32" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ActividadesPuestoDeTrabajo1" Relationship="Self.FK__Respuesta__Activ__373B3228" FromRole="RespuestasCalculadora" ToRole="ActividadesPuestoDeTrabajo" />
+          <NavigationProperty Name="Centros" Relationship="Self.FK__Respuesta__Centr__5772F790" FromRole="RespuestasCalculadora" ToRole="Centros" />
+          <NavigationProperty Name="ContenidoActividadFormacion1" Relationship="Self.FK__Respuesta__Conte__54CB950F" FromRole="RespuestasCalculadora" ToRole="ContenidoActividadFormacion" />
+          <NavigationProperty Name="Destrezas" Relationship="Self.FK__Respuesta__Destr__214BF109" FromRole="RespuestasCalculadora" ToRole="Destrezas" />
+          <NavigationProperty Name="Habilidad" Relationship="Self.FK__Respuesta__Habil__22401542" FromRole="RespuestasCalculadora" ToRole="Habilidad" />
+          <NavigationProperty Name="JovenesPorTutor1" Relationship="Self.FK__Respuesta__Joven__2334397B" FromRole="RespuestasCalculadora" ToRole="JovenesPorTutor" />
+          <NavigationProperty Name="municipality" Relationship="Self.FK__Respuesta__Munic__2704CA5F" FromRole="RespuestasCalculadora" ToRole="municipality" />
+          <NavigationProperty Name="NivelEducativo" Relationship="Self.FK__Respuesta__Nivel__24285DB4" FromRole="RespuestasCalculadora" ToRole="NivelEducativo" />
+          <NavigationProperty Name="SalarioAdicionalRango1" Relationship="Self.FK__Respuesta__Salar__251C81ED" FromRole="RespuestasCalculadora" ToRole="SalarioAdicionalRango" />
+          <NavigationProperty Name="TipoConocimientoRequerido1" Relationship="Self.FK__Respuesta__TipoC__2610A626" FromRole="RespuestasCalculadora" ToRole="TipoConocimientoRequerido" />
+          <NavigationProperty Name="ResultadoCalculadora" Relationship="Self.FK__Resultado__Respu__725BF7F6" FromRole="RespuestasCalculadora" ToRole="ResultadoCalculadora" />
+        </EntityType>
+        <EntityType Name="ResultadoCalculadora">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="CapitalHumano" Type="Double" Nullable="false" />
+          <Property Name="CaracteristicasEmpresa" Type="Double" Nullable="false" />
+          <Property Name="CaracteristicasPuesto" Type="Double" Nullable="false" />
+          <Property Name="Total" Type="Double" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CentroId" Type="Int32" Nullable="false" />
+          <Property Name="RespuestasCalculadoraId" Type="Int32" Nullable="false" />
+          <Property Name="FechaCalculo" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK__Resultado__UserI__73501C2F" FromRole="ResultadoCalculadora" ToRole="AspNetUsers" />
+          <NavigationProperty Name="Centros" Relationship="Self.FK__Resultado__Centr__7167D3BD" FromRole="ResultadoCalculadora" ToRole="Centros" />
+          <NavigationProperty Name="RespuestasCalculadora" Relationship="Self.FK__Resultado__Respu__725BF7F6" FromRole="ResultadoCalculadora" ToRole="RespuestasCalculadora" />
+        </EntityType>
+        <EntityType Name="SalarioAdicionalRango">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SalarioAdicionalRango1" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="RespuestasCalculadora" Relationship="Self.FK__Respuesta__Salar__251C81ED" FromRole="SalarioAdicionalRango" ToRole="RespuestasCalculadora" />
+        </EntityType>
+        <EntityType Name="TipoConocimientoRequerido">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoConocimientoRequerido1" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="RespuestasCalculadora" Relationship="Self.FK__Respuesta__TipoC__2610A626" FromRole="TipoConocimientoRequerido" ToRole="RespuestasCalculadora" />
+        </EntityType>
+        <EntityType Name="TipoDocumento">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TipoDocumento1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Consulta" Relationship="Self.FK__Consulta__TipoDo__55F4C372" FromRole="TipoDocumento" ToRole="Consulta" />
+        </EntityType>
+        <Association Name="FK__Actividad__Activ__32767D0B">
+          <End Role="ActividadesPuestoDeTrabajo" Type="Self.ActividadesPuestoDeTrabajo" Multiplicity="1" />
+          <End Role="ActividadNivEduDes" Type="Self.ActividadNivEduDes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActividadesPuestoDeTrabajo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ActividadNivEduDes">
+              <PropertyRef Name="ActividadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ActNivEdu__Activ__382F5661">
+          <End Role="ActividadesPuestoDeTrabajo" Type="Self.ActividadesPuestoDeTrabajo" Multiplicity="1" />
+          <End Role="ActNivEdu" Type="Self.ActNivEdu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActividadesPuestoDeTrabajo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ActNivEdu">
+              <PropertyRef Name="ActividadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Multiplic__Activ__2BC97F7C">
+          <End Role="ActividadesPuestoDeTrabajo" Type="Self.ActividadesPuestoDeTrabajo" Multiplicity="1" />
+          <End Role="ActividadNivEduHab" Type="Self.ActividadNivEduHab" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActividadesPuestoDeTrabajo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ActividadNivEduHab">
+              <PropertyRef Name="ActividadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Respuesta__Activ__373B3228">
+          <End Role="ActividadesPuestoDeTrabajo" Type="Self.ActividadesPuestoDeTrabajo" Multiplicity="1" />
+          <End Role="RespuestasCalculadora" Type="Self.RespuestasCalculadora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActividadesPuestoDeTrabajo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RespuestasCalculadora">
+              <PropertyRef Name="ActividadesPuestoDeTrabajo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Actividad__Destr__345EC57D">
+          <End Role="Destrezas" Type="Self.Destrezas" Multiplicity="1" />
+          <End Role="ActividadNivEduDes" Type="Self.ActividadNivEduDes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Destrezas">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ActividadNivEduDes">
+              <PropertyRef Name="DestrezaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Multiplic__Habil__2EA5EC27">
+          <End Role="Habilidad" Type="Self.Habilidad" Multiplicity="1" />
+          <End Role="ActividadNivEduHab" Type="Self.ActividadNivEduHab" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Habilidad">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ActividadNivEduHab">
+              <PropertyRef Name="HabilidadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ActNivEdu__Nivel__39237A9A">
+          <End Role="NivelEducativo" Type="Self.NivelEducativo" Multiplicity="1" />
+          <End Role="ActNivEdu" Type="Self.ActNivEdu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NivelEducativo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ActNivEdu">
+              <PropertyRef Name="NivelEducativoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Centro__UserID__4BAC3F29">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Centros" Type="Self.Centros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Centros">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Resultado__UserI__73501C2F">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="ResultadoCalculadora" Type="Self.ResultadoCalculadora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ResultadoCalculadora">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Respuesta__Centr__5772F790">
+          <End Role="Centros" Type="Self.Centros" Multiplicity="1" />
+          <End Role="RespuestasCalculadora" Type="Self.RespuestasCalculadora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Centros">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RespuestasCalculadora">
+              <PropertyRef Name="CentroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Resultado__Centr__7167D3BD">
+          <End Role="Centros" Type="Self.Centros" Multiplicity="1" />
+          <End Role="ResultadoCalculadora" Type="Self.ResultadoCalculadora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Centros">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ResultadoCalculadora">
+              <PropertyRef Name="CentroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Consulta__TipoDo__55F4C372">
+          <End Role="TipoDocumento" Type="Self.TipoDocumento" Multiplicity="1" />
+          <End Role="Consulta" Type="Self.Consulta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoDocumento">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Consulta">
+              <PropertyRef Name="TipoDocumento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Respuesta__Conte__54CB950F">
+          <End Role="ContenidoActividadFormacion" Type="Self.ContenidoActividadFormacion" Multiplicity="1" />
+          <End Role="RespuestasCalculadora" Type="Self.RespuestasCalculadora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContenidoActividadFormacion">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RespuestasCalculadora">
+              <PropertyRef Name="ContenidoActividadFormacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__municipal__depar__12FDD1B2">
+          <End Role="department" Type="Self.department" Multiplicity="1" />
+          <End Role="municipality" Type="Self.municipality" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department">
+              <PropertyRef Name="IdCodigo" />
+            </Principal>
+            <Dependent Role="municipality">
+              <PropertyRef Name="department_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Respuesta__Destr__214BF109">
+          <End Role="Destrezas" Type="Self.Destrezas" Multiplicity="1" />
+          <End Role="RespuestasCalculadora" Type="Self.RespuestasCalculadora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Destrezas">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RespuestasCalculadora">
+              <PropertyRef Name="DestrezasRequeridas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Respuesta__Habil__22401542">
+          <End Role="Habilidad" Type="Self.Habilidad" Multiplicity="1" />
+          <End Role="RespuestasCalculadora" Type="Self.RespuestasCalculadora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Habilidad">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RespuestasCalculadora">
+              <PropertyRef Name="HabilidadRequerida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Respuesta__Joven__2334397B">
+          <End Role="JovenesPorTutor" Type="Self.JovenesPorTutor" Multiplicity="1" />
+          <End Role="RespuestasCalculadora" Type="Self.RespuestasCalculadora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JovenesPorTutor">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RespuestasCalculadora">
+              <PropertyRef Name="JovenesPorTutor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Respuesta__Munic__2704CA5F">
+          <End Role="municipality" Type="Self.municipality" Multiplicity="1" />
+          <End Role="RespuestasCalculadora" Type="Self.RespuestasCalculadora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="municipality">
+              <PropertyRef Name="IdCodigo" />
+            </Principal>
+            <Dependent Role="RespuestasCalculadora">
+              <PropertyRef Name="Municipio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="mucipio">
+          <End Role="municipality" Type="Self.municipality" Multiplicity="1" />
+          <End Role="PonderacionMunicipio" Type="Self.PonderacionMunicipio" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="municipality">
+              <PropertyRef Name="IdCodigo" />
+            </Principal>
+            <Dependent Role="PonderacionMunicipio">
+              <PropertyRef Name="IdCodigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Respuesta__Nivel__24285DB4">
+          <End Role="NivelEducativo" Type="Self.NivelEducativo" Multiplicity="1" />
+          <End Role="RespuestasCalculadora" Type="Self.RespuestasCalculadora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NivelEducativo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RespuestasCalculadora">
+              <PropertyRef Name="NivelEducativoRequeridoVacante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Respuesta__Salar__251C81ED">
+          <End Role="SalarioAdicionalRango" Type="Self.SalarioAdicionalRango" Multiplicity="1" />
+          <End Role="RespuestasCalculadora" Type="Self.RespuestasCalculadora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SalarioAdicionalRango">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RespuestasCalculadora">
+              <PropertyRef Name="SalarioAdicionalRango" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Respuesta__TipoC__2610A626">
+          <End Role="TipoConocimientoRequerido" Type="Self.TipoConocimientoRequerido" Multiplicity="1" />
+          <End Role="RespuestasCalculadora" Type="Self.RespuestasCalculadora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoConocimientoRequerido">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RespuestasCalculadora">
+              <PropertyRef Name="TipoConocimientoRequerido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Resultado__Respu__725BF7F6">
+          <End Role="RespuestasCalculadora" Type="Self.RespuestasCalculadora" Multiplicity="1" />
+          <End Role="ResultadoCalculadora" Type="Self.ResultadoCalculadora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RespuestasCalculadora">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ResultadoCalculadora">
+              <PropertyRef Name="RespuestasCalculadoraId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MilEmpleosEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ActividadesPuestoDeTrabajo" EntityType="Self.ActividadesPuestoDeTrabajo" />
+          <EntitySet Name="ActividadNivEduDes" EntityType="Self.ActividadNivEduDes" />
+          <EntitySet Name="ActividadNivEduHab" EntityType="Self.ActividadNivEduHab" />
+          <EntitySet Name="ActNivEdu" EntityType="Self.ActNivEdu" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
+          <EntitySet Name="Centros" EntityType="Self.Centros" />
+          <EntitySet Name="Consulta" EntityType="Self.Consulta" />
+          <EntitySet Name="ContenidoActividadFormacion" EntityType="Self.ContenidoActividadFormacion" />
+          <EntitySet Name="department" EntityType="Self.department" />
+          <EntitySet Name="Destrezas" EntityType="Self.Destrezas" />
+          <EntitySet Name="Habilidad" EntityType="Self.Habilidad" />
+          <EntitySet Name="JovenesPorTutor" EntityType="Self.JovenesPorTutor" />
+          <EntitySet Name="municipality" EntityType="Self.municipality" />
+          <EntitySet Name="NivelEducativo" EntityType="Self.NivelEducativo" />
+          <EntitySet Name="PassPrestadores" EntityType="Self.PassPrestadores" />
+          <EntitySet Name="Ponderacion" EntityType="Self.Ponderacion" />
+          <EntitySet Name="PonderacionMunicipio" EntityType="Self.PonderacionMunicipio" />
+          <EntitySet Name="RespuestasCalculadora" EntityType="Self.RespuestasCalculadora" />
+          <EntitySet Name="ResultadoCalculadora" EntityType="Self.ResultadoCalculadora" />
+          <EntitySet Name="SalarioAdicionalRango" EntityType="Self.SalarioAdicionalRango" />
+          <EntitySet Name="TipoConocimientoRequerido" EntityType="Self.TipoConocimientoRequerido" />
+          <EntitySet Name="TipoDocumento" EntityType="Self.TipoDocumento" />
+          <AssociationSet Name="FK__Actividad__Activ__32767D0B" Association="Self.FK__Actividad__Activ__32767D0B">
+            <End Role="ActividadesPuestoDeTrabajo" EntitySet="ActividadesPuestoDeTrabajo" />
+            <End Role="ActividadNivEduDes" EntitySet="ActividadNivEduDes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ActNivEdu__Activ__382F5661" Association="Self.FK__ActNivEdu__Activ__382F5661">
+            <End Role="ActividadesPuestoDeTrabajo" EntitySet="ActividadesPuestoDeTrabajo" />
+            <End Role="ActNivEdu" EntitySet="ActNivEdu" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Multiplic__Activ__2BC97F7C" Association="Self.FK__Multiplic__Activ__2BC97F7C">
+            <End Role="ActividadesPuestoDeTrabajo" EntitySet="ActividadesPuestoDeTrabajo" />
+            <End Role="ActividadNivEduHab" EntitySet="ActividadNivEduHab" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Respuesta__Activ__373B3228" Association="Self.FK__Respuesta__Activ__373B3228">
+            <End Role="ActividadesPuestoDeTrabajo" EntitySet="ActividadesPuestoDeTrabajo" />
+            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Actividad__Destr__345EC57D" Association="Self.FK__Actividad__Destr__345EC57D">
+            <End Role="Destrezas" EntitySet="Destrezas" />
+            <End Role="ActividadNivEduDes" EntitySet="ActividadNivEduDes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Multiplic__Habil__2EA5EC27" Association="Self.FK__Multiplic__Habil__2EA5EC27">
+            <End Role="Habilidad" EntitySet="Habilidad" />
+            <End Role="ActividadNivEduHab" EntitySet="ActividadNivEduHab" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ActNivEdu__Nivel__39237A9A" Association="Self.FK__ActNivEdu__Nivel__39237A9A">
+            <End Role="NivelEducativo" EntitySet="NivelEducativo" />
+            <End Role="ActNivEdu" EntitySet="ActNivEdu" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Centro__UserID__4BAC3F29" Association="Self.FK__Centro__UserID__4BAC3F29">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Centros" EntitySet="Centros" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Resultado__UserI__73501C2F" Association="Self.FK__Resultado__UserI__73501C2F">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="ResultadoCalculadora" EntitySet="ResultadoCalculadora" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Respuesta__Centr__5772F790" Association="Self.FK__Respuesta__Centr__5772F790">
+            <End Role="Centros" EntitySet="Centros" />
+            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Resultado__Centr__7167D3BD" Association="Self.FK__Resultado__Centr__7167D3BD">
+            <End Role="Centros" EntitySet="Centros" />
+            <End Role="ResultadoCalculadora" EntitySet="ResultadoCalculadora" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Consulta__TipoDo__55F4C372" Association="Self.FK__Consulta__TipoDo__55F4C372">
+            <End Role="TipoDocumento" EntitySet="TipoDocumento" />
+            <End Role="Consulta" EntitySet="Consulta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Respuesta__Conte__54CB950F" Association="Self.FK__Respuesta__Conte__54CB950F">
+            <End Role="ContenidoActividadFormacion" EntitySet="ContenidoActividadFormacion" />
+            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
+          </AssociationSet>
+          <AssociationSet Name="FK__municipal__depar__12FDD1B2" Association="Self.FK__municipal__depar__12FDD1B2">
+            <End Role="department" EntitySet="department" />
+            <End Role="municipality" EntitySet="municipality" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Respuesta__Destr__214BF109" Association="Self.FK__Respuesta__Destr__214BF109">
+            <End Role="Destrezas" EntitySet="Destrezas" />
+            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Respuesta__Habil__22401542" Association="Self.FK__Respuesta__Habil__22401542">
+            <End Role="Habilidad" EntitySet="Habilidad" />
+            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Respuesta__Joven__2334397B" Association="Self.FK__Respuesta__Joven__2334397B">
+            <End Role="JovenesPorTutor" EntitySet="JovenesPorTutor" />
+            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Respuesta__Munic__2704CA5F" Association="Self.FK__Respuesta__Munic__2704CA5F">
+            <End Role="municipality" EntitySet="municipality" />
+            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
+          </AssociationSet>
+          <AssociationSet Name="mucipio" Association="Self.mucipio">
+            <End Role="municipality" EntitySet="municipality" />
+            <End Role="PonderacionMunicipio" EntitySet="PonderacionMunicipio" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Respuesta__Nivel__24285DB4" Association="Self.FK__Respuesta__Nivel__24285DB4">
+            <End Role="NivelEducativo" EntitySet="NivelEducativo" />
+            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Respuesta__Salar__251C81ED" Association="Self.FK__Respuesta__Salar__251C81ED">
+            <End Role="SalarioAdicionalRango" EntitySet="SalarioAdicionalRango" />
+            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Respuesta__TipoC__2610A626" Association="Self.FK__Respuesta__TipoC__2610A626">
+            <End Role="TipoConocimientoRequerido" EntitySet="TipoConocimientoRequerido" />
+            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Resultado__Respu__725BF7F6" Association="Self.FK__Resultado__Respu__725BF7F6">
+            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
+            <End Role="ResultadoCalculadora" EntitySet="ResultadoCalculadora" />
+          </AssociationSet>
+          <EntitySet Name="AspNetRoles" EntityType="MilEmpleosModel.AspNetRoles" />
+          <EntitySet Name="Pila" EntityType="MilEmpleosModel.Pila" />
+          <EntitySet Name="RespuestaPila" EntityType="MilEmpleosModel.RespuestaPila" />
+          <AssociationSet Name="FK__Respuesta__UserI__025D5595" Association="MilEmpleosModel.FK__Respuesta__UserI__025D5595">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="RespuestaPila" EntitySet="RespuestaPila" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Respuesta__Centr__035179CE" Association="MilEmpleosModel.FK__Respuesta__Centr__035179CE">
+            <End Role="Centros" EntitySet="Centros" />
+            <End Role="RespuestaPila" EntitySet="RespuestaPila" />
+          </AssociationSet>
+          <EntitySet Name="actulizacionPila" EntityType="MilEmpleosModel.actulizacionPila" />
+          </EntityContainer>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Discriminator" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Pila">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoDocumento" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="NumeroDocumento" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PrimerNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SegundoNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PrimerApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SegundoApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TiempoTotalRegistroMeses" Type="Int32" />
+          <Property Name="ultimo_periodo_cotizado_fecha_inicio" Type="DateTime" Precision="0" />
+          <Property Name="ultimo_periodo_cotizado_fecha_fin" Type="DateTime" Precision="0" />
+          <Property Name="Meses_ultimo_periodo_cotizado" Type="Int32" />
+        </EntityType>
+        <EntityType Name="RespuestaPila">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Registrado" Type="Boolean" Nullable="false" />
+          <Property Name="Nombres" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Apellidos" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FechaRespuestaPila" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TiempoTotalRegistroMeses" Type="Int32" Nullable="false" />
+          <Property Name="UltimoPeriodo_fecha_inicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UltimoPeriodo_fecha_fin" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Meses_UltimoPeriodo" Type="Int32" />
+          <Property Name="TipoDocumento" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="NoDocumento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CentroId" Type="Int32" Nullable="false" />
+          <Property Name="ConsutaId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="MilEmpleosModel.FK__Respuesta__UserI__025D5595" FromRole="RespuestaPila" ToRole="AspNetUsers" />
+          <NavigationProperty Name="Centros" Relationship="MilEmpleosModel.FK__Respuesta__Centr__035179CE" FromRole="RespuestaPila" ToRole="Centros" />
+        </EntityType>
+        <Association Name="FK__Respuesta__UserI__025D5595">
+          <End Type="MilEmpleosModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+          <End Type="MilEmpleosModel.RespuestaPila" Role="RespuestaPila" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RespuestaPila">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Respuesta__Centr__035179CE">
+          <End Type="MilEmpleosModel.Centros" Role="Centros" Multiplicity="1" />
+          <End Type="MilEmpleosModel.RespuestaPila" Role="RespuestaPila" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Centros">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RespuestaPila">
+              <PropertyRef Name="CentroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="actulizacionPila">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha_Actualizacion" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MilEmpleosModelStoreContainer" CdmEntityContainer="MilEmpleosEntities1">
+          <EntitySetMapping Name="ActividadesPuestoDeTrabajo">
+            <EntityTypeMapping TypeName="MilEmpleosModel.ActividadesPuestoDeTrabajo">
+              <MappingFragment StoreEntitySet="ActividadesPuestoDeTrabajo">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ActividadesPuestoDeTrabajo1" ColumnName="ActividadesPuestoDeTrabajo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActividadNivEduDes">
+            <EntityTypeMapping TypeName="MilEmpleosModel.ActividadNivEduDes">
+              <MappingFragment StoreEntitySet="ActividadNivEduDes">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ActividadId" ColumnName="ActividadId" />
+                <ScalarProperty Name="DestrezaId" ColumnName="DestrezaId" />
+                <ScalarProperty Name="ValorDestreza" ColumnName="ValorDestreza" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActividadNivEduHab">
+            <EntityTypeMapping TypeName="MilEmpleosModel.ActividadNivEduHab">
+              <MappingFragment StoreEntitySet="ActividadNivEduHab">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ActividadId" ColumnName="ActividadId" />
+                <ScalarProperty Name="HabilidadId" ColumnName="HabilidadId" />
+                <ScalarProperty Name="ValorHabilidad" ColumnName="ValorHabilidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActNivEdu">
+            <EntityTypeMapping TypeName="MilEmpleosModel.ActNivEdu">
+              <MappingFragment StoreEntitySet="ActNivEdu">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ActividadId" ColumnName="ActividadId" />
+                <ScalarProperty Name="NivelEducativoId" ColumnName="NivelEducativoId" />
+                <ScalarProperty Name="Mutipliacdor" ColumnName="Mutipliacdor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="MilEmpleosModel.AspNetUsers">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="CentroId" ColumnName="CentroId" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="PasswordChange" ColumnName="PasswordChange" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Centros">
+            <EntityTypeMapping TypeName="MilEmpleosModel.Centros">
+              <MappingFragment StoreEntitySet="Centros">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CentroEmpleo" ColumnName="CentroEmpleo" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Dominio" ColumnName="Dominio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Consulta">
+            <EntityTypeMapping TypeName="MilEmpleosModel.Consulta">
+              <MappingFragment StoreEntitySet="Consulta">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="DocumentoNumero" ColumnName="DocumentoNumero" />
+                <ScalarProperty Name="FechaConsulta" ColumnName="FechaConsulta" />
+                <ScalarProperty Name="UsuerID" ColumnName="UsuerID" />
+                <ScalarProperty Name="CentroID" ColumnName="CentroID" />
+                <ScalarProperty Name="TipoDocumento" ColumnName="TipoDocumento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContenidoActividadFormacion">
+            <EntityTypeMapping TypeName="MilEmpleosModel.ContenidoActividadFormacion">
+              <MappingFragment StoreEntitySet="ContenidoActividadFormacion">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ContenidoActividadFormacion1" ColumnName="ContenidoActividadFormacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="department">
+            <EntityTypeMapping TypeName="MilEmpleosModel.department">
+              <MappingFragment StoreEntitySet="department">
+                <ScalarProperty Name="IdCodigo" ColumnName="IdCodigo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Destrezas">
+            <EntityTypeMapping TypeName="MilEmpleosModel.Destrezas">
+              <MappingFragment StoreEntitySet="Destrezas">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Destreza" ColumnName="Destreza" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Habilidad">
+            <EntityTypeMapping TypeName="MilEmpleosModel.Habilidad">
+              <MappingFragment StoreEntitySet="Habilidad">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="HabilidadRequerida" ColumnName="HabilidadRequerida" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JovenesPorTutor">
+            <EntityTypeMapping TypeName="MilEmpleosModel.JovenesPorTutor">
+              <MappingFragment StoreEntitySet="JovenesPorTutor">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="JovenesPorTutor1" ColumnName="JovenesPorTutor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="municipality">
+            <EntityTypeMapping TypeName="MilEmpleosModel.municipality">
+              <MappingFragment StoreEntitySet="municipality">
+                <ScalarProperty Name="IdCodigo" ColumnName="IdCodigo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="department_id" ColumnName="department_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NivelEducativo">
+            <EntityTypeMapping TypeName="MilEmpleosModel.NivelEducativo">
+              <MappingFragment StoreEntitySet="NivelEducativo">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="NivelEducativo1" ColumnName="NivelEducativo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PassPrestadores">
+            <EntityTypeMapping TypeName="MilEmpleosModel.PassPrestadores">
+              <MappingFragment StoreEntitySet="PassPrestadores">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Prestador" ColumnName="Prestador" />
+                <ScalarProperty Name="ClaveINI" ColumnName="ClaveINI" />
+                <ScalarProperty Name="UsurioCorreo" ColumnName="UsurioCorreo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ponderacion">
+            <EntityTypeMapping TypeName="MilEmpleosModel.Ponderacion">
+              <MappingFragment StoreEntitySet="Ponderacion">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="PreguntaId" ColumnName="PreguntaId" />
+                <ScalarProperty Name="RespuestaId" ColumnName="RespuestaId" />
+                <ScalarProperty Name="PorcentageRespuesta" ColumnName="PorcentageRespuesta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PonderacionMunicipio">
+            <EntityTypeMapping TypeName="MilEmpleosModel.PonderacionMunicipio">
+              <MappingFragment StoreEntitySet="PonderacionMunicipio">
+                <ScalarProperty Name="IdCodigo" ColumnName="IdCodigo" />
+                <ScalarProperty Name="Ponderacion" ColumnName="Ponderacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RespuestasCalculadora">
+            <EntityTypeMapping TypeName="MilEmpleosModel.RespuestasCalculadora">
+              <MappingFragment StoreEntitySet="RespuestasCalculadora">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+                <ScalarProperty Name="Nit" ColumnName="Nit" />
+                <ScalarProperty Name="TelefonoEmpresa" ColumnName="TelefonoEmpresa" />
+                <ScalarProperty Name="NombreContacto" ColumnName="NombreContacto" />
+                <ScalarProperty Name="DescripcionVacante" ColumnName="DescripcionVacante" />
+                <ScalarProperty Name="NivelEducativoRequeridoVacante" ColumnName="NivelEducativoRequeridoVacante" />
+                <ScalarProperty Name="NumeroPuestosTrabajo" ColumnName="NumeroPuestosTrabajo" />
+                <ScalarProperty Name="OficinaRecursosHumanos" ColumnName="OficinaRecursosHumanos" />
+                <ScalarProperty Name="TamanoPlantaEmpresa" ColumnName="TamanoPlantaEmpresa" />
+                <ScalarProperty Name="HabilidadRequerida" ColumnName="HabilidadRequerida" />
+                <ScalarProperty Name="DestrezasRequeridas" ColumnName="DestrezasRequeridas" />
+                <ScalarProperty Name="TipoConocimientoRequerido" ColumnName="TipoConocimientoRequerido" />
+                <ScalarProperty Name="ActividadesPuestoDeTrabajo" ColumnName="ActividadesPuestoDeTrabajo" />
+                <ScalarProperty Name="JovenesPorTutor" ColumnName="JovenesPorTutor" />
+                <ScalarProperty Name="VacanteNueva" ColumnName="VacanteNueva" />
+                <ScalarProperty Name="PuestoTrabajoPermanente" ColumnName="PuestoTrabajoPermanente" />
+                <ScalarProperty Name="ContenidoActividadFormacion" ColumnName="ContenidoActividadFormacion" />
+                <ScalarProperty Name="SalarioAdicional" ColumnName="SalarioAdicional" />
+                <ScalarProperty Name="SalarioAdicionalRango" ColumnName="SalarioAdicionalRango" />
+                <ScalarProperty Name="Municipio" ColumnName="Municipio" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CentroId" ColumnName="CentroId" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ResultadoCalculadora">
+            <EntityTypeMapping TypeName="MilEmpleosModel.ResultadoCalculadora">
+              <MappingFragment StoreEntitySet="ResultadoCalculadora">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="CapitalHumano" ColumnName="CapitalHumano" />
+                <ScalarProperty Name="CaracteristicasEmpresa" ColumnName="CaracteristicasEmpresa" />
+                <ScalarProperty Name="CaracteristicasPuesto" ColumnName="CaracteristicasPuesto" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CentroId" ColumnName="CentroId" />
+                <ScalarProperty Name="RespuestasCalculadoraId" ColumnName="RespuestasCalculadoraId" />
+                <ScalarProperty Name="FechaCalculo" ColumnName="FechaCalculo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalarioAdicionalRango">
+            <EntityTypeMapping TypeName="MilEmpleosModel.SalarioAdicionalRango">
+              <MappingFragment StoreEntitySet="SalarioAdicionalRango">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="SalarioAdicionalRango1" ColumnName="SalarioAdicionalRango" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoConocimientoRequerido">
+            <EntityTypeMapping TypeName="MilEmpleosModel.TipoConocimientoRequerido">
+              <MappingFragment StoreEntitySet="TipoConocimientoRequerido">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="TipoConocimientoRequerido1" ColumnName="TipoConocimientoRequerido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoDocumento">
+            <EntityTypeMapping TypeName="MilEmpleosModel.TipoDocumento">
+              <MappingFragment StoreEntitySet="TipoDocumento">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="TipoDocumento1" ColumnName="TipoDocumento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="MilEmpleosModel.AspNetRoles">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pila">
+            <EntityTypeMapping TypeName="MilEmpleosModel.Pila">
+              <MappingFragment StoreEntitySet="Pila">
+                <ScalarProperty Name="Meses_ultimo_periodo_cotizado" ColumnName="Meses_ultimo_periodo_cotizado" />
+                <ScalarProperty Name="ultimo_periodo_cotizado_fecha_fin" ColumnName="ultimo_periodo_cotizado_fecha_fin" />
+                <ScalarProperty Name="ultimo_periodo_cotizado_fecha_inicio" ColumnName="ultimo_periodo_cotizado_fecha_inicio" />
+                <ScalarProperty Name="TiempoTotalRegistroMeses" ColumnName="TiempoTotalRegistroMeses" />
+                <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
+                <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
+                <ScalarProperty Name="SegundoNombre" ColumnName="SegundoNombre" />
+                <ScalarProperty Name="PrimerNombre" ColumnName="PrimerNombre" />
+                <ScalarProperty Name="NumeroDocumento" ColumnName="NumeroDocumento" />
+                <ScalarProperty Name="TipoDocumento" ColumnName="TipoDocumento" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RespuestaPila">
+            <EntityTypeMapping TypeName="MilEmpleosModel.RespuestaPila">
+              <MappingFragment StoreEntitySet="RespuestaPila">
+                <ScalarProperty Name="ConsutaId" ColumnName="ConsutaId" />
+                <ScalarProperty Name="CentroId" ColumnName="CentroId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="NoDocumento" ColumnName="NoDocumento" />
+                <ScalarProperty Name="TipoDocumento" ColumnName="TipoDocumento" />
+                <ScalarProperty Name="Meses_UltimoPeriodo" ColumnName="Meses_UltimoPeriodo" />
+                <ScalarProperty Name="UltimoPeriodo_fecha_fin" ColumnName="UltimoPeriodo_fecha_fin" />
+                <ScalarProperty Name="UltimoPeriodo_fecha_inicio" ColumnName="UltimoPeriodo_fecha_inicio" />
+                <ScalarProperty Name="TiempoTotalRegistroMeses" ColumnName="TiempoTotalRegistroMeses" />
+                <ScalarProperty Name="FechaRespuestaPila" ColumnName="FechaRespuestaPila" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="Registrado" ColumnName="Registrado" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="actulizacionPila">
+            <EntityTypeMapping TypeName="MilEmpleosModel.actulizacionPila">
+              <MappingFragment StoreEntitySet="actulizacionPila">
+                <ScalarProperty Name="Fecha_Actualizacion" ColumnName="Fecha_Actualizacion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

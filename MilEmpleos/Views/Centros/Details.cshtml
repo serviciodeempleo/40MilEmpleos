@@ -1,0 +1,34 @@
+﻿@model MilEmpleos.Models.Centros
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Centros</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CentroEmpleo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CentroEmpleo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUsers.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUsers.Address)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

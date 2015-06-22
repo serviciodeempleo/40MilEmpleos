@@ -1,0 +1,194 @@
+﻿@model MilEmpleos.Models.RespuestasCalculadora
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>RespuestasCalculadora</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TelefonoEmpresa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TelefonoEmpresa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreContacto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreContacto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DescripcionVacante)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescripcionVacante)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumeroPuestosTrabajo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumeroPuestosTrabajo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OficinaRecursosHumanos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OficinaRecursosHumanos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TamanoPlantaEmpresa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TamanoPlantaEmpresa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActividadesPuestoDeTrabajo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActividadesPuestoDeTrabajo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VacanteNueva)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VacanteNueva)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PuestoTrabajoPermanente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PuestoTrabajoPermanente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContenidoActividadFormacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContenidoActividadFormacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SalarioAdicional)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SalarioAdicional)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Municipio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Municipio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RazonSocial)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RazonSocial)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CentroId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CentroId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Destrezas.Destreza)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Destrezas.Destreza)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Habilidad.HabilidadRequerida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Habilidad.HabilidadRequerida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JovenesPorTutor1.JovenesPorTutor1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JovenesPorTutor1.JovenesPorTutor1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NivelEducativo.NivelEducativo1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NivelEducativo.NivelEducativo1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SalarioAdicionalRango1.SalarioAdicionalRango1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SalarioAdicionalRango1.SalarioAdicionalRango1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoConocimientoRequerido1.TipoConocimientoRequerido1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoConocimientoRequerido1.TipoConocimientoRequerido1)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

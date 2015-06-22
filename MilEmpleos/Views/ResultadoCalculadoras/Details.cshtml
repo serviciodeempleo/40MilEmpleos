@@ -1,0 +1,74 @@
+﻿@model MilEmpleos.Models.ResultadoCalculadora
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ResultadoCalculadora</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CapitalHumano)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CapitalHumano)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CaracteristicasEmpresa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CaracteristicasEmpresa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CaracteristicasPuesto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CaracteristicasPuesto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUsers.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUsers.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Centros.CentroEmpleo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Centros.CentroEmpleo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RespuestasCalculadora.RazonSocial)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RespuestasCalculadora.RazonSocial)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

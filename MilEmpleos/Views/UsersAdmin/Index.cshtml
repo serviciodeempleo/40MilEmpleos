@@ -1,0 +1,69 @@
+﻿@model IEnumerable<IdentitySample.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "Listado de usuarios";
+}
+<h2>@ViewBag.Title</h2>
+<p>
+    @Html.ActionLink("Crear nuevo Usuario", "Create")
+</p>
+@{
+    var jss = new System.Web.Script.Serialization.JavaScriptSerializer();
+    var userInfoJson = jss.Serialize(ViewBag.Centros);
+}
+<script type="text/javascript">
+    var userInfo = JSON.parse('@Html.Raw(userInfoJson)');
+    var catidadUser = Object.keys(userInfo).length;
+</script>
+<table class="table">
+    <tr>
+        <th>
+           Prestador
+        </th>
+        <th>
+           Correo - Usuario
+        </th>
+        @*Add a table header for the Address info:*@
+        <th>
+            Dirección
+        </th>
+        <th>
+
+        </th>
+    </tr>
+
+
+    @foreach (var item in Model)
+    {
+        if (item.Roles.First().RoleId == ViewBag.rolcentros)
+        {
+            <tr>
+                <td>
+                    <script type="text/javascript">
+                        for (i = 0; i < catidadUser; i++) { if((parseInt(userInfo[i].Value)) == (parseInt(@item.CentroId))){ document.write(userInfo[i].Text); }}
+                     </script>  
+                  </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @*Add table data for the Address info:*@
+                    @Html.DisplayFor(modelItem => item.DisplayAddress)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-success btn-sm" }) |
+                    @Html.ActionLink("Detalle", "Details", new { id = item.Id }, new { @class = "btn btn-success btn-sm" }) |
+                    @Html.ActionLink("Borrar", "Delete", new { id = item.Id }, new { @class = "btn btn-success btn-sm" })|
+                    @if (item.Activo)
+                    {
+                        @Html.ActionLink("Inhabilitar", "Inhabilitar", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Habilitar", "habilitar", new { id = item.Id }, new { @class = "btn btn-default btn-sm" })
+                    }
+                </td>
+            </tr>
+        }
+   }
+</table>

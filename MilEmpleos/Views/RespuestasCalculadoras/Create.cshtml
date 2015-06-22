@@ -1,0 +1,348 @@
+﻿@model MilEmpleos.Models.RespuestasCalculadora
+@{
+    string rootpath = HttpContext.Current.Request.ApplicationPath;
+    if (rootpath == "/") { rootpath = ""; }
+}
+<script src="@rootpath/Scripts/bootstrap-checkbox.min.js" type="text/javascript"></script>
+
+<h2>FORMULARIO  DE VALIDACIÓN DE REQUISITOS MÍNIMOS DE LAS VACANTES</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <form class="form-horizontal">
+        <fieldset>
+
+            <!-- Form Name -->
+            <legend> PROGRAMA 40 MIL PRIMEROS EMPLEOS</legend>
+            <h4>I. INFORMACIÓN GENERAL</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div>
+                <div class="col-md-3">
+                    <div class="control-group">
+                        <label class="control-label" for="RazonSocial">Razón Social</label>
+                        <div class="controls">
+                            @Html.EditorFor(model => model.RazonSocial, new { htmlAttributes = new { @class = "form-control input-large validate[required]", @placeholder = "Nombre Empresa"} })
+                            @Html.ValidationMessageFor(model => model.RazonSocial, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="control-group">
+                        <label class="control-label" for="Nit">Nit</label>
+                        <div class="controls">
+                            @Html.EditorFor(model => model.Nit, new { htmlAttributes = new { @class = "input-large form-control validate[custom[onlyNumber],custom[cedula],minSize[6],maxSize[15]]", @placeholder = "Numero Nit" } })
+                            <p>(Sin digito de verificación)</p>
+                            @Html.ValidationMessageFor(model => model.Nit, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <!-- Text input-->
+                    <div class="control-group">
+                        <label class="control-label" for="TelefonoEmpresa">Teléfono</label>
+                        <div class="controls">
+                            @Html.EditorFor(model => model.TelefonoEmpresa, new { htmlAttributes = new { @class = "input-medium form-control validate[required,custom[phone]]", @placeholder = "Telefono de Empresa", @type = "tel" } })
+                            @Html.ValidationMessageFor(model => model.TelefonoEmpresa, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <!-- Text input-->
+                    <div class="control-group">
+                        <label class="control-label" for="NombreContacto">Nombre de contacto</label>
+                        <div class="controls">
+                            @Html.EditorFor(model => model.NombreContacto, new { htmlAttributes = new { @class = " input-xlarge form-control validate[required]", @placeholder = "Nombre de contacto", @required = "required" } })
+                            @Html.ValidationMessageFor(model => model.NombreContacto, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-5" >
+                    <!-- Textarea -->
+                    <div class="control-group">
+                        <label class="control-label" for="DescripcionVacante">Descripción de la Vacante</label>
+                        <div class="controls">
+                            @Html.TextAreaFor(model => model.DescripcionVacante, new { cols = "20", rows = "5", wrap = "virtual", @class = "form-control validate[required,minSize[20],maxSize[800]]", @style = "margin: 2.796875px -15px 0px 0px; width: 445px; height: 92px; left:20px" })
+                            @Html.ValidationMessageFor(model => model.DescripcionVacante, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br style="clear:both;" />
+            <hr />
+
+            <div class="col-md-6">
+                <!-- Textarea -->
+                <div class="control-group">
+                    <label class="control-label" for="NivelEducativoRequeridoVacante">Nivel educativo requerido para la vacante: </label>
+                    <div class="controls">
+                        @Html.DropDownList("NivelEducativoRequeridoVacante", null, "-- Selecione  --", htmlAttributes: new { @class = "input-xlarge form-control  validate[required]", @placeholder = "Nivel educativo" })
+                        @Html.ValidationMessageFor(model => model.NivelEducativoRequeridoVacante, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label" for="NumeroPuestosTrabajo">Numero de puestos de trabajo solicitados:</label>
+                    <div class="controls">
+                        @Html.EditorFor(model => model.NumeroPuestosTrabajo, new { htmlAttributes = new { @class = "form-control validate[required,custom[integer],min[1],maxSize[10000]]", @required = "required", @MinValue = "1" } })
+                        @Html.ValidationMessageFor(model => model.NumeroPuestosTrabajo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="control-group" style="height: 3em;">
+                    <label class="control-label" for="OficinaRecursosHumanos">Tiene la empresa una oficina de recursos humanos?</label>
+                    <input type="checkbox" data-val="true" value="true" data-val-required="El campo Vacante Nueva es obligatorio." name="OficinaRecursosHumanos" id="OficinaRecursosHumanos"  data-on-title="Si" data-on-label="Si">
+                    @Html.ValidationMessageFor(model => model.OficinaRecursosHumanos, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label" for="TamanoPlantaEmpresa"> Cuál es el tamaño de la planta de su empresa?</label>
+                    @Html.EditorFor(model => model.TamanoPlantaEmpresa, new { htmlAttributes = new { @class = "form-control validate[required,custom[integer],min[1],maxSize[10000]]", @MinValue = "1" } })
+                    @Html.ValidationMessageFor(model => model.TamanoPlantaEmpresa, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="control-group">
+                    <label class="control-label" for="HabilidadRequerida">Cuál es la principal habilidad que requiere el jóven en esta vacante?</label>
+                    <div class="controls">
+                        @Html.DropDownList("HabilidadRequerida", null, "-- Selecione  --", htmlAttributes: new { @class = "input-Xxlarge form-control validate[required]", @placeholder = "Habilidad requerida " })
+                        @Html.ValidationMessageFor(model => model.HabilidadRequerida, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="control-group">
+                    <label class="control-label" for="DestrezasRequeridas">Cuál es la principal destreza que requiere el jóven para desempeñarse en esta vacante?</label>
+                    <div class="controls">
+                        @Html.DropDownList("DestrezasRequeridas", null, "-- Selecione  --", htmlAttributes: new { @class = "input-Xxlarge form-control", @placeholder = "Destreza requerida "})
+                        @Html.ValidationMessageFor(model => model.DestrezasRequeridas, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="control-group">
+                    <label class="control-label" for="TipoConocimientoRequerido">Cuál es el principal tipo de conocimientos que requiere el jóven para desempeñarse en esta vacante?</label>
+                    <div class="controls">
+                        @Html.DropDownList("TipoConocimientoRequerido", null, "-- Selecione  --", htmlAttributes: new { @class = "input-xlarge form-control", @placeholder = "Tipo de conocimientos"})
+                        @Html.ValidationMessageFor(model => model.TipoConocimientoRequerido, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="control-group">
+                    <label class="control-label" for="ContenidoActividadFormacion">Cuáles son las actividades generales de este puesto de trabajo?</label>
+                    <div class="controls">
+                        @Html.DropDownList("ActividadesPuestoDeTrabajo", null, "-- Selecione  --", htmlAttributes: new { @class = "input-Xxlarge form-control", @placeholder = "Destreza requerida "})
+                        @Html.ValidationMessageFor(model => model.ActividadesPuestoDeTrabajo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="control-group">
+                    <label class="control-label" for="JovenesPorTutor">Cuántos jóvenes serán asignados a cada tutor?</label>
+                    <div class="controls">
+                        @Html.DropDownList("JovenesPorTutor", null, "-- Selecione  --", htmlAttributes: new { @class = "input-xlarge form-control", @placeholder = "Cantidad de jóvenes por tutor "})
+                        @Html.ValidationMessageFor(model => model.JovenesPorTutor, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="control-group" style="height: 3em;">
+                    <label class="control-label" for="VacanteNueva">Esta es una vacante nueva en la empresa?</label>
+                    <input type="checkbox" data-val="true" value="true" name="VacanteNueva" id="VacanteNueva" data-on-title="Si" data-on-label="Si">
+                    @Html.ValidationMessageFor(model => model.VacanteNueva, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="control-group" style="height: 3em;">
+                    <div class="controls">
+                        <label class="control-label" for="PuestoTrabajoPermanente">Este puesto de trabajo será permanente en su empresa?</label>
+                        <input type="checkbox" data-val="true" value="true" data-val-required="El campo Vacante Nueva es obligatorio." name="PuestoTrabajoPermanente"  id="PuestoTrabajoPermanente" data-on-title="Si" data-on-label="Si">
+                        @Html.ValidationMessageFor(model => model.PuestoTrabajoPermanente, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-11">
+                <div class="control-group">
+                    <label class="control-label" for="ContenidoActividadFormacion">Indique cuál sería el principal contenido para las actividades de formación de los jóvenes en el programa "40 Mil primeros empleos" en este puesto de trabajo?</label>
+                    <div class="controls">
+                        @Html.DropDownList("ContenidoActividadFormacion", null, "-- Selecione  --", htmlAttributes: new { @class = "finput-Xxlarge form-control", @placeholder = "Destreza requerida "})
+                        @Html.ValidationMessageFor(model => model.ContenidoActividadFormacion, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-11" style="clear:both; margin-top:2em;">
+                <div class="form-group" style="height: 3em;">
+                    <label class="control-label" for="SalarioAdicional">Está dispuesto a ofrecer un salario superior al establecido en el programa 40 Mil primeros empleos?</label>
+                    <input type="checkbox" data-val="true" value="true" data-val-required="El campo Vacante Nueva es obligatorio." name="SalarioAdicional" id="SalarioAdicional" data-on-title="Si" data-on-label="Si">
+                    @Html.ValidationMessageFor(model => model.SalarioAdicional, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            
+            <div class="col-md-6 hidden OtraOcupacion">
+                <div class="control-group">
+                    <label class="control-label" for="SalarioAdicionalRango">Cuál es el salario que se asignarará al joven?</label>
+                    <div class="controls">
+                        $@Html.EditorFor(model => model.SalarioAdicionalRango, new { htmlAttributes = new { @style = "display: inline-block; width: 97%;", @class = "form-control", @value = 644351, @MinValue = "644350" } })
+                        @Html.ValidationMessageFor(model => model.SalarioAdicionalRango, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            @{
+                IEnumerable<GroupedSelectListItem> item;
+                item = ViewBag.Municipio;
+            }
+            <div class="col-md-6">
+                <div class="control-group">
+                    <label class="control-label" for="Municipio">En qué ciudad  se encuentra el puesto de trabajo?</label>
+                    <div class="controls">
+                         @Html.DropDownGroupList("Municipio", item, "-- Selecione  --", new Dictionary<string, object>() { { "Class", "form-control" } })
+                         @Html.ValidationMessageFor(model => model.Municipio, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6" style="clear:both; margin-top:2em;">
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Guardar" class="btn btn-default btn-lg" />
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+}
+
+<script>
+    $(function () {
+        opcion = $('#select2-Municipio-container').text();
+        if (opcion != "-- Selecione  --") {
+            $("#select2-Municipio-container").removeClass('validate[required]');
+        } else {
+            $(".select2-selection__rendered").addClass('validate[required]');
+        }
+        $('#SalarioAdicionalRango').removeAttr("data-val-required");
+        $('#SalarioAdicionalRango').required = false;
+        $('#SalarioAdicionalRango').value = 644350;
+        opcionNE = $('#NivelEducativoRequeridoVacante option:selected').val();
+        switch (opcionNE) {
+            case '1':
+                $('#SalarioAdicionalRango').attr("minvalue", "644350");
+                $('#SalarioAdicionalRango').removeClass(" validate[integer,min[644350],maxSize[10000000]");
+                $('#SalarioAdicionalRango').removeClass(" validate[integer,min[700000],maxSize[10000000]");
+                $('#SalarioAdicionalRango').removeClass(" validate[integer,min[750000],maxSize[10000000]");
+                $('#SalarioAdicionalRango').removeClass(" validate[integer,min[900000],maxSize[10000000]");
+                $('#SalarioAdicionalRango').addClass(" validate[integer,min[644350],maxSize[10000000]");
+                break;
+            case '2':
+                 $('#SalarioAdicionalRango').attr("minvalue", "700000");
+                $('#SalarioAdicionalRango').removeClass(" validate[integer,min[644350],maxSize[10000000]");
+                $('#SalarioAdicionalRango').removeClass(" validate[integer,min[700000],maxSize[10000000]");
+                $('#SalarioAdicionalRango').removeClass(" validate[integer,min[750000],maxSize[10000000]");
+                $('#SalarioAdicionalRango').removeClass(" validate[integer,min[900000],maxSize[10000000]");
+                $('#SalarioAdicionalRango').addClass(" validate[integer,min[700000],maxSize[10000000]");
+                break;
+            case '3':
+                $('#SalarioAdicionalRango').attr("minvalue", "750000");
+                $('#SalarioAdicionalRango').removeClass(" validate[integer,min[644350],maxSize[10000000]");
+                $('#SalarioAdicionalRango').removeClass(" validate[integer,min[700000],maxSize[10000000]");
+                $('#SalarioAdicionalRango').removeClass(" validate[integer,min[750000],maxSize[10000000]");
+                $('#SalarioAdicionalRango').removeClass(" validate[integer,min[900000],maxSize[10000000]");
+                $('#SalarioAdicionalRango').addClass(" validate[integer,min[750000],maxSize[10000000]");
+
+                break;
+            case '4':
+                $('#SalarioAdicionalRango').removeClass(" validate[integer,min[644350],maxSize[10000000]");
+                $('#SalarioAdicionalRango').removeClass(" validate[integer,min[700000],maxSize[10000000]");
+                $('#SalarioAdicionalRango').removeClass(" validate[integer,min[750000],maxSize[10000000]");
+                $('#SalarioAdicionalRango').removeClass(" validate[integer,min[900000],maxSize[10000000]");
+                $('#SalarioAdicionalRango').addClass(" validate[integer,min[900000],maxSize[10000000]");
+                $('#SalarioAdicionalRango').attr("minvalue", "900000");
+                break;
+            default:
+                $('#SalarioAdicionalRango').removeClass(" validate[integer,min[644350],maxSize[10000000]");
+                $('#SalarioAdicionalRango').removeClass(" validate[integer,min[700000],maxSize[10000000]");
+                $('#SalarioAdicionalRango').removeClass(" validate[integer,min[750000],maxSize[10000000]");
+                $('#SalarioAdicionalRango').removeClass(" validate[integer,min[900000],maxSize[10000000]");
+                $('#SalarioAdicionalRango').addClass(" validate[integer,min[644350],maxSize[10000000]");
+                $('#SalarioAdicionalRango').attr("minvalue", "644350");
+        }
+        if ($('#SalarioAdicional').is(':checked')) {
+            $('.OtraOcupacion').removeClass('hidden'); $('#SalarioAdicionalRango').attr("minvalue", "644350"); $('#SalarioAdicionalRango').attr("data-val-required", "Campo Número Puestos Trabajo es obligatorio.");
+        } else {
+            $('.inputDisabled').removeAttr("required")
+               }
+        
+
+         $('#SalarioAdicional').checkboxpicker().change(function() {
+             if ($('#SalarioAdicional').is(':checked')) { $("#SalarioAdicionalRango").val(''); $('.OtraOcupacion').removeClass('hidden'); $('#SalarioAdicionalRango').attr("data-val-range-min", "644350"); $('#SalarioAdicionalRango').attr("data-val-required", "Campo Número Puestos Trabajo es obligatorio."); } else { $('.OtraOcupacion').addClass('hidden'); $("#SalarioAdicionalRango").val('644350'); };
+        });
+    })
+    $(':checkbox').checkboxpicker();
+
+      $("#Municipio").select2({
+      minimumInputLength: 2
+      }).on("change", function (e) {
+          op = $('#Municipio option:selected').text();
+          if (op != "-- Selecione  --") {
+              $(".select2-selection__rendered").removeClass('validate[required]');
+          } else {
+              $(".select2-selection__rendered").addClass('validate[required]');
+          }
+      });
+      $("#NivelEducativoRequeridoVacante").change(function () {
+          opcionNE = $('#NivelEducativoRequeridoVacante option:selected').val();
+          switch(opcionNE) {
+              case '1':
+                  $('#SalarioAdicionalRango').attr("minvalue", "644350");
+                  $('#SalarioAdicionalRango').removeClass(" validate[integer,min[644350],maxSize[10000000]");
+                  $('#SalarioAdicionalRango').removeClass(" validate[integer,min[700000],maxSize[10000000]");
+                  $('#SalarioAdicionalRango').removeClass(" validate[integer,min[750000],maxSize[10000000]");
+                  $('#SalarioAdicionalRango').removeClass(" validate[integer,min[900000],maxSize[10000000]");
+                  $('#SalarioAdicionalRango').addClass(" validate[integer,min[644350],maxSize[10000000]");
+                  break;
+              case '2':
+                  $('#SalarioAdicionalRango').attr("minvalue", "700000");
+                  $('#SalarioAdicionalRango').removeClass(" validate[integer,min[644350],maxSize[10000000]");
+                  $('#SalarioAdicionalRango').removeClass(" validate[integer,min[700000],maxSize[10000000]");
+                  $('#SalarioAdicionalRango').removeClass(" validate[integer,min[750000],maxSize[10000000]");
+                  $('#SalarioAdicionalRango').removeClass(" validate[integer,min[900000],maxSize[10000000]");
+                  $('#SalarioAdicionalRango').addClass(" validate[integer,min[700000],maxSize[10000000]");
+                  break;
+              case '3':
+                  $('#SalarioAdicionalRango').attr("minvalue", "750000");
+                  $('#SalarioAdicionalRango').removeClass(" validate[integer,min[644350],maxSize[10000000]");
+                  $('#SalarioAdicionalRango').removeClass(" validate[integer,min[700000],maxSize[10000000]");
+                  $('#SalarioAdicionalRango').removeClass(" validate[integer,min[750000],maxSize[10000000]");
+                  $('#SalarioAdicionalRango').removeClass(" validate[integer,min[900000],maxSize[10000000]");
+                  $('#SalarioAdicionalRango').addClass(" validate[integer,min[750000],maxSize[10000000]");
+
+                  break;
+              case '4':
+                  $('#SalarioAdicionalRango').removeClass(" validate[integer,min[644350],maxSize[10000000]");
+                  $('#SalarioAdicionalRango').removeClass(" validate[integer,min[700000],maxSize[10000000]");
+                  $('#SalarioAdicionalRango').removeClass(" validate[integer,min[750000],maxSize[10000000]");
+                  $('#SalarioAdicionalRango').removeClass(" validate[integer,min[900000],maxSize[10000000]");
+                  $('#SalarioAdicionalRango').addClass(" validate[integer,min[900000],maxSize[10000000]");
+                  $('#SalarioAdicionalRango').attr("minvalue", "900000");
+                  break;
+              default:
+                  $('#SalarioAdicionalRango').removeClass(" validate[integer,min[644350],maxSize[10000000]");
+                  $('#SalarioAdicionalRango').removeClass(" validate[integer,min[700000],maxSize[10000000]");
+                  $('#SalarioAdicionalRango').removeClass(" validate[integer,min[750000],maxSize[10000000]");
+                  $('#SalarioAdicionalRango').removeClass(" validate[integer,min[900000],maxSize[10000000]");
+                  $('#SalarioAdicionalRango').addClass(" validate[integer,min[644350],maxSize[10000000]");
+                  $('#SalarioAdicionalRango').attr("minvalue", "644350");
+          } 
+    });
+
+</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

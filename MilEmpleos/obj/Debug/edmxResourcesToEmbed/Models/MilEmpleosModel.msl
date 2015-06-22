@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MilEmpleosModelStoreContainer" CdmEntityContainer="MilEmpleosEntities1">
+    <EntitySetMapping Name="ActividadesPuestoDeTrabajo">
+      <EntityTypeMapping TypeName="MilEmpleosModel.ActividadesPuestoDeTrabajo">
+        <MappingFragment StoreEntitySet="ActividadesPuestoDeTrabajo">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="ActividadesPuestoDeTrabajo1" ColumnName="ActividadesPuestoDeTrabajo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ActividadNivEduDes">
+      <EntityTypeMapping TypeName="MilEmpleosModel.ActividadNivEduDes">
+        <MappingFragment StoreEntitySet="ActividadNivEduDes">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="ActividadId" ColumnName="ActividadId" />
+          <ScalarProperty Name="DestrezaId" ColumnName="DestrezaId" />
+          <ScalarProperty Name="ValorDestreza" ColumnName="ValorDestreza" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ActividadNivEduHab">
+      <EntityTypeMapping TypeName="MilEmpleosModel.ActividadNivEduHab">
+        <MappingFragment StoreEntitySet="ActividadNivEduHab">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="ActividadId" ColumnName="ActividadId" />
+          <ScalarProperty Name="HabilidadId" ColumnName="HabilidadId" />
+          <ScalarProperty Name="ValorHabilidad" ColumnName="ValorHabilidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ActNivEdu">
+      <EntityTypeMapping TypeName="MilEmpleosModel.ActNivEdu">
+        <MappingFragment StoreEntitySet="ActNivEdu">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="ActividadId" ColumnName="ActividadId" />
+          <ScalarProperty Name="NivelEducativoId" ColumnName="NivelEducativoId" />
+          <ScalarProperty Name="Mutipliacdor" ColumnName="Mutipliacdor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="MilEmpleosModel.AspNetUsers">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="CentroId" ColumnName="CentroId" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="PasswordChange" ColumnName="PasswordChange" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Centros">
+      <EntityTypeMapping TypeName="MilEmpleosModel.Centros">
+        <MappingFragment StoreEntitySet="Centros">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CentroEmpleo" ColumnName="CentroEmpleo" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Dominio" ColumnName="Dominio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Consulta">
+      <EntityTypeMapping TypeName="MilEmpleosModel.Consulta">
+        <MappingFragment StoreEntitySet="Consulta">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="DocumentoNumero" ColumnName="DocumentoNumero" />
+          <ScalarProperty Name="FechaConsulta" ColumnName="FechaConsulta" />
+          <ScalarProperty Name="UsuerID" ColumnName="UsuerID" />
+          <ScalarProperty Name="CentroID" ColumnName="CentroID" />
+          <ScalarProperty Name="TipoDocumento" ColumnName="TipoDocumento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContenidoActividadFormacion">
+      <EntityTypeMapping TypeName="MilEmpleosModel.ContenidoActividadFormacion">
+        <MappingFragment StoreEntitySet="ContenidoActividadFormacion">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="ContenidoActividadFormacion1" ColumnName="ContenidoActividadFormacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="department">
+      <EntityTypeMapping TypeName="MilEmpleosModel.department">
+        <MappingFragment StoreEntitySet="department">
+          <ScalarProperty Name="IdCodigo" ColumnName="IdCodigo" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Destrezas">
+      <EntityTypeMapping TypeName="MilEmpleosModel.Destrezas">
+        <MappingFragment StoreEntitySet="Destrezas">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Destreza" ColumnName="Destreza" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Habilidad">
+      <EntityTypeMapping TypeName="MilEmpleosModel.Habilidad">
+        <MappingFragment StoreEntitySet="Habilidad">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="HabilidadRequerida" ColumnName="HabilidadRequerida" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JovenesPorTutor">
+      <EntityTypeMapping TypeName="MilEmpleosModel.JovenesPorTutor">
+        <MappingFragment StoreEntitySet="JovenesPorTutor">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="JovenesPorTutor1" ColumnName="JovenesPorTutor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="municipality">
+      <EntityTypeMapping TypeName="MilEmpleosModel.municipality">
+        <MappingFragment StoreEntitySet="municipality">
+          <ScalarProperty Name="IdCodigo" ColumnName="IdCodigo" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="department_id" ColumnName="department_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NivelEducativo">
+      <EntityTypeMapping TypeName="MilEmpleosModel.NivelEducativo">
+        <MappingFragment StoreEntitySet="NivelEducativo">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="NivelEducativo1" ColumnName="NivelEducativo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PassPrestadores">
+      <EntityTypeMapping TypeName="MilEmpleosModel.PassPrestadores">
+        <MappingFragment StoreEntitySet="PassPrestadores">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Prestador" ColumnName="Prestador" />
+          <ScalarProperty Name="ClaveINI" ColumnName="ClaveINI" />
+          <ScalarProperty Name="UsurioCorreo" ColumnName="UsurioCorreo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ponderacion">
+      <EntityTypeMapping TypeName="MilEmpleosModel.Ponderacion">
+        <MappingFragment StoreEntitySet="Ponderacion">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="PreguntaId" ColumnName="PreguntaId" />
+          <ScalarProperty Name="RespuestaId" ColumnName="RespuestaId" />
+          <ScalarProperty Name="PorcentageRespuesta" ColumnName="PorcentageRespuesta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PonderacionMunicipio">
+      <EntityTypeMapping TypeName="MilEmpleosModel.PonderacionMunicipio">
+        <MappingFragment StoreEntitySet="PonderacionMunicipio">
+          <ScalarProperty Name="IdCodigo" ColumnName="IdCodigo" />
+          <ScalarProperty Name="Ponderacion" ColumnName="Ponderacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RespuestasCalculadora">
+      <EntityTypeMapping TypeName="MilEmpleosModel.RespuestasCalculadora">
+        <MappingFragment StoreEntitySet="RespuestasCalculadora">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+          <ScalarProperty Name="Nit" ColumnName="Nit" />
+          <ScalarProperty Name="TelefonoEmpresa" ColumnName="TelefonoEmpresa" />
+          <ScalarProperty Name="NombreContacto" ColumnName="NombreContacto" />
+          <ScalarProperty Name="DescripcionVacante" ColumnName="DescripcionVacante" />
+          <ScalarProperty Name="NivelEducativoRequeridoVacante" ColumnName="NivelEducativoRequeridoVacante" />
+          <ScalarProperty Name="NumeroPuestosTrabajo" ColumnName="NumeroPuestosTrabajo" />
+          <ScalarProperty Name="OficinaRecursosHumanos" ColumnName="OficinaRecursosHumanos" />
+          <ScalarProperty Name="TamanoPlantaEmpresa" ColumnName="TamanoPlantaEmpresa" />
+          <ScalarProperty Name="HabilidadRequerida" ColumnName="HabilidadRequerida" />
+          <ScalarProperty Name="DestrezasRequeridas" ColumnName="DestrezasRequeridas" />
+          <ScalarProperty Name="TipoConocimientoRequerido" ColumnName="TipoConocimientoRequerido" />
+          <ScalarProperty Name="ActividadesPuestoDeTrabajo" ColumnName="ActividadesPuestoDeTrabajo" />
+          <ScalarProperty Name="JovenesPorTutor" ColumnName="JovenesPorTutor" />
+          <ScalarProperty Name="VacanteNueva" ColumnName="VacanteNueva" />
+          <ScalarProperty Name="PuestoTrabajoPermanente" ColumnName="PuestoTrabajoPermanente" />
+          <ScalarProperty Name="ContenidoActividadFormacion" ColumnName="ContenidoActividadFormacion" />
+          <ScalarProperty Name="SalarioAdicional" ColumnName="SalarioAdicional" />
+          <ScalarProperty Name="SalarioAdicionalRango" ColumnName="SalarioAdicionalRango" />
+          <ScalarProperty Name="Municipio" ColumnName="Municipio" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="CentroId" ColumnName="CentroId" />
+          <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ResultadoCalculadora">
+      <EntityTypeMapping TypeName="MilEmpleosModel.ResultadoCalculadora">
+        <MappingFragment StoreEntitySet="ResultadoCalculadora">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="CapitalHumano" ColumnName="CapitalHumano" />
+          <ScalarProperty Name="CaracteristicasEmpresa" ColumnName="CaracteristicasEmpresa" />
+          <ScalarProperty Name="CaracteristicasPuesto" ColumnName="CaracteristicasPuesto" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="CentroId" ColumnName="CentroId" />
+          <ScalarProperty Name="RespuestasCalculadoraId" ColumnName="RespuestasCalculadoraId" />
+          <ScalarProperty Name="FechaCalculo" ColumnName="FechaCalculo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SalarioAdicionalRango">
+      <EntityTypeMapping TypeName="MilEmpleosModel.SalarioAdicionalRango">
+        <MappingFragment StoreEntitySet="SalarioAdicionalRango">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="SalarioAdicionalRango1" ColumnName="SalarioAdicionalRango" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoConocimientoRequerido">
+      <EntityTypeMapping TypeName="MilEmpleosModel.TipoConocimientoRequerido">
+        <MappingFragment StoreEntitySet="TipoConocimientoRequerido">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="TipoConocimientoRequerido1" ColumnName="TipoConocimientoRequerido" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoDocumento">
+      <EntityTypeMapping TypeName="MilEmpleosModel.TipoDocumento">
+        <MappingFragment StoreEntitySet="TipoDocumento">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="TipoDocumento1" ColumnName="TipoDocumento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="MilEmpleosModel.AspNetRoles">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pila">
+      <EntityTypeMapping TypeName="MilEmpleosModel.Pila">
+        <MappingFragment StoreEntitySet="Pila">
+          <ScalarProperty Name="Meses_ultimo_periodo_cotizado" ColumnName="Meses_ultimo_periodo_cotizado" />
+          <ScalarProperty Name="ultimo_periodo_cotizado_fecha_fin" ColumnName="ultimo_periodo_cotizado_fecha_fin" />
+          <ScalarProperty Name="ultimo_periodo_cotizado_fecha_inicio" ColumnName="ultimo_periodo_cotizado_fecha_inicio" />
+          <ScalarProperty Name="TiempoTotalRegistroMeses" ColumnName="TiempoTotalRegistroMeses" />
+          <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
+          <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
+          <ScalarProperty Name="SegundoNombre" ColumnName="SegundoNombre" />
+          <ScalarProperty Name="PrimerNombre" ColumnName="PrimerNombre" />
+          <ScalarProperty Name="NumeroDocumento" ColumnName="NumeroDocumento" />
+          <ScalarProperty Name="TipoDocumento" ColumnName="TipoDocumento" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RespuestaPila">
+      <EntityTypeMapping TypeName="MilEmpleosModel.RespuestaPila">
+        <MappingFragment StoreEntitySet="RespuestaPila">
+          <ScalarProperty Name="ConsutaId" ColumnName="ConsutaId" />
+          <ScalarProperty Name="CentroId" ColumnName="CentroId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="NoDocumento" ColumnName="NoDocumento" />
+          <ScalarProperty Name="TipoDocumento" ColumnName="TipoDocumento" />
+          <ScalarProperty Name="Meses_UltimoPeriodo" ColumnName="Meses_UltimoPeriodo" />
+          <ScalarProperty Name="UltimoPeriodo_fecha_fin" ColumnName="UltimoPeriodo_fecha_fin" />
+          <ScalarProperty Name="UltimoPeriodo_fecha_inicio" ColumnName="UltimoPeriodo_fecha_inicio" />
+          <ScalarProperty Name="TiempoTotalRegistroMeses" ColumnName="TiempoTotalRegistroMeses" />
+          <ScalarProperty Name="FechaRespuestaPila" ColumnName="FechaRespuestaPila" />
+          <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+          <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+          <ScalarProperty Name="Registrado" ColumnName="Registrado" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="actulizacionPila">
+      <EntityTypeMapping TypeName="MilEmpleosModel.actulizacionPila">
+        <MappingFragment StoreEntitySet="actulizacionPila">
+          <ScalarProperty Name="Fecha_Actualizacion" ColumnName="Fecha_Actualizacion" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

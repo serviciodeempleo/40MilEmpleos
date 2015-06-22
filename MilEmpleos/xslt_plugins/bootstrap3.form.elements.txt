@@ -1,0 +1,38 @@
+﻿Add
+
+<xsl:include href="../xslt_plugins/bootstrap3.form.elements.xsl" />
+
+after
+
+<xsl:output method="html" encoding="utf-8" omit-xml-declaration="yes"/>
+
+call examples:
+
+            <!-- År (Textbox) -->
+            <div class="form-group col-2 outer-custom-year">
+              <xsl:call-template name="bootstrap3.form.elements.input">
+                <xsl:with-param name="field_name" select="'CUSTOM_YEAR'"/>
+                <xsl:with-param name="field_type" select="'date'"/>
+                <xsl:with-param name="field_placeholder" select="'ÅR'"/>
+                <xsl:with-param name="field_label" select="''"/>
+                <xsl:with-param name="field_value" select="''"/>
+                <!-- settings -->
+                <xsl:with-param name="field_class" select="'red'"/>
+                <xsl:with-param name="field_readonly" select="'true'"/>
+                <!-- valiation -->
+                <xsl:with-param name="field_required" select="'true'"/>
+                <xsl:with-param name="field_maxlength" select="'4'"/>
+                <!-- date stuff -->
+                <xsl:with-param name="data-date-format" select="'yyyy'"/>
+                <xsl:with-param name="data-link-format" select="'yyyy'"/>               
+              </xsl:call-template>     
+              
+              <xsl:call-template name="bootstrap3.form.elements.input">
+                <xsl:with-param name="field_label" select="''"/>
+                <xsl:with-param name="field_name" select="'TITLE'"/>
+                <xsl:with-param name="field_value" select="''"/>
+                <xsl:with-param name="field_placeholder" select="'KLIKK FOR Å LEGGE TIL TITTEL PÅ PUBLIKASJON'"/>
+                <xsl:with-param name="field_class" select="''"/>
+                <!-- valiation -->
+                <xsl:with-param name="field_required" select="'true'"/>              
+              </xsl:call-template>

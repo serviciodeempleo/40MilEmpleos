@@ -1,0 +1,125 @@
+﻿@model MilEmpleos.Models.ResultadoCalculadora
+@{
+    ViewBag.Title = "Resultado";
+    string rootpath = HttpContext.Current.Request.ApplicationPath;
+    if (rootpath == "/") { rootpath = ""; }
+}
+<style >
+    button.clipboard {
+    padding: 3px;
+}
+
+/* FF button fix */
+button.clipboard::-moz-focus-inner {
+    margin: 1px -5px;
+}
+</style>
+<link rel="stylesheet" type="text/css" href="@rootpath/Content/font-awesome.min.css">
+<div class="col-md-3 LOGOMIL">
+    <div>
+        <img src="@rootpath/Content/images/EsTalento.JPG" style="  width: 16em;  margin-top: 5em;  margin-left: -1em;">
+    </div>
+</div>
+
+    <div class="col-md-6">
+        <div class="form-horizontal" style="margin-top: 5em">
+            <h2>Calificación de la vacante</h2>
+          
+           <table style="border:none; font-size: 15px;" class="table table-striped table-condensed">
+                <thead>
+                    <tr>
+                        @{
+    string color = "";
+                            if (Model.Total > .6) { color = "green"; } else if (Model.Total > .5) { color = "orange"; } else { color = "red"; }
+                            string imagen = @rootpath+"/Content/images/semaforo" + color + ".png";
+                            <td style="border:none;" class="manilla"><h1 style="font-size: 3.3em; text-align:center; color:@color">Total: @Html.DisplayFor(model => model.Total)</h1> <h7 style ="margin-top: 4em; display: block;  color: #DD1721; text-shadow: 0px 1px 0px #eee!important;">Fecha calificación: @Model.FechaCalculo.ToString(@"yyyy/MM/dd HH\:mm\:ss tt")</h7></td>
+                            <td style="border:none;"> <img src="@imagen" style="width: 7em;" /></td>
+                        }
+                    </tr>
+
+                    <tr><th>Dimensión</th><th>Calificación</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Capital Humano</td>
+                        <td>@Html.DisplayFor(model => model.CapitalHumano)</td>
+                    </tr>
+                    <tr>
+                        <td>Características de la empresa</td>
+                        <td>@Html.DisplayFor(model => model.CaracteristicasEmpresa)</td>
+                    </tr>
+                    <tr>
+                        <td>Características del puesto de trabajo</td>
+                        <td>@Html.DisplayFor(model => model.CaracteristicasPuesto)</td>
+                    </tr>
+                </tbody>
+            </table>
+            <script src="@Url.Content("~/Scripts/ZeroClipboard.js")"></script>
+            <h4>
+                <button class="clipboard fa fa-copy"
+                        data-clipboard-text="@Model.id"
+                        title="Copiar Código">
+                    Copiar código
+                </button>
+                <span id="logger"></span>
+            </h4>
+            <h4>Centro de Empleo: <small>@Html.DisplayFor(model => model.Centros.CentroEmpleo)</small></h4>
+            <h4>Razón Social: <small>@Html.DisplayFor(model => model.RespuestasCalculadora.RazonSocial)</small></h4>
+            <h4>Nit: <small>@Html.DisplayFor(model => model.RespuestasCalculadora.Nit)</small></h4>
+            <h4>Descripción Vacante: <small>@Html.DisplayFor(model => model.RespuestasCalculadora.DescripcionVacante)</small></h4>
+        </div>
+    </div>
+<div class="col-md-3" style="text-align: center;">
+    @{
+        Uri uri = Request.Url;
+        string dirVirtual = uri.Segments[1];
+        if (dirVirtual.Contains("RespuestasCalculadoras"))
+        {
+            dirVirtual = "/";
+        }
+        else
+        {
+            dirVirtual = "/" + dirVirtual;
+        }
+        String host = uri.Scheme + Uri.SchemeDelimiter + uri.Host + ":" + uri.Port + dirVirtual + "RespuestasCalculadoras/Index/" + Model.id.ToString();
+    }
+    <h4 style="margin-top: 6em;">Valida la Calificación con este QR code</h4>
+    <img src="@rootpath/RespuestasCalculadoras/BarcodeImage?barcodeText=@host"/>
+    <a class="btn btn-danger btn-group-xs" id="descargarreporte" href="@rootpath/RespuestasCalculadoras/Pdf/@Model.RespuestasCalculadoraId.ToString()">Descargar Reporte</a>
+</div>
+<script type="text/javascript">
+    $(function () {
+        if (String(document.referrer).indexOf("Create") != -1) {
+            window.location.href = "@rootpath/RespuestasCalculadoras/Pdf/@Model.RespuestasCalculadoraId.ToString()";
+            $("#descargarreporte").click();
+        }
+    });
+
+    //
+    // Utility code
+    //
+    function showActive(el) {
+        var $el = $(el);
+        $el.fadeOut(10, function () { $el.fadeIn(90); });
+    }
+
+    var $logger = $("#logger");
+    function log(msg) {
+        $logger.empty();
+        $logger.append("<small>" + msg + "</small>");
+    }
+
+    // Begin ZeroClipboard stuff
+    //
+    ZeroClipboard.config({
+        moviePath: '@rootpath/Scripts/ZeroClipboard.swf',
+        forceHandCursor: true,
+        debug: true
+    });
+
+    var client = new ZeroClipboard($("button[data-clipboard-text]"));
+    client.addEventListener('complete', function (client) {
+        log("Código copiado: @Model.id");
+    });
+</script>
+

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<MilEmpleos.Models.AspNetUsers>
+
+@{
+    ViewBag.Title = "Listado de Consultores";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Crear nuevo Usuario de consulta", "Crear", null, new { @class = "btn btn-primary btn-lg active" })
+</p>
+<p class="danger">
+    @ViewBag.mensaje
+</p>
+<h5>
+    @Html.ViewBag.user_id
+</h5>
+
+<div class="col-md-7">
+    <table class="table">
+        <tr>
+            <th>
+                Usuario Consulta
+            </th>
+            @*Add a table header for the Address info:*@
+            <th>
+
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Editar", new { id = item.Id }, new { @class = "btn btn-success btn-sm" }) |
+                    @if(item.Activo){
+                        @Html.ActionLink("Inhabilitar", "Inhabilitar", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Habilitar", "habilitar", new { id = item.Id }, new { @class = "btn btn-default btn-sm" })
+                    }
+                    
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

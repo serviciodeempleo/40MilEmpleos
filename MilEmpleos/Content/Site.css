@@ -1,0 +1,518 @@
+﻿
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+/* Set width on the form input elements since they're 100% wide by default */
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+.field-validation-valid {
+    display: none;
+}
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+.validation-summary-errors {
+    color: #b94a48;
+}
+.validation-summary-valid {
+    display: none;
+}
+
+#buscar_txt {
+    margin: auto;
+    padding: initial;
+    width: 21%;
+}
+#Index_Buscar {
+    width:100%; 
+    text-align:center
+}
+#logo_principal{
+    margin-top:3px;
+    height:40px;
+}
+    #logo_principal img {
+        height: 40px;
+        margin-left: 15px;
+        margin-top: 5px;
+    }
+body {
+    background-image: url('images/fondo_SPE.fw.png');
+    background-repeat: no-repeat;
+    background-position-x: 80%;
+    background-attachment:fixed;
+}
+.manilla {
+/*  background: url("/Content/manilla.png");*/
+  background-position: 50%;
+  height: 10em;
+  background-repeat: no-repeat;
+  padding-top: 2.5em !important;
+  text-shadow: 0px 1px 1px #000;
+  background-size: 45%;
+}
+    #MinImageAndForm{
+        display: inline-flex;
+        width:100%
+    }
+
+ 
+
+.navbar-fixed-top {
+        position:fixed;
+        top:0px;
+        right:0px;
+        left:0px;
+        padding-right: 6px;
+        padding-left: 11px;
+    }
+
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
+color: #FFF252;
+background-color: rgba(77, 15, 15, 0.15);
+}
+
+#layout_footer{
+    background-image: url('images/bg_banderin.jpg');
+    height: 6.4em;
+    background-position: center;
+    background-size: 100%;
+    display: table-row;
+    text-align:left;
+    vertical-align: middle;
+    position:fixed;
+    bottom:0px;
+    right:0px;
+    left:0px;
+    background-repeat: no-repeat;
+    padding-top: 3em;
+    padding-right: 6px;
+    padding-left: 11px;
+    z-index: 1000;
+}
+
+
+#layout_footer-expanded { height: 100%; }
+.jumbotron{
+   /* background: rgba(251, 186, 24, 1)
+    background: rgba(251, 186, 24, 0.4);*/
+    background: rgba(248, 248, 248, 1);
+background: rgba(245, 245, 245, 0.4);
+}
+.jumbotron #buscar_resultado_txt{
+    height: 34px;
+    margin-top: 0px; 
+    font-size: 24px;
+    display: inline;
+    line-height: normal; 
+    width: 100%;
+}
+.jumbotron input{
+    margin-bottom: 8px !important;
+}
+.jumbotron h1{
+    font-size:20px;
+}
+ .vacante_image-tumbnail{
+        display:none
+    }
+
+
+/*********************************************************
+                       ADAPTATIVE RULES
+ *********************************************************/
+    /* Large desktop */
+ @media (min-width: 1200px) {
+    .Buscador_middle_form img {
+        margin-top: 10%;
+        margin-left: 14%;
+        width:500px;
+    }
+    #Index_Buscar{
+        margin-left: 10%;
+    }
+        #Index_Buscar #buscar_txt {
+            width: 500px;
+            max-width: 500px;
+            height:33px;
+            display:inline;
+        }
+        #Index_Buscar button{
+            display:inline;
+            width:160px;
+        }
+
+
+    #slogan{
+        position: fixed; 
+        bottom: 36px; 
+        right: -127px;
+    }
+
+        #slogan img{
+            width: 50%; 
+            position: relative; 
+            top: 0px; 
+            right: -103px;
+        }
+
+    #prosperidad{
+        position: fixed; 
+        top: 55px; 
+        right: 15px;
+    }
+
+        #prosperidad img{
+            width: 50%; 
+            position: relative; 
+            top: 0px; 
+            right: -103px;
+        }
+}
+
+ /** destop intermediate */
+@media(min-width: 980px) and (max-width:1199px) {
+    .Buscador_middle_form img {
+        margin-top: 8%;
+        margin-left: 14%;
+        width: 350px;
+    }
+    #Index_Buscar{
+        margin-left: 10%;
+    }
+        #Index_Buscar #buscar_txt {
+            width: 320px;
+            max-width: 320px;
+            height: 33px;
+            display: inline;
+        }
+        #Index_Buscar button{
+            display: inline;
+            width: 40px;
+            height: 33px;
+            margin-top: -4px;
+        }
+
+
+    #slogan{
+        position: fixed; 
+        bottom: 36px; 
+        right: -127px;
+    }
+
+        #slogan img{
+            width: 50%; 
+            position: relative; 
+            top: 0px; 
+            right: -103px;
+        }
+
+    #prosperidad{
+        position: fixed; 
+        top: 55px; 
+        right: 15px;
+    }
+
+        #prosperidad img{
+            width: 50%; 
+            position: relative; 
+            top: 0px; 
+            right: -103px;
+        }
+}
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) { 
+    .LOGOMIL{
+        display: none;
+    }
+    #Index_Buscar #buscar_txt {
+        width: 100%;
+        height: 33px;
+        display: inline;
+    }
+    #Index_Buscar button{
+        display: inline;
+        width: 8%;
+        /* margin: auto; */
+        margin-top: -5px;
+    }
+    .Buscador_middle_form img{
+        margin-top: 20%;
+        width: 300px;
+    }
+    .logins{
+        display: none;
+    }
+     #slogan{
+        position: fixed; 
+        bottom: 36px; 
+        right: -127px;
+    }
+
+        #slogan img{
+            width: 50%; 
+            position: relative; 
+            top: 0px; 
+            right: -103px;
+        }
+
+    #prosperidad{
+        position: fixed; 
+        top: 55px; 
+        right: 15px;
+    }
+
+        #prosperidad img{
+            width: 50%; 
+            position: relative; 
+            top: 0px; 
+            right: -103px;
+        }
+   .vacante .vacante_image{
+       display:none;
+   }
+}
+ 
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) { 
+        .LOGOMIL{
+        display: none;
+    }
+    .vacante-mini{
+        display: none
+    }
+    /**    HOME     **/
+    #Index_Buscar #buscar_txt {
+        width: 100%;
+        height: 33px;
+        display: inline;
+    }
+    #Index_Buscar button{
+        display: inline;
+        width: 8%;
+        /* margin: auto; */
+        margin-top: -5px;
+    }
+    .Buscador_middle_form img{
+        margin-top: 20%;
+        width: 300px;
+    }
+    #slogan{
+        position: fixed; 
+        bottom: 36px; 
+        right: -127px;
+    }
+        #slogan img{
+            width: 50%; 
+            position: relative; 
+            top: 0px; 
+            right: -103px;
+        }
+    #prosperidad{
+        position: fixed; 
+        top: 55px; 
+        right: 15px;
+    }
+        #prosperidad img{
+            width: 50%; 
+            position: relative; 
+            top: 0px; 
+            right: -103px;
+        }
+
+    /**   BUSQUEDA  **/
+    .vacante .vacante_detalle {
+
+    }
+    .vacante .vacante_image{
+        display:none;
+    }
+    .vacante_data{
+        width:100%;
+    }
+     .vacante_data table{
+        width:100%;
+    }
+    .vacante_image-tumbnail{
+        display:inline
+    }
+    .vacante_image-tumbnail img{
+        width:90%
+    }
+
+     #layout_footer{
+    display: none;
+ }
+}
+/* Landscape phones and down */
+@media (max-width: 480px) {
+        .LOGOMIL{
+        display: none;
+    }
+   #Index_Buscar #buscar_txt {
+        width: 100%;
+        height: 33px;
+        display: inline;
+    }
+    #Index_Buscar button{
+       display: inline;
+       width: 37px;
+       height: 32px;
+       margin-top: -3px;
+    }
+    .Buscador_middle_form img{
+        margin-top: 20%;
+        width: 300px;
+    }
+         #slogan{
+        position: fixed; 
+        bottom: 36px; 
+        right: -127px;
+    }
+
+        #slogan img{
+            width: 50%; 
+            position: relative; 
+            top: 0px; 
+            right: -103px;
+        }
+
+    #prosperidad{
+        position: fixed; 
+        top: 55px; 
+        right: 15px;
+    }
+
+        #prosperidad img{
+            width: 50%; 
+            position: relative; 
+            top: 0px; 
+            right: -103px;
+        }
+     #layout_footer{
+    display: none;
+ }
+}
+@media (max-width: 406px){
+        .LOGOMIL{
+        display: none;
+    }
+     #Index_Buscar #buscar_txt {
+        width: 60%;
+        height: 33px;
+        display: inline;
+    }
+    #Index_Buscar button{
+       display: inline;
+       width: 37px;
+       height: 32px;
+       margin-top: -3px;
+    }
+    .Buscador_middle_form img{
+        margin-top: 15%;
+        width: 236px;
+    }
+         #slogan{
+        position: fixed; 
+        bottom: 36px; 
+        right: -127px;
+    }
+
+        #slogan img{
+            width: 50%; 
+            position: relative; 
+            top: 0px; 
+            right: -103px;
+        }
+
+    #prosperidad{
+        position: fixed; 
+        top: 55px; 
+        right: 15px;
+    }
+
+        #prosperidad img{
+            width: 50%; 
+            position: relative; 
+            top: 0px; 
+            right: -103px;
+        }
+     #layout_footer{
+    display: none;
+ }
+}
+/** Altos menores a 500px*/
+@media (max-height:500px){
+        .LOGOMIL{
+        display: none;
+    }
+    #prosperidad{
+        position: fixed; 
+        top: 55px; 
+        right: 15px;
+    }
+
+        #prosperidad img{
+            width: 50%; 
+            position: relative; 
+            top: 0px; 
+            right: -103px;
+        }
+      #slogan{
+        position: fixed;
+        bottom: 36px;
+        right: -127px;
+    }
+
+        #slogan img{
+           width: 25%;
+            position: relative;
+            top: 0px;
+            right: -218px;
+        }
+     #layout_footer{
+    display: none;
+ }
+}
+
+/** Altos menores a 340px*/
+@media (max-height:340px){
+    #prosperidad{
+        position: fixed; 
+        top: 55px; 
+        right: 15px;
+    }
+
+        #prosperidad img{
+            width: 50%; 
+            position: relative; 
+            top: 0px; 
+            right: -103px;
+        }
+      #slogan{
+        position: fixed;
+        bottom: 36px;
+        right: -127px;
+    }
+
+        #slogan img{
+           width: 15%;
+            position: relative;
+            top: 0px;
+            right: -284px;
+        }
+ #layout_footer{
+    display: none;
+ }
+}

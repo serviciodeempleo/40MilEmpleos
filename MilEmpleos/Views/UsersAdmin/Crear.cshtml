@@ -1,0 +1,79 @@
+﻿@model IdentitySample.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Creación usuarios para consulta";
+}
+
+<h2>@ViewBag.Title.</h2>
+<div class=" col-md-6">
+@using (Html.BeginForm("Crear", "UsersAdmin", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <h4>
+      Crear usuario perteneciente al mismo prestador.
+    </h4>
+    <hr />
+    <p class="text-danger"> @ViewBag.mensaje</p>
+    @Html.ValidationSummary("", new { @class = "text-error" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group hidden">
+        @Html.LabelFor(model => model.Address, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group hidden">
+        @Html.LabelFor(model => model.City, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group hidden">
+        @Html.LabelFor(model => model.State, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.State, new { @class = "form-control" })
+        </div>
+    </div>
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.PostalCode, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.PostalCode, new { @class = "form-control" })
+            </div>
+        </div>*@
+    <input  class="form-control hidden" id="CentroEmpleo" required="required" name="CentroEmpleo" type="text" value="NA">
+    <div class="form-group">
+        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group hidden">
+        <input type="checkbox" name="SelectedRoles" value="Consultores" checked class="checkbox-inline" />
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Crear" />
+        </div>
+    </div>
+}
+
+</div>
+<br style="clear:both;"/> 
+<div class=" col-md-12">
+    @Html.ActionLink("Listado de Usuarios", "ListaUsers", null, new { @class = "btn btn-default btn-sm active" })
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+</div>
