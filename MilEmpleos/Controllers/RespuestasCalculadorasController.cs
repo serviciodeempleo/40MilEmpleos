@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.UI.WebControls;
 using System.Web.UI;
 using System.Web.Mvc;
+using MilEmpleos;
 using MilEmpleos.Models;
 using IdentitySample.Models;
 using Microsoft.AspNet.Identity;
@@ -37,10 +38,10 @@ namespace MilEmpleos.Controllers
 {
     public class RespuestasCalculadorasController : Controller
     {
-        private MilEmpleosEntities1 db = new MilEmpleosEntities1();
+        private MilEmpleosEntities db = new MilEmpleosEntities();
 
-        // GET: RespuestasCalculadoras1
-        [Authorize(Roles = "Admin, Centros, Consultores")]
+        // GET: RespuestasCalculadoras
+        [Authorize(Roles = "Admin, Centros, Consultores, Unidad, Soporte")]
         public ActionResult Listado()
         {
             var USER_id = User.Identity.GetUserId();
@@ -52,7 +53,7 @@ namespace MilEmpleos.Controllers
             var CE = (from item in db.AspNetUsers
                       where item.Id == USER_id
                       select item.CentroId).First();
-            if (Request.IsAuthenticated && User.IsInRole("Admin"))
+            if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Unidad")))
             {
                 var resultadoCalculadora = db.ResultadoCalculadora.OrderByDescending(x => x.FechaCalculo).Include(r => r.AspNetUsers).Include(r => r.Centros).Include(r => r.RespuestasCalculadora);
                 return View(resultadoCalculadora.ToList());
@@ -195,7 +196,7 @@ namespace MilEmpleos.Controllers
             ViewBag.TipoConocimientoRequerido = new SelectList(db.TipoConocimientoRequerido, "id", "TipoConocimientoRequerido1", respuestasCalculadora.TipoConocimientoRequerido);
             return View(respuestasCalculadora);
         }
-        [Authorize(Roles = "Admin, Centros, Consultores")]
+        [Authorize(Roles = "Admin, Centros, Consultores, Unidad, Soporte")]
         // GET: RespuestasCalculadoras1/Create
         public ActionResult Create()
         {
@@ -542,7 +543,7 @@ namespace MilEmpleos.Controllers
                 semaforo.ScaleAbsolute(80f, 125f);
                 PdfPCell clQRcode = new PdfPCell(semaforo);
                 clQRcode.BorderWidth = 0;
-                clQRcode.Rowspan = 8;
+                clQRcode.Rowspan = 9;
                 clQRcode.HorizontalAlignment = Element.ALIGN_CENTER;
                 // Añadimos las celdas a la tabla
                 tblheader.AddCell(clencabezados);
@@ -625,6 +626,18 @@ namespace MilEmpleos.Controllers
                 tblheader.AddCell(clencabezados);
 
                 // Llenamos la tabla con información
+                titleChunk = new Chunk("Codigo de calificación: ", boldFont);
+                descriptionChunk = new Chunk(resultadoCalculadora.id.ToString(), normalFont);
+                phrase = new Phrase(titleChunk);
+                phrase.Add(descriptionChunk);
+                clencabezados = new PdfPCell(phrase);
+                clencabezados.BorderWidth = 0;
+                clencabezados.PaddingBottom = 5f;
+                clencabezados.BackgroundColor = iTextSharp.text.BaseColor.LIGHT_GRAY;
+                // Añadimos las celdas a la tabla
+                tblheader.AddCell(clencabezados);
+
+                // Llenamos la tabla con información
                 titleChunk = new Chunk("Descripción vacante: ", boldFont);
                 descriptionChunk = new Chunk(respuestasCalculadora.DescripcionVacante, normalFont);
                 phrase = new Phrase(titleChunk);
@@ -633,7 +646,6 @@ namespace MilEmpleos.Controllers
                 clencabezados.BorderWidth = 0;
                 clencabezados.Colspan = 2;
                 clencabezados.PaddingBottom = 5f;
-                clencabezados.BackgroundColor = iTextSharp.text.BaseColor.LIGHT_GRAY;
                 // Añadimos las celdas a la tabla
                 tblheader.AddCell(clencabezados);
                  // Llenamos la tabla con información
@@ -645,6 +657,7 @@ namespace MilEmpleos.Controllers
                 clencabezados.BorderWidth = 0;
                 clencabezados.Colspan = 2;
                 clencabezados.PaddingBottom = 5f;
+                clencabezados.BackgroundColor = iTextSharp.text.BaseColor.LIGHT_GRAY;
                 // Añadimos las celdas a la tabla
                 tblheader.AddCell(clencabezados);
                 // Llenamos la tabla con información
@@ -656,7 +669,6 @@ namespace MilEmpleos.Controllers
                 clencabezados.BorderWidth = 0;
                 clencabezados.Colspan = 2;
                 clencabezados.PaddingBottom = 5f;
-                clencabezados.BackgroundColor = iTextSharp.text.BaseColor.LIGHT_GRAY;
                 // Añadimos las celdas a la tabla
                 tblheader.AddCell(clencabezados);
                 // Llenamos la tabla con información
@@ -668,6 +680,7 @@ namespace MilEmpleos.Controllers
                 clencabezados.BorderWidth = 0;
                 clencabezados.Colspan = 2;
                 clencabezados.PaddingBottom = 5f;
+                clencabezados.BackgroundColor = iTextSharp.text.BaseColor.LIGHT_GRAY;
                 // Añadimos las celdas a la tabla
                 tblheader.AddCell(clencabezados);
                 // Llenamos la tabla con información
@@ -680,7 +693,6 @@ namespace MilEmpleos.Controllers
                 clencabezados.BorderWidth = 0;
                 clencabezados.Colspan = 2;
                 clencabezados.PaddingBottom = 5f;
-                clencabezados.BackgroundColor = iTextSharp.text.BaseColor.LIGHT_GRAY;
                 // Añadimos las celdas a la tabla
                 tblheader.AddCell(clencabezados);
                 // Llenamos la tabla con información
@@ -692,6 +704,7 @@ namespace MilEmpleos.Controllers
                 clencabezados.BorderWidth = 0;
                 clencabezados.Colspan = 2;
                 clencabezados.PaddingBottom = 5f;
+                clencabezados.BackgroundColor = iTextSharp.text.BaseColor.LIGHT_GRAY;
                 // Añadimos las celdas a la tabla
                 tblheader.AddCell(clencabezados);                
                 // Llenamos la tabla con información
@@ -703,7 +716,6 @@ namespace MilEmpleos.Controllers
                 clencabezados.BorderWidth = 0;
                 clencabezados.Colspan = 2;
                 clencabezados.PaddingBottom = 5f;
-                clencabezados.BackgroundColor = iTextSharp.text.BaseColor.LIGHT_GRAY;
                 // Añadimos las celdas a la tabla
                 tblheader.AddCell(clencabezados);
                 // Llenamos la tabla con información
@@ -715,6 +727,7 @@ namespace MilEmpleos.Controllers
                 clencabezados.BorderWidth = 0;
                 clencabezados.Colspan = 2;
                 clencabezados.PaddingBottom = 5f;
+                clencabezados.BackgroundColor = iTextSharp.text.BaseColor.LIGHT_GRAY;
                 // Añadimos las celdas a la tabla
                 tblheader.AddCell(clencabezados);
                 // Llenamos la tabla con información
@@ -726,7 +739,6 @@ namespace MilEmpleos.Controllers
                 clencabezados.BorderWidth = 0;
                 clencabezados.Colspan = 2;
                 clencabezados.PaddingBottom = 5f;
-                clencabezados.BackgroundColor = iTextSharp.text.BaseColor.LIGHT_GRAY;
                 // Añadimos las celdas a la tabla
                 tblheader.AddCell(clencabezados);
                 // Llenamos la tabla con información
@@ -738,6 +750,7 @@ namespace MilEmpleos.Controllers
                 clencabezados.BorderWidth = 0;
                 clencabezados.Colspan = 2;
                 clencabezados.PaddingBottom = 5f;
+                clencabezados.BackgroundColor = iTextSharp.text.BaseColor.LIGHT_GRAY;
                 // Añadimos las celdas a la tabla
                 tblheader.AddCell(clencabezados);
                 // Llenamos la tabla con información
@@ -750,8 +763,7 @@ namespace MilEmpleos.Controllers
                 clencabezados.BorderWidth = 0;
                 clencabezados.Colspan = 2;
                 clencabezados.PaddingBottom = 5f;
-                clencabezados.BackgroundColor = iTextSharp.text.BaseColor.LIGHT_GRAY;
-                // Añadimos las celdas a la tabla
+                 // Añadimos las celdas a la tabla
                 tblheader.AddCell(clencabezados);
                 // Llenamos la tabla con información
                 titleChunk = new Chunk("Cuántos jóvenes serán asignados a cada tutor? ", boldFont);
@@ -762,6 +774,7 @@ namespace MilEmpleos.Controllers
                 clencabezados.BorderWidth = 0;
                 clencabezados.Colspan = 2;
                 clencabezados.PaddingBottom = 5f;
+                clencabezados.BackgroundColor = iTextSharp.text.BaseColor.LIGHT_GRAY;
                 // Añadimos las celdas a la tabla
                 tblheader.AddCell(clencabezados);
                 // Llenamos la tabla con información
@@ -774,8 +787,7 @@ namespace MilEmpleos.Controllers
                 clencabezados.BorderWidth = 0;
                 clencabezados.Colspan = 2;
                 clencabezados.PaddingBottom = 5f;
-                clencabezados.BackgroundColor = iTextSharp.text.BaseColor.LIGHT_GRAY;
-                // Añadimos las celdas a la tabla
+                 // Añadimos las celdas a la tabla
                 tblheader.AddCell(clencabezados);
                 // Llenamos la tabla con información
                 titleChunk = new Chunk("Indique cuál sería el principal contenido para las actividades de formación de los jóvenes en el programa \"40 Mil primeros empleos\" en este puesto de trabajo? ", boldFont);
@@ -786,6 +798,7 @@ namespace MilEmpleos.Controllers
                 clencabezados.BorderWidth = 0;
                 clencabezados.Colspan = 2;
                 clencabezados.PaddingBottom = 5f;
+                clencabezados.BackgroundColor = iTextSharp.text.BaseColor.LIGHT_GRAY;
                 // Añadimos las celdas a la tabla
                 tblheader.AddCell(clencabezados);
                 // Llenamos la tabla con información
@@ -798,7 +811,6 @@ namespace MilEmpleos.Controllers
                 clencabezados.BorderWidth = 0;
                 clencabezados.Colspan = 2;
                 clencabezados.PaddingBottom = 5f;
-                clencabezados.BackgroundColor = iTextSharp.text.BaseColor.LIGHT_GRAY;
                 // Añadimos las celdas a la tabla
                 tblheader.AddCell(clencabezados);
                 if (respuestasCalculadora.SalarioAdicional) {
@@ -811,6 +823,7 @@ namespace MilEmpleos.Controllers
                     clencabezados.BorderWidth = 0;
                     clencabezados.Colspan = 2;
                     clencabezados.PaddingBottom = 5f;
+                    clencabezados.BackgroundColor = iTextSharp.text.BaseColor.LIGHT_GRAY;
                     // Añadimos las celdas a la tabla
                     tblheader.AddCell(clencabezados);
                 }
@@ -823,7 +836,7 @@ namespace MilEmpleos.Controllers
                 clencabezados.BorderWidth = 0;
                 clencabezados.Colspan = 2;
                 clencabezados.PaddingBottom = 5f;
-                if (respuestasCalculadora.SalarioAdicional)
+                if (!respuestasCalculadora.SalarioAdicional)
                 {
                     clencabezados.BackgroundColor = iTextSharp.text.BaseColor.LIGHT_GRAY;
                 }
@@ -877,8 +890,12 @@ namespace MilEmpleos.Controllers
         // GET: RespuestasCalculadoras1/Excelrespuestas/5
         public ActionResult Excelrespuestas()
         {
-            var result = (from res in db.ResultadoCalculadora select res).ToList();
-
+            var USER_id = User.Identity.GetUserId();
+            var CE = (from item in db.AspNetUsers
+                      where item.Id == USER_id
+                      select item.CentroId).First();
+            var result = (from res in db.ResultadoCalculadora where res.CentroId.Equals(CE) select res).OrderByDescending(x => x.FechaCalculo).ToList();
+ 
             List<ResCalcollection> myListresPila = new List<ResCalcollection>();
 
             foreach (var rescal in result)
@@ -890,6 +907,8 @@ namespace MilEmpleos.Controllers
                 resCalcollection.Capital_Humano = rescal.CapitalHumano.ToString();
                 resCalcollection.Caracteristicas_Empresa = rescal.CaracteristicasEmpresa.ToString();
                 resCalcollection.Caracteristicas_Puesto = rescal.CaracteristicasPuesto.ToString();
+                string rta = (rescal.Total>=0.6) ? "SI" : "NO";
+                resCalcollection.VacanteValida = rta;
                 resCalcollection.Total_Calificacion = rescal.Total.ToString();
                 resCalcollection.Razon_Social = rescal.RespuestasCalculadora.RazonSocial;
                 resCalcollection.Nit = rescal.RespuestasCalculadora.Nit;
@@ -898,7 +917,7 @@ namespace MilEmpleos.Controllers
                 resCalcollection.Descripcion_Vacante = rescal.RespuestasCalculadora.DescripcionVacante;
                 resCalcollection.Nivel_Educativo_Requerido_Vacante = rescal.RespuestasCalculadora.NivelEducativo.NivelEducativo1;
                 resCalcollection.Numero_Puestos_Trabajo = rescal.RespuestasCalculadora.NumeroPuestosTrabajo.ToString();
-                string  rta = (rescal.RespuestasCalculadora.OficinaRecursosHumanos) ? "SI" : "NO";
+                rta = (rescal.RespuestasCalculadora.OficinaRecursosHumanos) ? "SI" : "NO";
                 resCalcollection.Oficina_Recursos_Humanos = rta;
                 resCalcollection.Tamano_Planta_Empresa = rescal.RespuestasCalculadora.TamanoPlantaEmpresa.ToString();
                 resCalcollection.Habilidad_Requerida = rescal.RespuestasCalculadora.Habilidad.HabilidadRequerida;
@@ -921,7 +940,7 @@ namespace MilEmpleos.Controllers
                 resCalcollection.Salario_Adicional_Rango = rescal.RespuestasCalculadora.SalarioAdicionalRango1.SalarioAdicionalRango1;
                 resCalcollection.Municipio = rescal.RespuestasCalculadora.municipality.nombre +" / " +rescal.RespuestasCalculadora.municipality.department.nombre;
                 resCalcollection.Fecha_Registro = rescal.RespuestasCalculadora.FechaRegistro.ToString(@"yyyy/MM/dd HH\:mm\:ss tt");
-
+                resCalcollection.CodigoCalificacion = rescal.id;
                 myListresPila.Add(resCalcollection);
             }
 
@@ -961,7 +980,11 @@ namespace MilEmpleos.Controllers
         // GET: RespuestasCalculadoras1/ExcelconsultasPila/5
         public ActionResult ExcelConsultasPila()
         {
-            var result = (from res in db.RespuestaPila select res).ToList();
+            var USER_id = User.Identity.GetUserId();
+            var CE = (from item in db.AspNetUsers
+                      where item.Id == USER_id
+                      select item.CentroId).First();
+            var result = (from res in db.RespuestaPila where res.CentroId.Equals(CE)  select res).ToList();
 
             List<ConsulPilacollection> myListresPila = new List<ConsulPilacollection>();
 
@@ -970,8 +993,23 @@ namespace MilEmpleos.Controllers
                 ConsulPilacollection consulPilacollection = new ConsulPilacollection();
                 consulPilacollection.id = resPila.id;
                 consulPilacollection.No_Documento = resPila.NoDocumento;
-                consulPilacollection.Usuario_Correo = resPila.AspNetUsers.Email;
-                consulPilacollection.Prestador = resPila.Centros.CentroEmpleo;
+                if (resPila.AspNetUsers.Email == null)
+                {
+                    consulPilacollection.Usuario_Correo = "";
+                }
+                else
+                {
+                    consulPilacollection.Usuario_Correo = resPila.AspNetUsers.Email;
+                }
+                if (resPila.Centros.CentroEmpleo == null)
+                {
+                    consulPilacollection.Prestador = "";
+                }
+                else
+                {
+                    consulPilacollection.Prestador = resPila.Centros.CentroEmpleo;
+                }
+                
                 string rta = (resPila.Registrado) ? "SI" : "NO";
                 consulPilacollection.Registrado = rta;
                 consulPilacollection.Nombres = resPila.Nombres;
@@ -981,7 +1019,6 @@ namespace MilEmpleos.Controllers
                 consulPilacollection.Meses_UltimoPeriodo = resPila.Meses_UltimoPeriodo.ToString();
                 consulPilacollection.UltimoPeriodo_fecha_inicio = resPila.UltimoPeriodo_fecha_inicio.ToString(@"yyyy/MM/dd HH\:mm\:ss tt");
                 consulPilacollection.UltimoPeriodo_fecha_fin = resPila.UltimoPeriodo_fecha_fin.ToString(@"yyyy/MM/dd HH\:mm\:ss tt");
-
                 myListresPila.Add(consulPilacollection);
             }
 
@@ -1034,6 +1071,7 @@ namespace MilEmpleos.Controllers
             public string Caracteristicas_Empresa { get; set; }
             public string Caracteristicas_Puesto { get; set; }
             public string Total_Calificacion { get; set; }
+            public string VacanteValida { get; set; }
             public string Razon_Social { get; set; }
             public string Nit { get; set; }
             public string Telefono_Empresa { get; set; }
@@ -1055,6 +1093,7 @@ namespace MilEmpleos.Controllers
             public string Salario_Adicional_Rango { get; set; }
             public string Municipio { get; set; }
             public string Fecha_Registro { get; set; }
+            public Guid CodigoCalificacion { get; set; }
         }
         public partial class ConsulPilacollection
         {

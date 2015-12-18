@@ -70,10 +70,14 @@
                              @*<li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Centros" ? "active" : "")"> @Html.ActionLink("Centro de Empleo", "", "Centros/Edit")</li>*@
                             <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "UsersAdmin" ? "active" : "")">@Html.ActionLink("Administrar Usuarios", "ListaUsers", "UsersAdmin")</li>
                         }
-                        @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                        @if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Unidad")))
                         {
                             @*<li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "RolesAdmin" ? "active" : "")">@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")</li>*@
                             <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "UsersAdmin" ? "active" : "")">@Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")</li>
+                        }
+                        @if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Soporte")))
+                        {                            
+                             <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "ResultadoCalculadoras" ? "active" : "")">@Html.ActionLink("Borrar Calificación", "BuscarCalificacion", "ResultadoCalculadoras")</li>
                         }
                 </ul>
                     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))

@@ -14,7 +14,7 @@ namespace MilEmpleos.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class CalificacionController : ApiController
     {
-        private MilEmpleosEntities1 db = new MilEmpleosEntities1();
+        private MilEmpleosEntities db = new MilEmpleosEntities();
         public IHttpActionResult Get(string id)
         {
             string str;

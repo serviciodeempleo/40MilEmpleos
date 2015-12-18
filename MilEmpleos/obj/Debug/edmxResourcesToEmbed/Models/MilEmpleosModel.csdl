@@ -44,6 +44,37 @@
     <NavigationProperty Name="ActividadesPuestoDeTrabajo" Relationship="Self.FK__ActNivEdu__Activ__382F5661" FromRole="ActNivEdu" ToRole="ActividadesPuestoDeTrabajo" />
     <NavigationProperty Name="NivelEducativo" Relationship="Self.FK__ActNivEdu__Nivel__39237A9A" FromRole="ActNivEdu" ToRole="NivelEducativo" />
   </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Discriminator" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+  </EntityType>
   <EntityType Name="AspNetUsers">
     <Key>
       <PropertyRef Name="Id" />
@@ -67,9 +98,12 @@
     <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
     <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
     <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
     <NavigationProperty Name="Centros" Relationship="Self.FK__Centro__UserID__4BAC3F29" FromRole="AspNetUsers" ToRole="Centros" />
+    <NavigationProperty Name="RespuestaPila" Relationship="Self.FK__Respuesta__UserI__025D5595" FromRole="AspNetUsers" ToRole="RespuestaPila" />
     <NavigationProperty Name="ResultadoCalculadora" Relationship="Self.FK__Resultado__UserI__73501C2F" FromRole="AspNetUsers" ToRole="ResultadoCalculadora" />
-    <NavigationProperty Name="RespuestaPila" Relationship="MilEmpleosModel.FK__Respuesta__UserI__025D5595" FromRole="AspNetUsers" ToRole="RespuestaPila" />
+    <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
   </EntityType>
   <EntityType Name="Centros">
     <Key>
@@ -80,9 +114,9 @@
     <Property Name="UserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
     <Property Name="Dominio" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="AspNetUsers" Relationship="Self.FK__Centro__UserID__4BAC3F29" FromRole="Centros" ToRole="AspNetUsers" />
+    <NavigationProperty Name="RespuestaPila" Relationship="Self.FK__Respuesta__Centr__035179CE" FromRole="Centros" ToRole="RespuestaPila" />
     <NavigationProperty Name="RespuestasCalculadora" Relationship="Self.FK__Respuesta__Centr__5772F790" FromRole="Centros" ToRole="RespuestasCalculadora" />
     <NavigationProperty Name="ResultadoCalculadora" Relationship="Self.FK__Resultado__Centr__7167D3BD" FromRole="Centros" ToRole="ResultadoCalculadora" />
-    <NavigationProperty Name="RespuestaPila" Relationship="MilEmpleosModel.FK__Respuesta__Centr__035179CE" FromRole="Centros" ToRole="RespuestaPila" />
   </EntityType>
   <EntityType Name="Consulta">
     <Key>
@@ -138,6 +172,21 @@
     <Property Name="JovenesPorTutor1" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="RespuestasCalculadora" Relationship="Self.FK__Respuesta__Joven__2334397B" FromRole="JovenesPorTutor" ToRole="RespuestasCalculadora" />
   </EntityType>
+  <EntityType Name="LogsAudit">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="InstanciaServidor" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="FechaHora" Type="DateTime" Precision="3" />
+    <Property Name="IpRequest" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Agent" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="JsonRequest" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="JsonResponse" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Operacion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DataRequest" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
   <EntityType Name="municipality">
     <Key>
       <PropertyRef Name="IdCodigo" />
@@ -167,6 +216,22 @@
     <Property Name="ClaveINI" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="UsurioCorreo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
   </EntityType>
+  <EntityType Name="Pila">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TipoDocumento" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="NumeroDocumento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PrimerNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SegundoNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PrimerApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SegundoApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TiempoTotalRegistroMeses" Type="Int32" />
+    <Property Name="ultimo_periodo_cotizado_fecha_inicio" Type="DateTime" Precision="0" />
+    <Property Name="ultimo_periodo_cotizado_fecha_fin" Type="DateTime" Precision="0" />
+    <Property Name="Meses_ultimo_periodo_cotizado" Type="Int32" />
+  </EntityType>
   <EntityType Name="Ponderacion">
     <Key>
       <PropertyRef Name="id" />
@@ -183,6 +248,27 @@
     <Property Name="IdCodigo" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Ponderacion" Type="Double" Nullable="false" />
     <NavigationProperty Name="municipality" Relationship="Self.mucipio" FromRole="PonderacionMunicipio" ToRole="municipality" />
+  </EntityType>
+  <EntityType Name="RespuestaPila">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Registrado" Type="Boolean" Nullable="false" />
+    <Property Name="Nombres" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Apellidos" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FechaRespuestaPila" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TiempoTotalRegistroMeses" Type="Int32" Nullable="false" />
+    <Property Name="UltimoPeriodo_fecha_inicio" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="UltimoPeriodo_fecha_fin" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Meses_UltimoPeriodo" Type="Int32" />
+    <Property Name="TipoDocumento" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="NoDocumento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CentroId" Type="Int32" Nullable="false" />
+    <Property Name="ConsutaId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.FK__Respuesta__UserI__025D5595" FromRole="RespuestaPila" ToRole="AspNetUsers" />
+    <NavigationProperty Name="Centros" Relationship="Self.FK__Respuesta__Centr__035179CE" FromRole="RespuestaPila" ToRole="Centros" />
   </EntityType>
   <EntityType Name="RespuestasCalculadora">
     <Key>
@@ -264,6 +350,30 @@
     <Property Name="id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
     <Property Name="TipoDocumento1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Consulta" Relationship="Self.FK__Consulta__TipoDo__55F4C372" FromRole="TipoDocumento" ToRole="Consulta" />
+  </EntityType>
+  <EntityType Name="WSPila">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TipoDocumento" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="NumeroDocumento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PrimerNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SegundoNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PrimerApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SegundoApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TiempoTotalRegistroMeses" Type="Int32" Nullable="false" />
+    <Property Name="MaximoMesesContinuos" Type="Int32" Nullable="false" />
+    <Property Name="MaximoMesesContinuos_fecha_inicio" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="MaximoMesesContinuos_fecha_fin" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Meses_UltimoPeriodoSuperior6Meses" Type="Int32" Nullable="false" />
+    <Property Name="Meses_UltimoPeriodoSuperior6Meses_fecha_inicio" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Meses_UltimoPeriodoSuperior6Meses_fecha_fin" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Empleador_UltimoPeriodo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Meses_PenultimoPeriodoSuperior6Meses" Type="Int32" Nullable="false" />
+    <Property Name="Meses_PenultimoPeriodoSuperior6Meses_fecha_inicio" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Meses_PenultimoPeriodoSuperior6Meses_fecha_fin" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Empleador_PenultimoPeriodo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
   </EntityType>
   <Association Name="FK__Actividad__Activ__32767D0B">
     <End Role="ActividadesPuestoDeTrabajo" Type="Self.ActividadesPuestoDeTrabajo" Multiplicity="1" />
@@ -349,6 +459,34 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__Centro__UserID__4BAC3F29">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
     <End Role="Centros" Type="Self.Centros" Multiplicity="*" />
@@ -361,6 +499,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__Respuesta__UserI__025D5595">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="RespuestaPila" Type="Self.RespuestaPila" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RespuestaPila">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__Resultado__UserI__73501C2F">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
     <End Role="ResultadoCalculadora" Type="Self.ResultadoCalculadora" Multiplicity="*" />
@@ -370,6 +520,18 @@
       </Principal>
       <Dependent Role="ResultadoCalculadora">
         <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Respuesta__Centr__035179CE">
+    <End Role="Centros" Type="Self.Centros" Multiplicity="1" />
+    <End Role="RespuestaPila" Type="Self.RespuestaPila" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Centros">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RespuestaPila">
+        <PropertyRef Name="CentroId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -541,11 +703,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="MilEmpleosEntities1" annotation:LazyLoadingEnabled="true">
+  <Association Name="AspNetUserRoles">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="MilEmpleosEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="ActividadesPuestoDeTrabajo" EntityType="Self.ActividadesPuestoDeTrabajo" />
     <EntitySet Name="ActividadNivEduDes" EntityType="Self.ActividadNivEduDes" />
     <EntitySet Name="ActividadNivEduHab" EntityType="Self.ActividadNivEduHab" />
     <EntitySet Name="ActNivEdu" EntityType="Self.ActNivEdu" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
     <EntitySet Name="Centros" EntityType="Self.Centros" />
     <EntitySet Name="Consulta" EntityType="Self.Consulta" />
@@ -554,16 +723,20 @@
     <EntitySet Name="Destrezas" EntityType="Self.Destrezas" />
     <EntitySet Name="Habilidad" EntityType="Self.Habilidad" />
     <EntitySet Name="JovenesPorTutor" EntityType="Self.JovenesPorTutor" />
+    <EntitySet Name="LogsAudit" EntityType="Self.LogsAudit" />
     <EntitySet Name="municipality" EntityType="Self.municipality" />
     <EntitySet Name="NivelEducativo" EntityType="Self.NivelEducativo" />
     <EntitySet Name="PassPrestadores" EntityType="Self.PassPrestadores" />
+    <EntitySet Name="Pila" EntityType="Self.Pila" />
     <EntitySet Name="Ponderacion" EntityType="Self.Ponderacion" />
     <EntitySet Name="PonderacionMunicipio" EntityType="Self.PonderacionMunicipio" />
+    <EntitySet Name="RespuestaPila" EntityType="Self.RespuestaPila" />
     <EntitySet Name="RespuestasCalculadora" EntityType="Self.RespuestasCalculadora" />
     <EntitySet Name="ResultadoCalculadora" EntityType="Self.ResultadoCalculadora" />
     <EntitySet Name="SalarioAdicionalRango" EntityType="Self.SalarioAdicionalRango" />
     <EntitySet Name="TipoConocimientoRequerido" EntityType="Self.TipoConocimientoRequerido" />
     <EntitySet Name="TipoDocumento" EntityType="Self.TipoDocumento" />
+    <EntitySet Name="WSPila" EntityType="Self.WSPila" />
     <AssociationSet Name="FK__Actividad__Activ__32767D0B" Association="Self.FK__Actividad__Activ__32767D0B">
       <End Role="ActividadesPuestoDeTrabajo" EntitySet="ActividadesPuestoDeTrabajo" />
       <End Role="ActividadNivEduDes" EntitySet="ActividadNivEduDes" />
@@ -592,13 +765,29 @@
       <End Role="NivelEducativo" EntitySet="NivelEducativo" />
       <End Role="ActNivEdu" EntitySet="ActNivEdu" />
     </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
     <AssociationSet Name="FK__Centro__UserID__4BAC3F29" Association="Self.FK__Centro__UserID__4BAC3F29">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="Centros" EntitySet="Centros" />
     </AssociationSet>
+    <AssociationSet Name="FK__Respuesta__UserI__025D5595" Association="Self.FK__Respuesta__UserI__025D5595">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="RespuestaPila" EntitySet="RespuestaPila" />
+    </AssociationSet>
     <AssociationSet Name="FK__Resultado__UserI__73501C2F" Association="Self.FK__Resultado__UserI__73501C2F">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="ResultadoCalculadora" EntitySet="ResultadoCalculadora" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Respuesta__Centr__035179CE" Association="Self.FK__Respuesta__Centr__035179CE">
+      <End Role="Centros" EntitySet="Centros" />
+      <End Role="RespuestaPila" EntitySet="RespuestaPila" />
     </AssociationSet>
     <AssociationSet Name="FK__Respuesta__Centr__5772F790" Association="Self.FK__Respuesta__Centr__5772F790">
       <End Role="Centros" EntitySet="Centros" />
@@ -656,89 +845,12 @@
       <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
       <End Role="ResultadoCalculadora" EntitySet="ResultadoCalculadora" />
     </AssociationSet>
-    <EntitySet Name="AspNetRoles" EntityType="MilEmpleosModel.AspNetRoles" />
-    <EntitySet Name="Pila" EntityType="MilEmpleosModel.Pila" />
-    <EntitySet Name="RespuestaPila" EntityType="MilEmpleosModel.RespuestaPila" />
-    <AssociationSet Name="FK__Respuesta__UserI__025D5595" Association="MilEmpleosModel.FK__Respuesta__UserI__025D5595">
+    <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-      <End Role="RespuestaPila" EntitySet="RespuestaPila" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Respuesta__Centr__035179CE" Association="MilEmpleosModel.FK__Respuesta__Centr__035179CE">
-      <End Role="Centros" EntitySet="Centros" />
-      <End Role="RespuestaPila" EntitySet="RespuestaPila" />
     </AssociationSet>
     <EntitySet Name="actulizacionPila" EntityType="MilEmpleosModel.actulizacionPila" />
   </EntityContainer>
-  <EntityType Name="AspNetRoles">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Discriminator" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <EntityType Name="Pila">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="TipoDocumento" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
-    <Property Name="NumeroDocumento" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="PrimerNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="SegundoNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="PrimerApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="SegundoApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="TiempoTotalRegistroMeses" Type="Int32" />
-    <Property Name="ultimo_periodo_cotizado_fecha_inicio" Type="DateTime" Precision="0" />
-    <Property Name="ultimo_periodo_cotizado_fecha_fin" Type="DateTime" Precision="0" />
-    <Property Name="Meses_ultimo_periodo_cotizado" Type="Int32" />
-  </EntityType>
-  <EntityType Name="RespuestaPila">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Registrado" Type="Boolean" Nullable="false" />
-    <Property Name="Nombres" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="Apellidos" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="FechaRespuestaPila" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="TiempoTotalRegistroMeses" Type="Int32" Nullable="false" />
-    <Property Name="UltimoPeriodo_fecha_inicio" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="UltimoPeriodo_fecha_fin" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="Meses_UltimoPeriodo" Type="Int32" />
-    <Property Name="TipoDocumento" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
-    <Property Name="NoDocumento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="CentroId" Type="Int32" Nullable="false" />
-    <Property Name="ConsutaId" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="AspNetUsers" Relationship="MilEmpleosModel.FK__Respuesta__UserI__025D5595" FromRole="RespuestaPila" ToRole="AspNetUsers" />
-    <NavigationProperty Name="Centros" Relationship="MilEmpleosModel.FK__Respuesta__Centr__035179CE" FromRole="RespuestaPila" ToRole="Centros" />
-  </EntityType>
-  <Association Name="FK__Respuesta__UserI__025D5595">
-    <End Type="MilEmpleosModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
-    <End Type="MilEmpleosModel.RespuestaPila" Role="RespuestaPila" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUsers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="RespuestaPila">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Respuesta__Centr__035179CE">
-    <End Type="MilEmpleosModel.Centros" Role="Centros" Multiplicity="1" />
-    <End Type="MilEmpleosModel.RespuestaPila" Role="RespuestaPila" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Centros">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="RespuestaPila">
-        <PropertyRef Name="CentroId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityType Name="actulizacionPila">
     <Key>
       <PropertyRef Name="Id" />

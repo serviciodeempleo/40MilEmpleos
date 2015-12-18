@@ -7,7 +7,7 @@
 }
 
 <h2>@ViewBag.Title</h2>
-@if (Request.IsAuthenticated && User.IsInRole("Admin"))
+@if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Unidad") || User.IsInRole("Centros")))
 {
     <p>
         @Html.ActionLink("Descargar listado completo", "excelrespuestas", new{ @class="btn btn-danger"}) | @Html.ActionLink("Descargar listado Consultas Pila", "ExcelconsultasPila", new { @class = "btn btn-danger" })

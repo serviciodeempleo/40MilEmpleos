@@ -58,6 +58,8 @@
                 @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
             </div>
         </div>
+        @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+        {
         <div class="form-group">
             @Html.Label("Roles", new { @class = "control-label col-md-2" })
             <span class=" col-md-10">
@@ -68,7 +70,20 @@
                 }
             </span>
         </div>
-
+        }
+        else
+        {
+            <div class="form-group hidden">
+                @Html.Label("Roles", new { @class = "control-label col-md-2" })
+                <span class=" col-md-10">
+                    @foreach (var item in Model.RolesList)
+                    {
+                        <input type="checkbox" name="SelectedRole" value="@item.Value" checked="@item.Selected" class="checkbox-inline" />
+                        @Html.Label(item.Value, new { @class = "control-label" })
+                    }
+                </span>
+            </div>
+        }
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Guardar" class="btn btn-default" />

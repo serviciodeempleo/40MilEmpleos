@@ -17,11 +17,11 @@ using System.Net.Http.Headers;
 
 namespace IdentitySample.Controllers
 {
-    [Authorize(Roles = "Admin, Centros, Consultores")]
+    [Authorize(Roles = "Admin, Centros, Consultores, Unidad, Soporte")]
     public class WSPilasController : ApiController
     {
 
-        private MilEmpleosEntities1 db = new MilEmpleosEntities1();
+        private MilEmpleosEntities db = new MilEmpleosEntities();
 
         //[Route("api/{controller}/{documento}/{id}")]
 
@@ -31,27 +31,10 @@ namespace IdentitySample.Controllers
             var existedocumento = (from p in db.Pila
                                    where p.NumeroDocumento == id
                                            select p).ToList();
-            if (existedocumento.Count() == 0)
-            {
-                  Pila PilaNull = new Pila();
-                  PilaNull.id = 2147483647;
-                  PilaNull.TiempoTotalRegistroMeses=0;
-                  PilaNull.PrimerApellido = "No registrado" ;
-                  PilaNull.TipoDocumento = "cc";
-                  PilaNull.SegundoApellido = "";
-                  PilaNull.SegundoNombre = "";
-                  PilaNull.PrimerNombre = "";
-                  PilaNull.NumeroDocumento = id;
-                  return Ok(PilaNull);
-            }
+
             var CE = (from item in db.AspNetUsers
                       where item.Id == USER_id
                       select item.CentroId).First();
-            var documentopila = (from p in db.Pila
-                        where p.NumeroDocumento.Contains(id)
-                        select p).First();
-            Pila pila = documentopila;
-            //save consulta
             Consulta consulta = new Consulta();
             consulta.DocumentoNumero = id;
             consulta.FechaConsulta = DateTime.Now;
@@ -61,6 +44,41 @@ namespace IdentitySample.Controllers
             db.Consulta.Add(consulta);
             db.SaveChanges();
             //save consulta
+            if (existedocumento.Count() == 0)
+            {
+                Pila PilaNull = new Pila();
+                PilaNull.id = 2147483647;
+                PilaNull.TiempoTotalRegistroMeses = 0;
+                PilaNull.PrimerApellido = "No registrado";
+                PilaNull.TipoDocumento = "cc";
+                PilaNull.SegundoApellido = "";
+                PilaNull.SegundoNombre = "";
+                PilaNull.PrimerNombre = "";
+                PilaNull.NumeroDocumento = id;
+                RespuestaPila respuestaPilanull = new RespuestaPila();
+                respuestaPilanull.Registrado = PilaNull.TiempoTotalRegistroMeses > 0;
+                respuestaPilanull.Nombres = PilaNull.PrimerNombre + " " + PilaNull.SegundoNombre;
+                respuestaPilanull.Apellidos = PilaNull.PrimerApellido + " " + PilaNull.SegundoApellido;
+                respuestaPilanull.FechaRespuestaPila = DateTime.Now;
+                respuestaPilanull.TiempoTotalRegistroMeses = PilaNull.TiempoTotalRegistroMeses.Value;
+                respuestaPilanull.Meses_UltimoPeriodo = 0;
+                respuestaPilanull.UltimoPeriodo_fecha_inicio = DateTime.MinValue;
+                respuestaPilanull.UltimoPeriodo_fecha_fin = DateTime.MinValue;
+                respuestaPilanull.TipoDocumento = PilaNull.TipoDocumento;
+                respuestaPilanull.NoDocumento = PilaNull.NumeroDocumento;
+                respuestaPilanull.UserId = USER_id;
+                respuestaPilanull.CentroId = CE;
+                respuestaPilanull.ConsutaId = consulta.id;
+                db.RespuestaPila.Add(respuestaPilanull);
+                db.SaveChanges();
+                return Ok(PilaNull);
+            }
+            var documentopila = (from p in db.Pila
+                        where p.NumeroDocumento.Contains(id)
+                        select p).First();
+            Pila pila = documentopila;
+            //save consulta
+
             if (pila == null)
             {
                 return NotFound();

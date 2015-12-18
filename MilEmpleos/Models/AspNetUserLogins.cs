@@ -12,15 +12,12 @@ namespace MilEmpleos.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Consulta
+    public partial class AspNetUserLogins
     {
-        public int id { get; set; }
-        public string DocumentoNumero { get; set; }
-        public System.DateTime FechaConsulta { get; set; }
-        public string UsuerID { get; set; }
-        public int CentroID { get; set; }
-        public string TipoDocumento { get; set; }
+        public string LoginProvider { get; set; }
+        public string ProviderKey { get; set; }
+        public string UserId { get; set; }
     
-        public virtual TipoDocumento TipoDocumento1 { get; set; }
+        public virtual AspNetUsers AspNetUsers { get; set; }
     }
 }

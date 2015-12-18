@@ -226,6 +226,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\ui-grid.svg" />
     <Content Include="Icon.png" />
+    <Content Include="Models\MilEmpleosModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MilEmpleosModel.edmx</DependentUpon>
+      <LastGenOutput>MilEmpleosModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\MilEmpleosModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MilEmpleosModel.edmx</DependentUpon>
+      <LastGenOutput>MilEmpleosModel.cs</LastGenOutput>
+    </Content>
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -251,18 +261,9 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>MilEmpleosModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\MilEmpleosModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MilEmpleosModel.edmx</DependentUpon>
-      <LastGenOutput>MilEmpleosModel.Context.cs</LastGenOutput>
-    </Content>
     <Content Include="Models\MilEmpleosModel.edmx.diagram">
       <DependentUpon>MilEmpleosModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\MilEmpleosModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MilEmpleosModel.edmx</DependentUpon>
-      <LastGenOutput>MilEmpleosModel.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
     <None Include="Scripts\jquery-2.1.3-vsdoc.js" />
     <Content Include="Scripts\angular-mocks.js" />
@@ -331,6 +332,9 @@
     <Content Include="Views\RolesAdmin\Details.cshtml" />
     <Content Include="Views\RolesAdmin\Edit.cshtml" />
     <Content Include="Views\RolesAdmin\Index.cshtml" />
+    <Content Include="Views\ResultadoCalculadoras\Nofoud.cshtml" />
+    <Content Include="Views\ResultadoCalculadoras\ExitoEliminacion.cshtml" />
+    <Content Include="Views\ResultadoCalculadoras\BuscarCalificacion.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -416,6 +420,12 @@
     <Compile Include="Models\AspNetRoles.cs">
       <DependentUpon>MilEmpleosModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AspNetUserClaims.cs">
+      <DependentUpon>MilEmpleosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserLogins.cs">
+      <DependentUpon>MilEmpleosModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\AspNetUsers.cs">
       <DependentUpon>MilEmpleosModel.tt</DependentUpon>
     </Compile>
@@ -439,6 +449,9 @@
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\JovenesPorTutor.cs">
+      <DependentUpon>MilEmpleosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LogsAudit.cs">
       <DependentUpon>MilEmpleosModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
@@ -494,6 +507,9 @@
       <DependentUpon>MilEmpleosModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewRespuestasCalculadora.cs" />
+    <Compile Include="Models\WSPila.cs">
+      <DependentUpon>MilEmpleosModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -502,6 +518,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

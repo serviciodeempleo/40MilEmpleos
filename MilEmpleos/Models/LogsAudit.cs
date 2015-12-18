@@ -12,15 +12,17 @@ namespace MilEmpleos.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Consulta
+    public partial class LogsAudit
     {
-        public int id { get; set; }
-        public string DocumentoNumero { get; set; }
-        public System.DateTime FechaConsulta { get; set; }
-        public string UsuerID { get; set; }
-        public int CentroID { get; set; }
-        public string TipoDocumento { get; set; }
-    
-        public virtual TipoDocumento TipoDocumento1 { get; set; }
+        public System.Guid Id { get; set; }
+        public string InstanciaServidor { get; set; }
+        public string UserName { get; set; }
+        public Nullable<System.DateTime> FechaHora { get; set; }
+        public string IpRequest { get; set; }
+        public string Agent { get; set; }
+        public string JsonRequest { get; set; }
+        public string JsonResponse { get; set; }
+        public string Operacion { get; set; }
+        public string DataRequest { get; set; }
     }
 }

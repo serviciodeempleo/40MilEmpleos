@@ -21,7 +21,7 @@ namespace IdentitySample.Controllers
         public AccountController()
         {
         }
-        private MilEmpleosEntities1 db = new MilEmpleosEntities1();
+        private MilEmpleosEntities db = new MilEmpleosEntities();
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
             UserManager = userManager;
@@ -169,7 +169,7 @@ namespace IdentitySample.Controllers
         //
         // POST: /Account/Register
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Unidad")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
@@ -228,7 +228,7 @@ namespace IdentitySample.Controllers
         }
         // GET: /Account/GenerarUsuarios
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Unidad")]
         public async Task<ActionResult> GenerarUsuarios()
         {
             var UsurioCrear = from us in db.PassPrestadores select us;

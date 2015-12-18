@@ -83,7 +83,8 @@ button.clipboard::-moz-focus-inner {
         }
         String host = uri.Scheme + Uri.SchemeDelimiter + uri.Host + ":" + uri.Port + dirVirtual + "RespuestasCalculadoras/Index/" + Model.id.ToString();
     }
-    <h4 style="margin-top: 6em;">Valida la Calificación con este QR code</h4>
+    <a style="margin-top: 5em;" class="btn btn-danger btn-group-xs glyphicon glyphicon-fast-backward" href="javascript:history.back()"> Regresar</a>
+    <h4 >Valida la Calificación con este QR code</h4>
     <img src="@rootpath/RespuestasCalculadoras/BarcodeImage?barcodeText=@host"/>
     <a class="btn btn-danger btn-group-xs" id="descargarreporte" href="@rootpath/RespuestasCalculadoras/Pdf/@Model.RespuestasCalculadoraId.ToString()">Descargar Reporte</a>
 </div>

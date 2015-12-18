@@ -50,6 +50,35 @@
     <Property Name="Description" Type="nvarchar(max)" />
     <Property Name="Discriminator" Type="nvarchar" MaxLength="128" Nullable="false" />
   </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ClaimType" Type="nvarchar(max)" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'MilEmpleos.dbo.AspNetUserRoles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="AspNetUserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
   <EntityType Name="AspNetUsers">
     <Key>
       <PropertyRef Name="Id" />
@@ -128,6 +157,21 @@
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="JovenesPorTutor" Type="varchar" MaxLength="40" />
+  </EntityType>
+  <EntityType Name="LogsAudit">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="InstanciaServidor" Type="varchar" MaxLength="200" />
+    <Property Name="UserName" Type="varchar" MaxLength="100" />
+    <Property Name="FechaHora" Type="datetime" />
+    <Property Name="IpRequest" Type="varchar" MaxLength="15" />
+    <Property Name="Agent" Type="varchar" MaxLength="300" />
+    <Property Name="JsonRequest" Type="text" />
+    <Property Name="JsonResponse" Type="text" />
+    <Property Name="Operacion" Type="varchar" MaxLength="100" />
+    <Property Name="DataRequest" Type="varchar" MaxLength="500" />
   </EntityType>
   <EntityType Name="municipality">
     <Key>
@@ -268,6 +312,30 @@
     <Property Name="id" Type="char" MaxLength="2" Nullable="false" />
     <Property Name="TipoDocumento" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
+  <EntityType Name="WSPila">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TipoDocumento" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="NumeroDocumento" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="PrimerNombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="SegundoNombre" Type="varchar" MaxLength="50" />
+    <Property Name="PrimerApellido" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="SegundoApellido" Type="varchar" MaxLength="50" />
+    <Property Name="TiempoTotalRegistroMeses" Type="int" Nullable="false" />
+    <Property Name="MaximoMesesContinuos" Type="int" Nullable="false" />
+    <Property Name="MaximoMesesContinuos_fecha_inicio" Type="date" Nullable="false" />
+    <Property Name="MaximoMesesContinuos_fecha_fin" Type="date" Nullable="false" />
+    <Property Name="Meses_UltimoPeriodoSuperior6Meses" Type="int" Nullable="false" />
+    <Property Name="Meses_UltimoPeriodoSuperior6Meses_fecha_inicio" Type="date" Nullable="false" />
+    <Property Name="Meses_UltimoPeriodoSuperior6Meses_fecha_fin" Type="date" Nullable="false" />
+    <Property Name="Empleador_UltimoPeriodo" Type="varchar" MaxLength="100" />
+    <Property Name="Meses_PenultimoPeriodoSuperior6Meses" Type="int" Nullable="false" />
+    <Property Name="Meses_PenultimoPeriodoSuperior6Meses_fecha_inicio" Type="date" Nullable="false" />
+    <Property Name="Meses_PenultimoPeriodoSuperior6Meses_fecha_fin" Type="date" Nullable="false" />
+    <Property Name="Empleador_PenultimoPeriodo" Type="varchar" MaxLength="100" />
+  </EntityType>
   <Association Name="FK__Actividad__Activ__32767D0B">
     <End Role="ActividadesPuestoDeTrabajo" Type="Self.ActividadesPuestoDeTrabajo" Multiplicity="1" />
     <End Role="ActividadNivEduDes" Type="Self.ActividadNivEduDes" Multiplicity="*" />
@@ -313,6 +381,30 @@
       </Principal>
       <Dependent Role="ActNivEdu">
         <PropertyRef Name="NivelEducativoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__AspNetUse__RoleI__4316F928">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1" />
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__AspNetUse__UserI__4222D4EF">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -556,6 +648,34 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="mucipio">
     <End Role="municipality" Type="Self.municipality" Multiplicity="1" />
     <End Role="PonderacionMunicipio" Type="Self.PonderacionMunicipio" Multiplicity="0..1" />
@@ -575,6 +695,8 @@
     <EntitySet Name="ActNivEdu" EntityType="Self.ActNivEdu" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="actulizacionPila" EntityType="Self.actulizacionPila" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Centros" EntityType="Self.Centros" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Consulta" EntityType="Self.Consulta" Schema="dbo" store:Type="Tables" />
@@ -583,6 +705,7 @@
     <EntitySet Name="Destrezas" EntityType="Self.Destrezas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Habilidad" EntityType="Self.Habilidad" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="JovenesPorTutor" EntityType="Self.JovenesPorTutor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LogsAudit" EntityType="Self.LogsAudit" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="municipality" EntityType="Self.municipality" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="NivelEducativo" EntityType="Self.NivelEducativo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PassPrestadores" EntityType="Self.PassPrestadores" Schema="dbo" store:Type="Tables" />
@@ -595,6 +718,13 @@
     <EntitySet Name="SalarioAdicionalRango" EntityType="Self.SalarioAdicionalRango" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TipoConocimientoRequerido" EntityType="Self.TipoConocimientoRequerido" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TipoDocumento" EntityType="Self.TipoDocumento" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WSPila" EntityType="Self.WSPila" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [AspNetUserRoles].[UserId] AS [UserId], 
+    [AspNetUserRoles].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [AspNetUserRoles]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="FK__Actividad__Activ__32767D0B" Association="Self.FK__Actividad__Activ__32767D0B">
       <End Role="ActividadesPuestoDeTrabajo" EntitySet="ActividadesPuestoDeTrabajo" />
       <End Role="ActividadNivEduDes" EntitySet="ActividadNivEduDes" />
@@ -610,6 +740,14 @@
     <AssociationSet Name="FK__ActNivEdu__Nivel__39237A9A" Association="Self.FK__ActNivEdu__Nivel__39237A9A">
       <End Role="NivelEducativo" EntitySet="NivelEducativo" />
       <End Role="ActNivEdu" EntitySet="ActNivEdu" />
+    </AssociationSet>
+    <AssociationSet Name="FK__AspNetUse__RoleI__4316F928" Association="Self.FK__AspNetUse__RoleI__4316F928">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK__AspNetUse__UserI__4222D4EF" Association="Self.FK__AspNetUse__UserI__4222D4EF">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
     </AssociationSet>
     <AssociationSet Name="FK__Centro__UserID__4BAC3F29" Association="Self.FK__Centro__UserID__4BAC3F29">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -690,6 +828,14 @@
     <AssociationSet Name="FK__Resultado__UserI__73501C2F" Association="Self.FK__Resultado__UserI__73501C2F">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="ResultadoCalculadora" EntitySet="ResultadoCalculadora" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
     </AssociationSet>
     <AssociationSet Name="mucipio" Association="Self.mucipio">
       <End Role="municipality" EntitySet="municipality" />

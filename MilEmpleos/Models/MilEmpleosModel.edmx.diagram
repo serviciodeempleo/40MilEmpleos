@@ -4,29 +4,36 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="56fb330c1d354235a7f6a719cf64bace" Name="Diagram1">
+      <Diagram DiagramId="2db5a462900e4dcf90829fb3736c9373" Name="Diagram1" ZoomLevel="74">
         <EntityTypeShape EntityType="MilEmpleosModel.ActividadesPuestoDeTrabajo" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
         <EntityTypeShape EntityType="MilEmpleosModel.ActividadNivEduDes" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
         <EntityTypeShape EntityType="MilEmpleosModel.ActividadNivEduHab" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
         <EntityTypeShape EntityType="MilEmpleosModel.ActNivEdu" Width="1.5" PointX="3" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MilEmpleosModel.AspNetRoles" Width="1.5" PointX="1.5" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MilEmpleosModel.AspNetUserClaims" Width="1.5" PointX="3.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MilEmpleosModel.AspNetUserLogins" Width="1.5" PointX="3.75" PointY="36.875" IsExpanded="true" />
         <EntityTypeShape EntityType="MilEmpleosModel.AspNetUsers" Width="1.5" PointX="1.5" PointY="15.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MilEmpleosModel.Centros" Width="1.5" PointX="3.75" PointY="16.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MilEmpleosModel.Consulta" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="MilEmpleosModel.ContenidoActividadFormacion" Width="1.5" PointX="3.75" PointY="20.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MilEmpleosModel.department" Width="1.5" PointX="1.5" PointY="25.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MilEmpleosModel.Centros" Width="1.5" PointX="3.75" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MilEmpleosModel.Consulta" Width="1.5" PointX="8" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="MilEmpleosModel.ContenidoActividadFormacion" Width="1.5" PointX="3.75" PointY="21" IsExpanded="true" />
+        <EntityTypeShape EntityType="MilEmpleosModel.department" Width="1.5" PointX="1.5" PointY="26" IsExpanded="true" />
         <EntityTypeShape EntityType="MilEmpleosModel.Destrezas" Width="1.5" PointX="0.75" PointY="12" IsExpanded="true" />
         <EntityTypeShape EntityType="MilEmpleosModel.Habilidad" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="MilEmpleosModel.JovenesPorTutor" Width="1.5" PointX="3.75" PointY="23" IsExpanded="true" />
-        <EntityTypeShape EntityType="MilEmpleosModel.municipality" Width="1.5" PointX="3.75" PointY="25.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MilEmpleosModel.NivelEducativo" Width="1.5" PointX="3.75" PointY="28.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MilEmpleosModel.PassPrestadores" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MilEmpleosModel.Ponderacion" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MilEmpleosModel.PonderacionMunicipio" Width="1.5" PointX="6" PointY="25.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MilEmpleosModel.JovenesPorTutor" Width="1.5" PointX="3.75" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MilEmpleosModel.LogsAudit" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MilEmpleosModel.municipality" Width="1.5" PointX="3.75" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MilEmpleosModel.NivelEducativo" Width="1.5" PointX="3.75" PointY="28.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MilEmpleosModel.PassPrestadores" Width="1.5" PointX="8.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MilEmpleosModel.Pila" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MilEmpleosModel.Ponderacion" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MilEmpleosModel.PonderacionMunicipio" Width="1.5" PointX="6" PointY="26" IsExpanded="true" />
+        <EntityTypeShape EntityType="MilEmpleosModel.RespuestaPila" Width="1.5" PointX="6" PointY="16.375" IsExpanded="true" />
         <EntityTypeShape EntityType="MilEmpleosModel.RespuestasCalculadora" Width="1.5" PointX="6" PointY="6" IsExpanded="true" />
         <EntityTypeShape EntityType="MilEmpleosModel.ResultadoCalculadora" Width="1.5" PointX="8.25" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MilEmpleosModel.SalarioAdicionalRango" Width="1.5" PointX="3.75" PointY="30.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MilEmpleosModel.TipoConocimientoRequerido" Width="1.5" PointX="3.75" PointY="33.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MilEmpleosModel.TipoDocumento" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MilEmpleosModel.SalarioAdicionalRango" Width="1.5" PointX="3.75" PointY="31.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MilEmpleosModel.TipoConocimientoRequerido" Width="1.5" PointX="3.75" PointY="33.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MilEmpleosModel.TipoDocumento" Width="1.5" PointX="5.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MilEmpleosModel.WSPila" Width="1.5" PointX="10.75" PointY="7.75" IsExpanded="true" />
         <AssociationConnector Association="MilEmpleosModel.FK__Actividad__Activ__32767D0B" ManuallyRouted="false" />
         <AssociationConnector Association="MilEmpleosModel.FK__ActNivEdu__Activ__382F5661" ManuallyRouted="false" />
         <AssociationConnector Association="MilEmpleosModel.FK__Multiplic__Activ__2BC97F7C" ManuallyRouted="false" />
@@ -34,8 +41,12 @@
         <AssociationConnector Association="MilEmpleosModel.FK__Actividad__Destr__345EC57D" ManuallyRouted="false" />
         <AssociationConnector Association="MilEmpleosModel.FK__Multiplic__Habil__2EA5EC27" ManuallyRouted="false" />
         <AssociationConnector Association="MilEmpleosModel.FK__ActNivEdu__Nivel__39237A9A" ManuallyRouted="false" />
+        <AssociationConnector Association="MilEmpleosModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="MilEmpleosModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="MilEmpleosModel.FK__Centro__UserID__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="MilEmpleosModel.FK__Respuesta__UserI__025D5595" ManuallyRouted="false" />
         <AssociationConnector Association="MilEmpleosModel.FK__Resultado__UserI__73501C2F" ManuallyRouted="false" />
+        <AssociationConnector Association="MilEmpleosModel.FK__Respuesta__Centr__035179CE" ManuallyRouted="false" />
         <AssociationConnector Association="MilEmpleosModel.FK__Respuesta__Centr__5772F790" ManuallyRouted="false" />
         <AssociationConnector Association="MilEmpleosModel.FK__Resultado__Centr__7167D3BD" ManuallyRouted="false" />
         <AssociationConnector Association="MilEmpleosModel.FK__Consulta__TipoDo__55F4C372" ManuallyRouted="false" />
@@ -50,13 +61,9 @@
         <AssociationConnector Association="MilEmpleosModel.FK__Respuesta__Salar__251C81ED" ManuallyRouted="false" />
         <AssociationConnector Association="MilEmpleosModel.FK__Respuesta__TipoC__2610A626" ManuallyRouted="false" />
         <AssociationConnector Association="MilEmpleosModel.FK__Resultado__Respu__725BF7F6" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="MilEmpleosModel.AspNetRoles" Width="1.5" PointX="10.375" PointY="6.75" />
-        <EntityTypeShape EntityType="MilEmpleosModel.Pila" Width="1.5" PointX="10.375" PointY="0.75" />
-        <EntityTypeShape EntityType="MilEmpleosModel.RespuestaPila" Width="1.5" PointX="7.5" PointY="16.125" />
-        <AssociationConnector Association="MilEmpleosModel.FK__Respuesta__UserI__025D5595" />
-        <AssociationConnector Association="MilEmpleosModel.FK__Respuesta__Centr__035179CE" />
-        <EntityTypeShape EntityType="MilEmpleosModel.actulizacionPila" Width="1.5" PointX="5.375" PointY="3.75" />
-        </Diagram>
+        <AssociationConnector Association="MilEmpleosModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MilEmpleosModel.actulizacionPila" Width="1.5" PointX="13.375" PointY="0.75" />
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

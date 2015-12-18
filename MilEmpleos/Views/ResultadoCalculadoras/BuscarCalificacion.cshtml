@@ -1,0 +1,27 @@
+﻿@model MilEmpleos.Models.ResultadoCalculadora
+
+
+@{
+    ViewBag.Title = "Buscar código  a borrar";
+    string rootpath = HttpContext.Current.Request.ApplicationPath;
+    if (rootpath == "/") { rootpath = ""; }
+}
+<h2>Buscar código a borrar</h2>
+
+<div class="col-lg-6">
+    <div class="input-group">
+        @Html.EditorFor(model => model.id, new { htmlAttributes = new { @class = "form-control input-sm", placeholder = "Código calificación" } })
+        <span class="text-danger" style="display:none;" id="iderror">Código no Válido</span>
+        <span class="input-group-btn">
+            <button type="submit" class="btn btn-default" onclick="if (isGuid($('#id').val())) { window.location.pathname = '@rootpath/ResultadoCalculadoras/Delete/' + $('#id').val(); } else { $('#iderror').show('fast'); }">Buscar</button>
+        </span>
+    </div><!-- /input-group -->
+</div><!-- /.col-lg-6 -->
+
+<script type="text/javascript">
+    function isGuid(value) {
+        var regex = /[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}/i;
+        var match = regex.exec(value);
+        return match != null;
+    }
+</script>

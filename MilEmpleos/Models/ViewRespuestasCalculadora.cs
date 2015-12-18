@@ -16,14 +16,14 @@
         [Required(ErrorMessage = "Campo Nit es obligatorio.")]
         public string Nit { get; set; }
         [Display(Name = "Teléfono Empresa")]
-        [Phone]
+        [RegularExpression(@"^\d{3}\D?\d{2}\D?\d{2}$", ErrorMessage = "Debe ser un Teléfono")]
         [Required(ErrorMessage = "Campo Teléfono Empresa es obligatorio.")]
         public int TelefonoEmpresa { get; set; }
         [Display(Name = "Nombre Contacto")]
         [Required(ErrorMessage = "Campo Nombre Contacto es obligatorio.")]
         public string NombreContacto { get; set; }
         [Display(Name = "Descripción Vacante")]
-        [StringLength(800, ErrorMessage = "Maximo 800 caracteres")]
+        [StringLength(800, ErrorMessage = "Máximo 800 caracteres")]
         [Required(ErrorMessage = "Campo Descripción Vacante es obligatorio.")]
         public string DescripcionVacante { get; set; }
         [Display(Name = "Nivel Educativo Requerido Vacante")]

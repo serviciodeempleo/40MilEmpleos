@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MilEmpleosModelStoreContainer" CdmEntityContainer="MilEmpleosEntities">
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="MilEmpleosModel.AspNetUsers">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="CentroId" ColumnName="CentroId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Centros">
+      <EntityTypeMapping TypeName="MilEmpleosModel.Centros">
+        <MappingFragment StoreEntitySet="Centros">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CentroEmpleo" ColumnName="CentroEmpleo" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NivelFormacion">
+      <EntityTypeMapping TypeName="MilEmpleosModel.NivelFormacion">
+        <MappingFragment StoreEntitySet="NivelFormacion">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="DetalleNivelFormacion" ColumnName="DetalleNivelFormacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Opciones">
+      <EntityTypeMapping TypeName="MilEmpleosModel.Opciones">
+        <MappingFragment StoreEntitySet="Opciones">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Texto" ColumnName="Texto" />
+          <ScalarProperty Name="PercentOpcion" ColumnName="PercentOpcion" />
+          <ScalarProperty Name="PreguntaId" ColumnName="PreguntaId" />
+          <ScalarProperty Name="ActividadId" ColumnName="ActividadId" />
+          <ScalarProperty Name="NivelFormacionId" ColumnName="NivelFormacionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Actividades">
+      <EntityTypeMapping TypeName="MilEmpleosModel.Actividades">
+        <MappingFragment StoreEntitySet="Actividades">
+          <ScalarProperty Name="DetalleActividad" ColumnName="DetalleActividad" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WSPila">
+      <EntityTypeMapping TypeName="MilEmpleosModel.WSPila">
+        <MappingFragment StoreEntitySet="WSPila">
+          <ScalarProperty Name="Meses_PenultimoPeriodoSuperior6Meses_fecha_fin" ColumnName="Meses_PenultimoPeriodoSuperior6Meses_fecha_fin" />
+          <ScalarProperty Name="Meses_PenultimoPeriodoSuperior6Meses_fecha_incicio" ColumnName="Meses_PenultimoPeriodoSuperior6Meses_fecha_incicio" />
+          <ScalarProperty Name="Meses_PenultimoPeriodoSuperior6Meses" ColumnName="Meses_PenultimoPeriodoSuperior6Meses" />
+          <ScalarProperty Name="Meses_UltimoPeriodoSuperior6Meses_fecha_fin" ColumnName="Meses_UltimoPeriodoSuperior6Meses_fecha_fin" />
+          <ScalarProperty Name="Meses_UltimoPeriodoSuperior6Meses_fecha_incicio" ColumnName="Meses_UltimoPeriodoSuperior6Meses_fecha_incicio" />
+          <ScalarProperty Name="Meses_UltimoPeriodoSuperior6Meses" ColumnName="Meses_UltimoPeriodoSuperior6Meses" />
+          <ScalarProperty Name="MaximoMesesContinuos_fecha_fin" ColumnName="MaximoMesesContinuos_fecha_fin" />
+          <ScalarProperty Name="MaximoMesesContinuos_fecha_incicio" ColumnName="MaximoMesesContinuos_fecha_incicio" />
+          <ScalarProperty Name="MaximoMesesContinuos" ColumnName="MaximoMesesContinuos" />
+          <ScalarProperty Name="TiempoTotalRegistroMeses" ColumnName="TiempoTotalRegistroMeses" />
+          <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
+          <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
+          <ScalarProperty Name="SegundoNombre" ColumnName="SegundoNombre" />
+          <ScalarProperty Name="PrimerNombre" ColumnName="PrimerNombre" />
+          <ScalarProperty Name="NumeroDocumento" ColumnName="NumeroDocumento" />
+          <ScalarProperty Name="TipoDocumento" ColumnName="TipoDocumento" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoDocumento">
+      <EntityTypeMapping TypeName="MilEmpleosModel.TipoDocumento">
+        <MappingFragment StoreEntitySet="TipoDocumento">
+          <ScalarProperty Name="TipoDocumento1" ColumnName="TipoDocumento" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Consulta">
+      <EntityTypeMapping TypeName="MilEmpleosModel.Consulta">
+        <MappingFragment StoreEntitySet="Consulta">
+          <ScalarProperty Name="TipoDocumento" ColumnName="TipoDocumento" />
+          <ScalarProperty Name="CentroID" ColumnName="CentroID" />
+          <ScalarProperty Name="UsuerID" ColumnName="UsuerID" />
+          <ScalarProperty Name="FechaConsulta" ColumnName="FechaConsulta" />
+          <ScalarProperty Name="DocumentoNumero" ColumnName="DocumentoNumero" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Preguntas">
+      <EntityTypeMapping TypeName="MilEmpleosModel.Preguntas">
+        <MappingFragment StoreEntitySet="Preguntas">
+          <ScalarProperty Name="PercentPregunta" ColumnName="PercentPregunta" />
+          <ScalarProperty Name="Pregunta" ColumnName="Pregunta" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RespuestaPila">
+      <EntityTypeMapping TypeName="MilEmpleosModel.RespuestaPila">
+        <MappingFragment StoreEntitySet="RespuestaPila">
+          <ScalarProperty Name="CentroId" ColumnName="CentroId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="NoDocumento" ColumnName="NoDocumento" />
+          <ScalarProperty Name="TipoDocumento" ColumnName="TipoDocumento" />
+          <ScalarProperty Name="Meses_PenultimoPeriodoSuperior6Meses_fecha_fin" ColumnName="Meses_PenultimoPeriodoSuperior6Meses_fecha_fin" />
+          <ScalarProperty Name="Meses_PenultimoPeriodoSuperior6Meses_fecha_incicio" ColumnName="Meses_PenultimoPeriodoSuperior6Meses_fecha_incicio" />
+          <ScalarProperty Name="Meses_PenultimoPeriodoSuperior6Meses" ColumnName="Meses_PenultimoPeriodoSuperior6Meses" />
+          <ScalarProperty Name="Meses_UltimoPeriodoSuperior6Meses_fecha_fin" ColumnName="Meses_UltimoPeriodoSuperior6Meses_fecha_fin" />
+          <ScalarProperty Name="Meses_UltimoPeriodoSuperior6Meses_fecha_incicio" ColumnName="Meses_UltimoPeriodoSuperior6Meses_fecha_incicio" />
+          <ScalarProperty Name="Meses_UltimoPeriodoSuperior6Meses" ColumnName="Meses_UltimoPeriodoSuperior6Meses" />
+          <ScalarProperty Name="MaximoMesesContinuos_fecha_fin" ColumnName="MaximoMesesContinuos_fecha_fin" />
+          <ScalarProperty Name="MaximoMesesContinuos_fecha_incicio" ColumnName="MaximoMesesContinuos_fecha_incicio" />
+          <ScalarProperty Name="MaximoMesesContinuos" ColumnName="MaximoMesesContinuos" />
+          <ScalarProperty Name="TiempoTotalRegistroMeses" ColumnName="TiempoTotalRegistroMeses" />
+          <ScalarProperty Name="FechaRespuestaPila" ColumnName="FechaRespuestaPila" />
+          <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+          <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+          <ScalarProperty Name="Registrado" ColumnName="Registrado" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

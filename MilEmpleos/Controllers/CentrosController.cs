@@ -16,7 +16,7 @@ namespace MilEmpleos.Controllers
 {
     public class CentrosController : Controller
     {
-        private MilEmpleosEntities1 db = new MilEmpleosEntities1();
+        private MilEmpleosEntities db = new MilEmpleosEntities();
 
         // GET: Centros
         public ActionResult Index()

@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MilEmpleosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Actividades">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DetalleActividad" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="City" Type="nvarchar(max)" />
+    <Property Name="State" Type="nvarchar(max)" />
+    <Property Name="PostalCode" Type="nvarchar(max)" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="CentroId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Centros">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CentroEmpleo" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="Consulta">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DocumentoNumero" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="FechaConsulta" Type="datetime" Nullable="false" />
+    <Property Name="UsuerID" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="CentroID" Type="int" Nullable="false" />
+    <Property Name="TipoDocumento" Type="char" MaxLength="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NivelFormacion">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DetalleNivelFormacion" Type="varchar" MaxLength="300" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Opciones">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Texto" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="PercentOpcion" Type="float" Nullable="false" />
+    <Property Name="PreguntaId" Type="int" Nullable="false" />
+    <Property Name="ActividadId" Type="int" />
+    <Property Name="NivelFormacionId" Type="int" />
+  </EntityType>
+  <EntityType Name="Preguntas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Pregunta" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="PercentPregunta" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RespuestaPila">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="Registrado" Type="bit" Nullable="false" />
+    <Property Name="Nombres" Type="varchar" MaxLength="100" />
+    <Property Name="Apellidos" Type="varchar" MaxLength="100" />
+    <Property Name="FechaRespuestaPila" Type="datetime" />
+    <Property Name="TiempoTotalRegistroMeses" Type="int" />
+    <Property Name="MaximoMesesContinuos" Type="int" />
+    <Property Name="MaximoMesesContinuos_fecha_incicio" Type="date" />
+    <Property Name="MaximoMesesContinuos_fecha_fin" Type="date" />
+    <Property Name="Meses_UltimoPeriodoSuperior6Meses" Type="int" />
+    <Property Name="Meses_UltimoPeriodoSuperior6Meses_fecha_incicio" Type="date" />
+    <Property Name="Meses_UltimoPeriodoSuperior6Meses_fecha_fin" Type="date" />
+    <Property Name="Meses_PenultimoPeriodoSuperior6Meses" Type="int" />
+    <Property Name="Meses_PenultimoPeriodoSuperior6Meses_fecha_incicio" Type="date" />
+    <Property Name="Meses_PenultimoPeriodoSuperior6Meses_fecha_fin" Type="date" />
+    <Property Name="TipoDocumento" Type="char" MaxLength="2" />
+    <Property Name="NoDocumento" Type="varchar" MaxLength="20" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" />
+    <Property Name="CentroId" Type="int" />
+  </EntityType>
+  <EntityType Name="TipoDocumento">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="TipoDocumento" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WSPila">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TipoDocumento" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="NumeroDocumento" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="PrimerNombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="SegundoNombre" Type="varchar" MaxLength="50" />
+    <Property Name="PrimerApellido" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="SegundoApellido" Type="varchar" MaxLength="50" />
+    <Property Name="TiempoTotalRegistroMeses" Type="int" Nullable="false" />
+    <Property Name="MaximoMesesContinuos" Type="int" Nullable="false" />
+    <Property Name="MaximoMesesContinuos_fecha_incicio" Type="date" Nullable="false" />
+    <Property Name="MaximoMesesContinuos_fecha_fin" Type="date" Nullable="false" />
+    <Property Name="Meses_UltimoPeriodoSuperior6Meses" Type="int" Nullable="false" />
+    <Property Name="Meses_UltimoPeriodoSuperior6Meses_fecha_incicio" Type="date" Nullable="false" />
+    <Property Name="Meses_UltimoPeriodoSuperior6Meses_fecha_fin" Type="date" Nullable="false" />
+    <Property Name="Meses_PenultimoPeriodoSuperior6Meses" Type="int" Nullable="false" />
+    <Property Name="Meses_PenultimoPeriodoSuperior6Meses_fecha_incicio" Type="date" />
+    <Property Name="Meses_PenultimoPeriodoSuperior6Meses_fecha_fin" Type="date" />
+  </EntityType>
+  <Association Name="FK__Consulta__TipoDo__55F4C372">
+    <End Role="TipoDocumento" Type="Self.TipoDocumento" Multiplicity="1" />
+    <End Role="Consulta" Type="Self.Consulta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoDocumento">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Consulta">
+        <PropertyRef Name="TipoDocumento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Empresa__UserID__4BAC3F29">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+    <End Role="Centros" Type="Self.Centros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Centros">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MilEmpleosModelStoreContainer">
+    <EntitySet Name="Actividades" EntityType="Self.Actividades" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Centros" EntityType="Self.Centros" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Consulta" EntityType="Self.Consulta" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NivelFormacion" EntityType="Self.NivelFormacion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Opciones" EntityType="Self.Opciones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Preguntas" EntityType="Self.Preguntas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RespuestaPila" EntityType="Self.RespuestaPila" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoDocumento" EntityType="Self.TipoDocumento" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WSPila" EntityType="Self.WSPila" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Consulta__TipoDo__55F4C372" Association="Self.FK__Consulta__TipoDo__55F4C372">
+      <End Role="TipoDocumento" EntitySet="TipoDocumento" />
+      <End Role="Consulta" EntitySet="Consulta" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Empresa__UserID__4BAC3F29" Association="Self.FK__Empresa__UserID__4BAC3F29">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Centros" EntitySet="Centros" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -22,7 +22,7 @@ namespace IdentitySample.Controllers
         {
             UserManager = userManager;
         }
-        private MilEmpleosEntities1 db = new MilEmpleosEntities1();
+        private MilEmpleosEntities db = new MilEmpleosEntities();
         private ApplicationUserManager _userManager;
         public ApplicationUserManager UserManager
         {

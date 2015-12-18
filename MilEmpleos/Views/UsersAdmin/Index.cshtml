@@ -52,8 +52,8 @@
                 </td>
                 <td>
                     @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-success btn-sm" }) |
-                    @Html.ActionLink("Detalle", "Details", new { id = item.Id }, new { @class = "btn btn-success btn-sm" }) |
-                    @Html.ActionLink("Borrar", "Delete", new { id = item.Id }, new { @class = "btn btn-success btn-sm" })|
+                    @Html.ActionLink("Detalle", "Details", new { id = item.Id }, new { @class = "btn btn-success btn-sm" }) 
+                    @*|  @Html.ActionLink("Borrar", "Delete", new { id = item.Id }, new { @class = "btn btn-success btn-sm" })|*@
                     @if (item.Activo)
                     {
                         @Html.ActionLink("Inhabilitar", "Inhabilitar", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })

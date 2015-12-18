@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="MilEmpleosModelStoreContainer" CdmEntityContainer="MilEmpleosEntities1">
+  <EntityContainerMapping StorageEntityContainer="MilEmpleosModelStoreContainer" CdmEntityContainer="MilEmpleosEntities">
     <EntitySetMapping Name="ActividadesPuestoDeTrabajo">
       <EntityTypeMapping TypeName="MilEmpleosModel.ActividadesPuestoDeTrabajo">
         <MappingFragment StoreEntitySet="ActividadesPuestoDeTrabajo">
@@ -36,6 +36,35 @@
           <ScalarProperty Name="ActividadId" ColumnName="ActividadId" />
           <ScalarProperty Name="NivelEducativoId" ColumnName="NivelEducativoId" />
           <ScalarProperty Name="Mutipliacdor" ColumnName="Mutipliacdor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="MilEmpleosModel.AspNetRoles">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserClaims">
+      <EntityTypeMapping TypeName="MilEmpleosModel.AspNetUserClaims">
+        <MappingFragment StoreEntitySet="AspNetUserClaims">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserLogins">
+      <EntityTypeMapping TypeName="MilEmpleosModel.AspNetUserLogins">
+        <MappingFragment StoreEntitySet="AspNetUserLogins">
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -126,6 +155,22 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="LogsAudit">
+      <EntityTypeMapping TypeName="MilEmpleosModel.LogsAudit">
+        <MappingFragment StoreEntitySet="LogsAudit">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="InstanciaServidor" ColumnName="InstanciaServidor" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
+          <ScalarProperty Name="IpRequest" ColumnName="IpRequest" />
+          <ScalarProperty Name="Agent" ColumnName="Agent" />
+          <ScalarProperty Name="JsonRequest" ColumnName="JsonRequest" />
+          <ScalarProperty Name="JsonResponse" ColumnName="JsonResponse" />
+          <ScalarProperty Name="Operacion" ColumnName="Operacion" />
+          <ScalarProperty Name="DataRequest" ColumnName="DataRequest" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="municipality">
       <EntityTypeMapping TypeName="MilEmpleosModel.municipality">
         <MappingFragment StoreEntitySet="municipality">
@@ -153,6 +198,23 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Pila">
+      <EntityTypeMapping TypeName="MilEmpleosModel.Pila">
+        <MappingFragment StoreEntitySet="Pila">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="TipoDocumento" ColumnName="TipoDocumento" />
+          <ScalarProperty Name="NumeroDocumento" ColumnName="NumeroDocumento" />
+          <ScalarProperty Name="PrimerNombre" ColumnName="PrimerNombre" />
+          <ScalarProperty Name="SegundoNombre" ColumnName="SegundoNombre" />
+          <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
+          <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
+          <ScalarProperty Name="TiempoTotalRegistroMeses" ColumnName="TiempoTotalRegistroMeses" />
+          <ScalarProperty Name="ultimo_periodo_cotizado_fecha_inicio" ColumnName="ultimo_periodo_cotizado_fecha_inicio" />
+          <ScalarProperty Name="ultimo_periodo_cotizado_fecha_fin" ColumnName="ultimo_periodo_cotizado_fecha_fin" />
+          <ScalarProperty Name="Meses_ultimo_periodo_cotizado" ColumnName="Meses_ultimo_periodo_cotizado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Ponderacion">
       <EntityTypeMapping TypeName="MilEmpleosModel.Ponderacion">
         <MappingFragment StoreEntitySet="Ponderacion">
@@ -168,6 +230,26 @@
         <MappingFragment StoreEntitySet="PonderacionMunicipio">
           <ScalarProperty Name="IdCodigo" ColumnName="IdCodigo" />
           <ScalarProperty Name="Ponderacion" ColumnName="Ponderacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RespuestaPila">
+      <EntityTypeMapping TypeName="MilEmpleosModel.RespuestaPila">
+        <MappingFragment StoreEntitySet="RespuestaPila">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Registrado" ColumnName="Registrado" />
+          <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+          <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+          <ScalarProperty Name="FechaRespuestaPila" ColumnName="FechaRespuestaPila" />
+          <ScalarProperty Name="TiempoTotalRegistroMeses" ColumnName="TiempoTotalRegistroMeses" />
+          <ScalarProperty Name="UltimoPeriodo_fecha_inicio" ColumnName="UltimoPeriodo_fecha_inicio" />
+          <ScalarProperty Name="UltimoPeriodo_fecha_fin" ColumnName="UltimoPeriodo_fecha_fin" />
+          <ScalarProperty Name="Meses_UltimoPeriodo" ColumnName="Meses_UltimoPeriodo" />
+          <ScalarProperty Name="TipoDocumento" ColumnName="TipoDocumento" />
+          <ScalarProperty Name="NoDocumento" ColumnName="NoDocumento" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="CentroId" ColumnName="CentroId" />
+          <ScalarProperty Name="ConsutaId" ColumnName="ConsutaId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -240,53 +322,39 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="AspNetRoles">
-      <EntityTypeMapping TypeName="MilEmpleosModel.AspNetRoles">
-        <MappingFragment StoreEntitySet="AspNetRoles">
-          <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Pila">
-      <EntityTypeMapping TypeName="MilEmpleosModel.Pila">
-        <MappingFragment StoreEntitySet="Pila">
-          <ScalarProperty Name="Meses_ultimo_periodo_cotizado" ColumnName="Meses_ultimo_periodo_cotizado" />
-          <ScalarProperty Name="ultimo_periodo_cotizado_fecha_fin" ColumnName="ultimo_periodo_cotizado_fecha_fin" />
-          <ScalarProperty Name="ultimo_periodo_cotizado_fecha_inicio" ColumnName="ultimo_periodo_cotizado_fecha_inicio" />
-          <ScalarProperty Name="TiempoTotalRegistroMeses" ColumnName="TiempoTotalRegistroMeses" />
-          <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
-          <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
-          <ScalarProperty Name="SegundoNombre" ColumnName="SegundoNombre" />
-          <ScalarProperty Name="PrimerNombre" ColumnName="PrimerNombre" />
+    <EntitySetMapping Name="WSPila">
+      <EntityTypeMapping TypeName="MilEmpleosModel.WSPila">
+        <MappingFragment StoreEntitySet="WSPila">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="TipoDocumento" ColumnName="TipoDocumento" />
           <ScalarProperty Name="NumeroDocumento" ColumnName="NumeroDocumento" />
-          <ScalarProperty Name="TipoDocumento" ColumnName="TipoDocumento" />
-          <ScalarProperty Name="id" ColumnName="id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="RespuestaPila">
-      <EntityTypeMapping TypeName="MilEmpleosModel.RespuestaPila">
-        <MappingFragment StoreEntitySet="RespuestaPila">
-          <ScalarProperty Name="ConsutaId" ColumnName="ConsutaId" />
-          <ScalarProperty Name="CentroId" ColumnName="CentroId" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="NoDocumento" ColumnName="NoDocumento" />
-          <ScalarProperty Name="TipoDocumento" ColumnName="TipoDocumento" />
-          <ScalarProperty Name="Meses_UltimoPeriodo" ColumnName="Meses_UltimoPeriodo" />
-          <ScalarProperty Name="UltimoPeriodo_fecha_fin" ColumnName="UltimoPeriodo_fecha_fin" />
-          <ScalarProperty Name="UltimoPeriodo_fecha_inicio" ColumnName="UltimoPeriodo_fecha_inicio" />
+          <ScalarProperty Name="PrimerNombre" ColumnName="PrimerNombre" />
+          <ScalarProperty Name="SegundoNombre" ColumnName="SegundoNombre" />
+          <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
+          <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
           <ScalarProperty Name="TiempoTotalRegistroMeses" ColumnName="TiempoTotalRegistroMeses" />
-          <ScalarProperty Name="FechaRespuestaPila" ColumnName="FechaRespuestaPila" />
-          <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
-          <ScalarProperty Name="Nombres" ColumnName="Nombres" />
-          <ScalarProperty Name="Registrado" ColumnName="Registrado" />
-          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="MaximoMesesContinuos" ColumnName="MaximoMesesContinuos" />
+          <ScalarProperty Name="MaximoMesesContinuos_fecha_inicio" ColumnName="MaximoMesesContinuos_fecha_inicio" />
+          <ScalarProperty Name="MaximoMesesContinuos_fecha_fin" ColumnName="MaximoMesesContinuos_fecha_fin" />
+          <ScalarProperty Name="Meses_UltimoPeriodoSuperior6Meses" ColumnName="Meses_UltimoPeriodoSuperior6Meses" />
+          <ScalarProperty Name="Meses_UltimoPeriodoSuperior6Meses_fecha_inicio" ColumnName="Meses_UltimoPeriodoSuperior6Meses_fecha_inicio" />
+          <ScalarProperty Name="Meses_UltimoPeriodoSuperior6Meses_fecha_fin" ColumnName="Meses_UltimoPeriodoSuperior6Meses_fecha_fin" />
+          <ScalarProperty Name="Empleador_UltimoPeriodo" ColumnName="Empleador_UltimoPeriodo" />
+          <ScalarProperty Name="Meses_PenultimoPeriodoSuperior6Meses" ColumnName="Meses_PenultimoPeriodoSuperior6Meses" />
+          <ScalarProperty Name="Meses_PenultimoPeriodoSuperior6Meses_fecha_inicio" ColumnName="Meses_PenultimoPeriodoSuperior6Meses_fecha_inicio" />
+          <ScalarProperty Name="Meses_PenultimoPeriodoSuperior6Meses_fecha_fin" ColumnName="Meses_PenultimoPeriodoSuperior6Meses_fecha_fin" />
+          <ScalarProperty Name="Empleador_PenultimoPeriodo" ColumnName="Empleador_PenultimoPeriodo" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <AssociationSetMapping Name="AspNetUserRoles" TypeName="MilEmpleosModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+      <EndProperty Name="AspNetRoles">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+      <EndProperty Name="AspNetUsers">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
     <EntitySetMapping Name="actulizacionPila">
       <EntityTypeMapping TypeName="MilEmpleosModel.actulizacionPila">
         <MappingFragment StoreEntitySet="actulizacionPila">

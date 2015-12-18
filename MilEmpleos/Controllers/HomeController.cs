@@ -13,10 +13,10 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace IdentitySample.Controllers
 {
-     [Authorize(Roles = "Admin, Centros, Consultores")]
+     [Authorize(Roles = "Admin, Centros, Consultores, Unidad, Soporte")]
     public class HomeController : Controller
     {
-         public MilEmpleosEntities1 db = new MilEmpleosEntities1();
+         public MilEmpleosEntities db = new MilEmpleosEntities();
         public ActionResult Index()
         {
             var USER_id = User.Identity.GetUserId();
