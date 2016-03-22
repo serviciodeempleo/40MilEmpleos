@@ -891,57 +891,116 @@ namespace MilEmpleos.Controllers
         public ActionResult Excelrespuestas()
         {
             var USER_id = User.Identity.GetUserId();
+
             var CE = (from item in db.AspNetUsers
                       where item.Id == USER_id
                       select item.CentroId).First();
-            var result = (from res in db.ResultadoCalculadora where res.CentroId.Equals(CE) select res).OrderByDescending(x => x.FechaCalculo).ToList();
- 
+
             List<ResCalcollection> myListresPila = new List<ResCalcollection>();
 
-            foreach (var rescal in result)
+            if (User.Identity.Name.ToString() == "admin40mil@mintrabajo.gov.co")
             {
-                ResCalcollection resCalcollection = new ResCalcollection();
-                resCalcollection.id = rescal.RespuestasCalculadoraId;
-                resCalcollection.Usuario_Correo = rescal.AspNetUsers.Email;
-                resCalcollection.Prestador = rescal.Centros.CentroEmpleo;
-                resCalcollection.Capital_Humano = rescal.CapitalHumano.ToString();
-                resCalcollection.Caracteristicas_Empresa = rescal.CaracteristicasEmpresa.ToString();
-                resCalcollection.Caracteristicas_Puesto = rescal.CaracteristicasPuesto.ToString();
-                string rta = (rescal.Total>=0.6) ? "SI" : "NO";
-                resCalcollection.VacanteValida = rta;
-                resCalcollection.Total_Calificacion = rescal.Total.ToString();
-                resCalcollection.Razon_Social = rescal.RespuestasCalculadora.RazonSocial;
-                resCalcollection.Nit = rescal.RespuestasCalculadora.Nit;
-                resCalcollection.Telefono_Empresa = rescal.RespuestasCalculadora.TelefonoEmpresa.ToString();
-                resCalcollection.Nombre_Contacto = rescal.RespuestasCalculadora.NombreContacto;
-                resCalcollection.Descripcion_Vacante = rescal.RespuestasCalculadora.DescripcionVacante;
-                resCalcollection.Nivel_Educativo_Requerido_Vacante = rescal.RespuestasCalculadora.NivelEducativo.NivelEducativo1;
-                resCalcollection.Numero_Puestos_Trabajo = rescal.RespuestasCalculadora.NumeroPuestosTrabajo.ToString();
-                rta = (rescal.RespuestasCalculadora.OficinaRecursosHumanos) ? "SI" : "NO";
-                resCalcollection.Oficina_Recursos_Humanos = rta;
-                resCalcollection.Tamano_Planta_Empresa = rescal.RespuestasCalculadora.TamanoPlantaEmpresa.ToString();
-                resCalcollection.Habilidad_Requerida = rescal.RespuestasCalculadora.Habilidad.HabilidadRequerida;
-                resCalcollection.Destrezas_Requeridas = rescal.RespuestasCalculadora.Destrezas.Destreza;
-                resCalcollection.Tipo_Conocimiento_Requerido = rescal.RespuestasCalculadora.ContenidoActividadFormacion1.ContenidoActividadFormacion1;
-                resCalcollection.Actividades_Puesto_De_Trabajo = rescal.RespuestasCalculadora.ActividadesPuestoDeTrabajo1.ActividadesPuestoDeTrabajo1;
-                resCalcollection.Jovenes_Por_Tutor = rescal.RespuestasCalculadora.JovenesPorTutor1.JovenesPorTutor1;
-                rta = (rescal.RespuestasCalculadora.VacanteNueva) ? "SI" : "NO";
-                resCalcollection.Vacante_Nueva = rta;
-                rta = (rescal.RespuestasCalculadora.PuestoTrabajoPermanente) ? "SI" : "NO";
-                resCalcollection.Puesto_De_Trabajo_Permanente = rta;
-                resCalcollection.Contenido_Actividad_Formacion = rescal.RespuestasCalculadora.ContenidoActividadFormacion1.ContenidoActividadFormacion1;
-                rta = (rescal.RespuestasCalculadora.SalarioAdicional) ? "SI" : "NO";
-                resCalcollection.Salario_Adicional = rta;
-                if (rescal.RespuestasCalculadora.SalarioAdicional) {
+                var result = (from res in db.ResultadoCalculadora select res).OrderByDescending(x => x.FechaCalculo).ToList();
+
+                foreach (var rescal in result)
+                {
+                    ResCalcollection resCalcollection = new ResCalcollection();
+                    resCalcollection.id = rescal.RespuestasCalculadoraId;
+                    resCalcollection.Usuario_Correo = rescal.AspNetUsers.Email;
+                    resCalcollection.Prestador = rescal.Centros.CentroEmpleo;
+                    resCalcollection.Capital_Humano = rescal.CapitalHumano.ToString();
+                    resCalcollection.Caracteristicas_Empresa = rescal.CaracteristicasEmpresa.ToString();
+                    resCalcollection.Caracteristicas_Puesto = rescal.CaracteristicasPuesto.ToString();
+                    string rta = (rescal.Total >= 0.6) ? "SI" : "NO";
+                    resCalcollection.VacanteValida = rta;
+                    resCalcollection.Total_Calificacion = rescal.Total.ToString();
+                    resCalcollection.Razon_Social = rescal.RespuestasCalculadora.RazonSocial;
+                    resCalcollection.Nit = rescal.RespuestasCalculadora.Nit;
+                    resCalcollection.Telefono_Empresa = rescal.RespuestasCalculadora.TelefonoEmpresa.ToString();
+                    resCalcollection.Nombre_Contacto = rescal.RespuestasCalculadora.NombreContacto;
+                    resCalcollection.Descripcion_Vacante = rescal.RespuestasCalculadora.DescripcionVacante;
+                    resCalcollection.Nivel_Educativo_Requerido_Vacante = rescal.RespuestasCalculadora.NivelEducativo.NivelEducativo1;
+                    resCalcollection.Numero_Puestos_Trabajo = rescal.RespuestasCalculadora.NumeroPuestosTrabajo.ToString();
+                    rta = (rescal.RespuestasCalculadora.OficinaRecursosHumanos) ? "SI" : "NO";
+                    resCalcollection.Oficina_Recursos_Humanos = rta;
+                    resCalcollection.Tamano_Planta_Empresa = rescal.RespuestasCalculadora.TamanoPlantaEmpresa.ToString();
+                    resCalcollection.Habilidad_Requerida = rescal.RespuestasCalculadora.Habilidad.HabilidadRequerida;
+                    resCalcollection.Destrezas_Requeridas = rescal.RespuestasCalculadora.Destrezas.Destreza;
+                    resCalcollection.Tipo_Conocimiento_Requerido = rescal.RespuestasCalculadora.ContenidoActividadFormacion1.ContenidoActividadFormacion1;
+                    resCalcollection.Actividades_Puesto_De_Trabajo = rescal.RespuestasCalculadora.ActividadesPuestoDeTrabajo1.ActividadesPuestoDeTrabajo1;
+                    resCalcollection.Jovenes_Por_Tutor = rescal.RespuestasCalculadora.JovenesPorTutor1.JovenesPorTutor1;
+                    rta = (rescal.RespuestasCalculadora.VacanteNueva) ? "SI" : "NO";
+                    resCalcollection.Vacante_Nueva = rta;
+                    rta = (rescal.RespuestasCalculadora.PuestoTrabajoPermanente) ? "SI" : "NO";
+                    resCalcollection.Puesto_De_Trabajo_Permanente = rta;
+                    resCalcollection.Contenido_Actividad_Formacion = rescal.RespuestasCalculadora.ContenidoActividadFormacion1.ContenidoActividadFormacion1;
+                    rta = (rescal.RespuestasCalculadora.SalarioAdicional) ? "SI" : "NO";
+                    resCalcollection.Salario_Adicional = rta;
+                    if (rescal.RespuestasCalculadora.SalarioAdicional)
+                    {
+                        resCalcollection.Salario_Adicional_Rango = rescal.RespuestasCalculadora.SalarioAdicionalRango1.SalarioAdicionalRango1;
+                    }
+                    else {
+                        resCalcollection.Salario_Adicional_Rango = "NA";
+                    }
                     resCalcollection.Salario_Adicional_Rango = rescal.RespuestasCalculadora.SalarioAdicionalRango1.SalarioAdicionalRango1;
-                } else {
-                    resCalcollection.Salario_Adicional_Rango = "NA";
+                    resCalcollection.Municipio = rescal.RespuestasCalculadora.municipality.nombre + " / " + rescal.RespuestasCalculadora.municipality.department.nombre;
+                    resCalcollection.Fecha_Registro = rescal.RespuestasCalculadora.FechaRegistro.ToString(@"yyyy/MM/dd HH\:mm\:ss tt");
+                    resCalcollection.CodigoCalificacion = rescal.id;
+                    myListresPila.Add(resCalcollection);
                 }
-                resCalcollection.Salario_Adicional_Rango = rescal.RespuestasCalculadora.SalarioAdicionalRango1.SalarioAdicionalRango1;
-                resCalcollection.Municipio = rescal.RespuestasCalculadora.municipality.nombre +" / " +rescal.RespuestasCalculadora.municipality.department.nombre;
-                resCalcollection.Fecha_Registro = rescal.RespuestasCalculadora.FechaRegistro.ToString(@"yyyy/MM/dd HH\:mm\:ss tt");
-                resCalcollection.CodigoCalificacion = rescal.id;
-                myListresPila.Add(resCalcollection);
+            }
+            else
+            {
+                var result = (from res in db.ResultadoCalculadora where res.CentroId.Equals(CE) select res).OrderByDescending(x => x.FechaCalculo).ToList();
+
+                foreach (var rescal in result)
+                {
+                    ResCalcollection resCalcollection = new ResCalcollection();
+                    resCalcollection.id = rescal.RespuestasCalculadoraId;
+                    resCalcollection.Usuario_Correo = rescal.AspNetUsers.Email;
+                    resCalcollection.Prestador = rescal.Centros.CentroEmpleo;
+                    resCalcollection.Capital_Humano = rescal.CapitalHumano.ToString();
+                    resCalcollection.Caracteristicas_Empresa = rescal.CaracteristicasEmpresa.ToString();
+                    resCalcollection.Caracteristicas_Puesto = rescal.CaracteristicasPuesto.ToString();
+                    string rta = (rescal.Total >= 0.6) ? "SI" : "NO";
+                    resCalcollection.VacanteValida = rta;
+                    resCalcollection.Total_Calificacion = rescal.Total.ToString();
+                    resCalcollection.Razon_Social = rescal.RespuestasCalculadora.RazonSocial;
+                    resCalcollection.Nit = rescal.RespuestasCalculadora.Nit;
+                    resCalcollection.Telefono_Empresa = rescal.RespuestasCalculadora.TelefonoEmpresa.ToString();
+                    resCalcollection.Nombre_Contacto = rescal.RespuestasCalculadora.NombreContacto;
+                    resCalcollection.Descripcion_Vacante = rescal.RespuestasCalculadora.DescripcionVacante;
+                    resCalcollection.Nivel_Educativo_Requerido_Vacante = rescal.RespuestasCalculadora.NivelEducativo.NivelEducativo1;
+                    resCalcollection.Numero_Puestos_Trabajo = rescal.RespuestasCalculadora.NumeroPuestosTrabajo.ToString();
+                    rta = (rescal.RespuestasCalculadora.OficinaRecursosHumanos) ? "SI" : "NO";
+                    resCalcollection.Oficina_Recursos_Humanos = rta;
+                    resCalcollection.Tamano_Planta_Empresa = rescal.RespuestasCalculadora.TamanoPlantaEmpresa.ToString();
+                    resCalcollection.Habilidad_Requerida = rescal.RespuestasCalculadora.Habilidad.HabilidadRequerida;
+                    resCalcollection.Destrezas_Requeridas = rescal.RespuestasCalculadora.Destrezas.Destreza;
+                    resCalcollection.Tipo_Conocimiento_Requerido = rescal.RespuestasCalculadora.ContenidoActividadFormacion1.ContenidoActividadFormacion1;
+                    resCalcollection.Actividades_Puesto_De_Trabajo = rescal.RespuestasCalculadora.ActividadesPuestoDeTrabajo1.ActividadesPuestoDeTrabajo1;
+                    resCalcollection.Jovenes_Por_Tutor = rescal.RespuestasCalculadora.JovenesPorTutor1.JovenesPorTutor1;
+                    rta = (rescal.RespuestasCalculadora.VacanteNueva) ? "SI" : "NO";
+                    resCalcollection.Vacante_Nueva = rta;
+                    rta = (rescal.RespuestasCalculadora.PuestoTrabajoPermanente) ? "SI" : "NO";
+                    resCalcollection.Puesto_De_Trabajo_Permanente = rta;
+                    resCalcollection.Contenido_Actividad_Formacion = rescal.RespuestasCalculadora.ContenidoActividadFormacion1.ContenidoActividadFormacion1;
+                    rta = (rescal.RespuestasCalculadora.SalarioAdicional) ? "SI" : "NO";
+                    resCalcollection.Salario_Adicional = rta;
+                    if (rescal.RespuestasCalculadora.SalarioAdicional)
+                    {
+                        resCalcollection.Salario_Adicional_Rango = rescal.RespuestasCalculadora.SalarioAdicionalRango1.SalarioAdicionalRango1;
+                    }
+                    else {
+                        resCalcollection.Salario_Adicional_Rango = "NA";
+                    }
+                    resCalcollection.Salario_Adicional_Rango = rescal.RespuestasCalculadora.SalarioAdicionalRango1.SalarioAdicionalRango1;
+                    resCalcollection.Municipio = rescal.RespuestasCalculadora.municipality.nombre + " / " + rescal.RespuestasCalculadora.municipality.department.nombre;
+                    resCalcollection.Fecha_Registro = rescal.RespuestasCalculadora.FechaRegistro.ToString(@"yyyy/MM/dd HH\:mm\:ss tt");
+                    resCalcollection.CodigoCalificacion = rescal.id;
+                    myListresPila.Add(resCalcollection);
+                }
             }
 
             DataTable dt = ConvertToDataTable(myListresPila);
@@ -975,51 +1034,96 @@ namespace MilEmpleos.Controllers
             return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
         }
 
-
-
         // GET: RespuestasCalculadoras1/ExcelconsultasPila/5
         public ActionResult ExcelConsultasPila()
         {
             var USER_id = User.Identity.GetUserId();
+
             var CE = (from item in db.AspNetUsers
                       where item.Id == USER_id
                       select item.CentroId).First();
-            var result = (from res in db.RespuestaPila where res.CentroId.Equals(CE)  select res).ToList();
 
             List<ConsulPilacollection> myListresPila = new List<ConsulPilacollection>();
 
-            foreach (var resPila in result)
+            if (User.Identity.Name.ToString() == "admin40mil@mintrabajo.gov.co")
             {
-                ConsulPilacollection consulPilacollection = new ConsulPilacollection();
-                consulPilacollection.id = resPila.id;
-                consulPilacollection.No_Documento = resPila.NoDocumento;
-                if (resPila.AspNetUsers.Email == null)
+
+                var result = (from res in db.RespuestaPila select res).ToList();
+
+                foreach (var resPila in result)
                 {
-                    consulPilacollection.Usuario_Correo = "";
+                    ConsulPilacollection consulPilacollection = new ConsulPilacollection();
+                    consulPilacollection.id = resPila.id;
+                    consulPilacollection.No_Documento = resPila.NoDocumento;
+                    if (resPila.AspNetUsers.Email == null)
+                    {
+                        consulPilacollection.Usuario_Correo = "";
+                    }
+                    else
+                    {
+                        consulPilacollection.Usuario_Correo = resPila.AspNetUsers.Email;
+                    }
+                    if (resPila.Centros.CentroEmpleo == null)
+                    {
+                        consulPilacollection.Prestador = "";
+                    }
+                    else
+                    {
+                        consulPilacollection.Prestador = resPila.Centros.CentroEmpleo;
+                    }
+
+                    string rta = (resPila.Registrado) ? "SI" : "NO";
+                    consulPilacollection.Registrado = rta;
+                    consulPilacollection.Nombres = resPila.Nombres;
+                    consulPilacollection.Apellidos = resPila.Apellidos;
+                    consulPilacollection.Fecha_Consulta_Pila = resPila.FechaRespuestaPila.ToString(@"yyyy/MM/dd HH\:mm\:ss tt");
+                    consulPilacollection.Total_Cotizado_en_Meses = resPila.TiempoTotalRegistroMeses.ToString();
+                    consulPilacollection.Meses_UltimoPeriodo = resPila.Meses_UltimoPeriodo.ToString();
+                    consulPilacollection.UltimoPeriodo_fecha_inicio = resPila.UltimoPeriodo_fecha_inicio.ToString(@"yyyy/MM/dd HH\:mm\:ss tt");
+                    consulPilacollection.UltimoPeriodo_fecha_fin = resPila.UltimoPeriodo_fecha_fin.ToString(@"yyyy/MM/dd HH\:mm\:ss tt");
+                    myListresPila.Add(consulPilacollection);
                 }
-                else
+
+            }
+            else
+            {
+
+                var result = (from res in db.RespuestaPila where res.CentroId.Equals(CE) select res).ToList();
+
+                foreach (var resPila in result)
                 {
-                    consulPilacollection.Usuario_Correo = resPila.AspNetUsers.Email;
+                    ConsulPilacollection consulPilacollection = new ConsulPilacollection();
+                    consulPilacollection.id = resPila.id;
+                    consulPilacollection.No_Documento = resPila.NoDocumento;
+                    if (resPila.AspNetUsers.Email == null)
+                    {
+                        consulPilacollection.Usuario_Correo = "";
+                    }
+                    else
+                    {
+                        consulPilacollection.Usuario_Correo = resPila.AspNetUsers.Email;
+                    }
+                    if (resPila.Centros.CentroEmpleo == null)
+                    {
+                        consulPilacollection.Prestador = "";
+                    }
+                    else
+                    {
+                        consulPilacollection.Prestador = resPila.Centros.CentroEmpleo;
+                    }
+
+                    string rta = (resPila.Registrado) ? "SI" : "NO";
+                    consulPilacollection.Registrado = rta;
+                    consulPilacollection.Nombres = resPila.Nombres;
+                    consulPilacollection.Apellidos = resPila.Apellidos;
+                    consulPilacollection.Fecha_Consulta_Pila = resPila.FechaRespuestaPila.ToString(@"yyyy/MM/dd HH\:mm\:ss tt");
+                    consulPilacollection.Total_Cotizado_en_Meses = resPila.TiempoTotalRegistroMeses.ToString();
+                    consulPilacollection.Meses_UltimoPeriodo = resPila.Meses_UltimoPeriodo.ToString();
+                    consulPilacollection.UltimoPeriodo_fecha_inicio = resPila.UltimoPeriodo_fecha_inicio.ToString(@"yyyy/MM/dd HH\:mm\:ss tt");
+                    consulPilacollection.UltimoPeriodo_fecha_fin = resPila.UltimoPeriodo_fecha_fin.ToString(@"yyyy/MM/dd HH\:mm\:ss tt");
+                    myListresPila.Add(consulPilacollection);
                 }
-                if (resPila.Centros.CentroEmpleo == null)
-                {
-                    consulPilacollection.Prestador = "";
-                }
-                else
-                {
-                    consulPilacollection.Prestador = resPila.Centros.CentroEmpleo;
-                }
-                
-                string rta = (resPila.Registrado) ? "SI" : "NO";
-                consulPilacollection.Registrado = rta;
-                consulPilacollection.Nombres = resPila.Nombres;
-                consulPilacollection.Apellidos = resPila.Apellidos;
-                consulPilacollection.Fecha_Consulta_Pila = resPila.FechaRespuestaPila.ToString(@"yyyy/MM/dd HH\:mm\:ss tt");
-                consulPilacollection.Total_Cotizado_en_Meses = resPila.TiempoTotalRegistroMeses.ToString();
-                consulPilacollection.Meses_UltimoPeriodo = resPila.Meses_UltimoPeriodo.ToString();
-                consulPilacollection.UltimoPeriodo_fecha_inicio = resPila.UltimoPeriodo_fecha_inicio.ToString(@"yyyy/MM/dd HH\:mm\:ss tt");
-                consulPilacollection.UltimoPeriodo_fecha_fin = resPila.UltimoPeriodo_fecha_fin.ToString(@"yyyy/MM/dd HH\:mm\:ss tt");
-                myListresPila.Add(consulPilacollection);
+
             }
 
             DataTable dt = ConvertToDataTable(myListresPila);

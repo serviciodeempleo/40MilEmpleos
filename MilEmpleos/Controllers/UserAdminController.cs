@@ -523,6 +523,7 @@ namespace IdentitySample.Controllers
             var usuarioPrestadores = (from r in db.AspNetRoles
                                       where r.Name == "Centros"                   
                                       select r.Id ).First();
+
             ViewBag.rolcentros = usuarioPrestadores.ToString();
 
             ViewBag.Centros = new SelectList(db.Centros, "Id", "CentroEmpleo"); 
