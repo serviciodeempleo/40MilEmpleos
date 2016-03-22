@@ -32,7 +32,8 @@
             <br />
             <script type="text/javascript">
                 function obtenerURLExcel() {
-                    $('#p_URLExcel').html('<a href="/RespuestasCalculadoras/excelrespuestas?class=btn%20btn-danger&amp;p_idCentro=' + $('#lst_centros_empleo').val() + '">Descargar listado completo</a> | <a href="/RespuestasCalculadoras/ExcelconsultasPila?class=btn%20btn-danger&amp;p_idCentro=' + $('#lst_centros_empleo').val() + '">Descargar listado Consultas Pila</a>');
+                    //$('#p_URLExcel').html('<a href="/RespuestasCalculadoras/excelrespuestas?class=btn%20btn-danger&amp;p_idCentro=' + $('#lst_centros_empleo').val() + '">Descargar listado completo</a> | <a href="/RespuestasCalculadoras/ExcelconsultasPila?class=btn%20btn-danger&amp;p_idCentro=' + $('#lst_centros_empleo').val() + '">Descargar listado Consultas Pila</a>');
+                    $('#p_URLExcel').html('<a href="/40MilPrimerosEmpleos/RespuestasCalculadoras/excelrespuestas?class=btn%20btn-danger&amp;p_idCentro=' + $('#lst_centros_empleo').val() + '">Descargar listado completo</a> | <a href="/40MilPrimerosEmpleos/RespuestasCalculadoras/ExcelconsultasPila?class=btn%20btn-danger&amp;p_idCentro=' + $('#lst_centros_empleo').val() + '">Descargar listado Consultas Pila</a>');
                 }
             </script>
             <p id="p_URLExcel">

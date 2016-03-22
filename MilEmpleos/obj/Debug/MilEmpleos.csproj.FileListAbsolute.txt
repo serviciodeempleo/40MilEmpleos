@@ -343,5 +343,6 @@ D:\Unidad Publica de Empleo\40MilEmpleos\3-Desarrollo\40MilEmpleos\MilEmpleos\bi
 D:\Unidad Publica de Empleo\40MilEmpleos\3-Desarrollo\40MilEmpleos\MilEmpleos\bin\es\System.Web.Mvc.resources.dll
 D:\Unidad Publica de Empleo\40MilEmpleos\3-Desarrollo\40MilEmpleos\MilEmpleos\bin\es\System.Web.Optimization.resources.dll
 D:\Unidad Publica de Empleo\40MilEmpleos\3-Desarrollo\40MilEmpleos\MilEmpleos\bin\es\System.Web.Razor.resources.dll
+D:\Unidad Publica de Empleo\40MilEmpleos\3-Desarrollo\40MilEmpleos\MilEmpleos\obj\Debug\MilEmpleos.csprojResolveAssemblyReference.cache
 D:\Unidad Publica de Empleo\40MilEmpleos\3-Desarrollo\40MilEmpleos\MilEmpleos\obj\Debug\MilEmpleos.dll
 D:\Unidad Publica de Empleo\40MilEmpleos\3-Desarrollo\40MilEmpleos\MilEmpleos\obj\Debug\MilEmpleos.pdb
