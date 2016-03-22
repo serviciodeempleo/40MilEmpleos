@@ -50,11 +50,23 @@ namespace MilEmpleos.Controllers
             {
                 return RedirectToAction("ChangePassword", "Manage");
             }
+
             var CE = (from item in db.AspNetUsers
                       where item.Id == USER_id
                       select item.CentroId).First();
+
+            var primer_CE = (from item in db.Centros
+                             select item).First();
+
+            var result_centrosEmpleo = from centrosEmpleo in db.Centros select centrosEmpleo;
+
+            ViewBag.primer_CE = primer_CE;
+            ViewBag.centro_empleo_seleccionado = primer_CE.Id;
+            ViewBag.centroEmpleos = result_centrosEmpleo.ToArray();
+
             if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Unidad")))
             {
+                //.Where(x => x.CentroId.Equals(primer_CE.Id))
                 var resultadoCalculadora = db.ResultadoCalculadora.OrderByDescending(x => x.FechaCalculo).Include(r => r.AspNetUsers).Include(r => r.Centros).Include(r => r.RespuestasCalculadora);
                 return View(resultadoCalculadora.ToList());
             }
@@ -888,7 +900,7 @@ namespace MilEmpleos.Controllers
 
 
         // GET: RespuestasCalculadoras1/Excelrespuestas/5
-        public ActionResult Excelrespuestas()
+        public ActionResult Excelrespuestas(int? p_idCentro)
         {
             var USER_id = User.Identity.GetUserId();
 
@@ -897,10 +909,10 @@ namespace MilEmpleos.Controllers
                       select item.CentroId).First();
 
             List<ResCalcollection> myListresPila = new List<ResCalcollection>();
-
-            if (User.Identity.Name.ToString() == "admin40mil@mintrabajo.gov.co")
+            //if (User.Identity.Name.ToString().ToLower() == "admin40mil@mintrabajo.gov.co")
+            if (User.IsInRole("Admin") || User.IsInRole("Unidad"))
             {
-                var result = (from res in db.ResultadoCalculadora select res).OrderByDescending(x => x.FechaCalculo).ToList();
+                var result = (from res in db.ResultadoCalculadora where res.CentroId == p_idCentro select res).OrderByDescending(x => x.FechaCalculo).ToList();
 
                 foreach (var rescal in result)
                 {
@@ -1035,7 +1047,7 @@ namespace MilEmpleos.Controllers
         }
 
         // GET: RespuestasCalculadoras1/ExcelconsultasPila/5
-        public ActionResult ExcelConsultasPila()
+        public ActionResult ExcelConsultasPila(int? p_idCentro)
         {
             var USER_id = User.Identity.GetUserId();
 
@@ -1045,10 +1057,11 @@ namespace MilEmpleos.Controllers
 
             List<ConsulPilacollection> myListresPila = new List<ConsulPilacollection>();
 
-            if (User.Identity.Name.ToString() == "admin40mil@mintrabajo.gov.co")
+            //if (User.Identity.Name.ToString().ToLower() == "admin40mil@mintrabajo.gov.co")
+            if (User.IsInRole("Admin") || User.IsInRole("Unidad"))
             {
 
-                var result = (from res in db.RespuestaPila select res).ToList();
+                var result = (from res in db.RespuestaPila where res.CentroId == p_idCentro select res).ToList();
 
                 foreach (var resPila in result)
                 {
