@@ -60,8 +60,10 @@ namespace MilEmpleos.Controllers
 
             var result_centrosEmpleo = from centrosEmpleo in db.Centros select centrosEmpleo;
 
+            ViewBag.id_centro_empleo = CE;
             ViewBag.primer_CE = primer_CE;
             ViewBag.centro_empleo_seleccionado = primer_CE.Id;
+
             ViewBag.centroEmpleos = result_centrosEmpleo.ToArray();
 
             if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Unidad")))

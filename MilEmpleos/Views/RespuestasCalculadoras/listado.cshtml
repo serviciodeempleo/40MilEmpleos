@@ -18,28 +18,44 @@
         <h3>Descargar reportes en Excel</h3>
         <div class="well">
             <div class="row">
+            @if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Unidad")))
+            {
+
+                
                 <div class="col-md-2">Centro de Empleo:</div>
                 <div class="col-md-3">
                     <select id="lst_centros_empleo" onchange="obtenerURLExcel()">
-                        @foreach (var centroEmpleo in ViewBag.centroEmpleos)
-                {
-                            <option value="@centroEmpleo.Id">@centroEmpleo.CentroEmpleo</option>
-                        }
+                        
+                            @foreach (var centroEmpleo in ViewBag.centroEmpleos)
+                            {
+                                <option value="@centroEmpleo.Id">@centroEmpleo.CentroEmpleo</option>
+                            }
                     </select>
 
                 </div>
+                <script type="text/javascript">
+                    function obtenerURLExcel() {
+                        $('#p_URLExcel').html('<a href="/RespuestasCalculadoras/excelrespuestas?class=btn%20btn-danger&amp;p_idCentro=' + $('#lst_centros_empleo').val() + '">Descargar listado completo</a> | <a href="/RespuestasCalculadoras/ExcelconsultasPila?class=btn%20btn-danger&amp;p_idCentro=' + $('#lst_centros_empleo').val() + '">Descargar listado Consultas Pila</a>');
+                        //$('#p_URLExcel').html('<a href="/40MilPrimerosEmpleos/RespuestasCalculadoras/excelrespuestas?class=btn%20btn-danger&amp;p_idCentro=' + $('#lst_centros_empleo').val() + '">Descargar listado completo</a> | <a href="/40MilPrimerosEmpleos/RespuestasCalculadoras/ExcelconsultasPila?class=btn%20btn-danger&amp;p_idCentro=' + $('#lst_centros_empleo').val() + '">Descargar listado Consultas Pila</a>');
+                    }
+                </script>
+            }
             </div>
             <br />
-            <script type="text/javascript">
-                function obtenerURLExcel() {
-                    //$('#p_URLExcel').html('<a href="/RespuestasCalculadoras/excelrespuestas?class=btn%20btn-danger&amp;p_idCentro=' + $('#lst_centros_empleo').val() + '">Descargar listado completo</a> | <a href="/RespuestasCalculadoras/ExcelconsultasPila?class=btn%20btn-danger&amp;p_idCentro=' + $('#lst_centros_empleo').val() + '">Descargar listado Consultas Pila</a>');
-                    $('#p_URLExcel').html('<a href="/40MilPrimerosEmpleos/RespuestasCalculadoras/excelrespuestas?class=btn%20btn-danger&amp;p_idCentro=' + $('#lst_centros_empleo').val() + '">Descargar listado completo</a> | <a href="/40MilPrimerosEmpleos/RespuestasCalculadoras/ExcelconsultasPila?class=btn%20btn-danger&amp;p_idCentro=' + $('#lst_centros_empleo').val() + '">Descargar listado Consultas Pila</a>');
-                }
-            </script>
+            @if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Unidad")))
+            {
             <p id="p_URLExcel">
-                @Html.ActionLink("Descargar listado completo", "excelrespuestas", new { @class = "btn btn-danger", @p_idCentro = 1 }) |
-                @Html.ActionLink("Descargar listado Consultas Pila", "ExcelconsultasPila", new { @class = "btn btn-danger", @p_idCentro = 1 })
+                @Html.ActionLink("Descargar listado completo", "excelrespuestas", new { @class = "btn btn-danger", @p_idCentro = @ViewBag.primer_CE }) |
+                @Html.ActionLink("Descargar listado Consultas Pila", "ExcelconsultasPila", new { @class = "btn btn-danger", @p_idCentro = @ViewBag.primer_CE })
             </p>
+            }
+            else if(Request.IsAuthenticated && (User.IsInRole("Centros")))
+            {
+                <p>
+                    @Html.ActionLink("Descargar listado completo", "excelrespuestas", new { @class = "btn btn-danger", @p_idCentro = @ViewBag.id_centro_empleo }) |
+                    @Html.ActionLink("Descargar listado Consultas Pila", "ExcelconsultasPila", new { @class = "btn btn-danger", @p_idCentro = @ViewBag.id_centro_empleo })
+                </p>
+            }
 
         </div>
     }
