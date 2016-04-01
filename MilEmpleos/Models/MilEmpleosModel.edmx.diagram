@@ -28,7 +28,6 @@
         <EntityTypeShape EntityType="MilEmpleosModel.Ponderacion" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MilEmpleosModel.PonderacionMunicipio" Width="1.5" PointX="6" PointY="26" IsExpanded="true" />
         <EntityTypeShape EntityType="MilEmpleosModel.RespuestaPila" Width="1.5" PointX="6" PointY="16.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MilEmpleosModel.RespuestasCalculadora" Width="1.5" PointX="6" PointY="6" IsExpanded="true" />
         <EntityTypeShape EntityType="MilEmpleosModel.ResultadoCalculadora" Width="1.5" PointX="8.25" PointY="8.25" IsExpanded="true" />
         <EntityTypeShape EntityType="MilEmpleosModel.SalarioAdicionalRango" Width="1.5" PointX="3.75" PointY="31.125" IsExpanded="true" />
         <EntityTypeShape EntityType="MilEmpleosModel.TipoConocimientoRequerido" Width="1.5" PointX="3.75" PointY="33.5" IsExpanded="true" />
@@ -37,7 +36,6 @@
         <AssociationConnector Association="MilEmpleosModel.FK__Actividad__Activ__32767D0B" ManuallyRouted="false" />
         <AssociationConnector Association="MilEmpleosModel.FK__ActNivEdu__Activ__382F5661" ManuallyRouted="false" />
         <AssociationConnector Association="MilEmpleosModel.FK__Multiplic__Activ__2BC97F7C" ManuallyRouted="false" />
-        <AssociationConnector Association="MilEmpleosModel.FK__Respuesta__Activ__373B3228" ManuallyRouted="false" />
         <AssociationConnector Association="MilEmpleosModel.FK__Actividad__Destr__345EC57D" ManuallyRouted="false" />
         <AssociationConnector Association="MilEmpleosModel.FK__Multiplic__Habil__2EA5EC27" ManuallyRouted="false" />
         <AssociationConnector Association="MilEmpleosModel.FK__ActNivEdu__Nivel__39237A9A" ManuallyRouted="false" />
@@ -47,22 +45,24 @@
         <AssociationConnector Association="MilEmpleosModel.FK__Respuesta__UserI__025D5595" ManuallyRouted="false" />
         <AssociationConnector Association="MilEmpleosModel.FK__Resultado__UserI__73501C2F" ManuallyRouted="false" />
         <AssociationConnector Association="MilEmpleosModel.FK__Respuesta__Centr__035179CE" ManuallyRouted="false" />
-        <AssociationConnector Association="MilEmpleosModel.FK__Respuesta__Centr__5772F790" ManuallyRouted="false" />
         <AssociationConnector Association="MilEmpleosModel.FK__Resultado__Centr__7167D3BD" ManuallyRouted="false" />
         <AssociationConnector Association="MilEmpleosModel.FK__Consulta__TipoDo__55F4C372" ManuallyRouted="false" />
-        <AssociationConnector Association="MilEmpleosModel.FK__Respuesta__Conte__54CB950F" ManuallyRouted="false" />
         <AssociationConnector Association="MilEmpleosModel.FK__municipal__depar__12FDD1B2" ManuallyRouted="false" />
-        <AssociationConnector Association="MilEmpleosModel.FK__Respuesta__Destr__214BF109" ManuallyRouted="false" />
-        <AssociationConnector Association="MilEmpleosModel.FK__Respuesta__Habil__22401542" ManuallyRouted="false" />
-        <AssociationConnector Association="MilEmpleosModel.FK__Respuesta__Joven__2334397B" ManuallyRouted="false" />
-        <AssociationConnector Association="MilEmpleosModel.FK__Respuesta__Munic__2704CA5F" ManuallyRouted="false" />
         <AssociationConnector Association="MilEmpleosModel.mucipio" ManuallyRouted="false" />
-        <AssociationConnector Association="MilEmpleosModel.FK__Respuesta__Nivel__24285DB4" ManuallyRouted="false" />
-        <AssociationConnector Association="MilEmpleosModel.FK__Respuesta__Salar__251C81ED" ManuallyRouted="false" />
-        <AssociationConnector Association="MilEmpleosModel.FK__Respuesta__TipoC__2610A626" ManuallyRouted="false" />
-        <AssociationConnector Association="MilEmpleosModel.FK__Resultado__Respu__725BF7F6" ManuallyRouted="false" />
         <AssociationConnector Association="MilEmpleosModel.AspNetUserRoles" ManuallyRouted="false" />
         <EntityTypeShape EntityType="MilEmpleosModel.actulizacionPila" Width="1.5" PointX="13.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MilEmpleosModel.RespuestasCalculadora" Width="1.5" PointX="5.625" PointY="12.25" />
+        <AssociationConnector Association="MilEmpleosModel.FK__Respuesta__Activ__373B3228" />
+        <AssociationConnector Association="MilEmpleosModel.FK__Respuesta__Centr__5772F790" />
+        <AssociationConnector Association="MilEmpleosModel.FK__Respuesta__Conte__54CB950F" />
+        <AssociationConnector Association="MilEmpleosModel.FK__Respuesta__Destr__214BF109" />
+        <AssociationConnector Association="MilEmpleosModel.FK__Respuesta__Habil__22401542" />
+        <AssociationConnector Association="MilEmpleosModel.FK__Respuesta__Joven__2334397B" />
+        <AssociationConnector Association="MilEmpleosModel.FK__Respuesta__Munic__2704CA5F" />
+        <AssociationConnector Association="MilEmpleosModel.FK__Respuesta__Nivel__24285DB4" />
+        <AssociationConnector Association="MilEmpleosModel.FK__Respuesta__Salar__251C81ED" />
+        <AssociationConnector Association="MilEmpleosModel.FK__Respuesta__TipoC__2610A626" />
+        <AssociationConnector Association="MilEmpleosModel.FK__Resultado__Respu__725BF7F6" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

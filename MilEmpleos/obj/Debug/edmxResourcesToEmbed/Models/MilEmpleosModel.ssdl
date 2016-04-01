@@ -197,11 +197,13 @@ warning 6002: The table/view 'MilEmpleos.dbo.AspNetUserRoles' does not have a pr
     <Property Name="ClaveINI" Type="varchar" MaxLength="200" />
     <Property Name="UsurioCorreo" Type="varchar" MaxLength="200" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'MilEmpleos.dbo.Pila' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="Pila">
     <Key>
       <PropertyRef Name="id" />
     </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="TipoDocumento" Type="char" MaxLength="2" Nullable="false" />
     <Property Name="NumeroDocumento" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="PrimerNombre" Type="varchar" MaxLength="50" />
@@ -255,7 +257,7 @@ warning 6002: The table/view 'MilEmpleos.dbo.AspNetUserRoles' does not have a pr
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="RazonSocial" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Nit" Type="varchar" MaxLength="20" Nullable="false" />
-    <Property Name="TelefonoEmpresa" Type="int" Nullable="false" />
+    <Property Name="TelefonoEmpresa" Type="varchar" MaxLength="20" />
     <Property Name="NombreContacto" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="DescripcionVacante" Type="varchar" MaxLength="1500" Nullable="false" />
     <Property Name="NivelEducativoRequeridoVacante" Type="int" Nullable="false" />
@@ -480,18 +482,6 @@ warning 6002: The table/view 'MilEmpleos.dbo.AspNetUserRoles' does not have a pr
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Respuesta__Centr__035179CE">
-    <End Role="Centros" Type="Self.Centros" Multiplicity="1" />
-    <End Role="RespuestaPila" Type="Self.RespuestaPila" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Centros">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="RespuestaPila">
-        <PropertyRef Name="CentroId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__Respuesta__Centr__5772F790">
     <End Role="Centros" Type="Self.Centros" Multiplicity="1" />
     <End Role="RespuestasCalculadora" Type="Self.RespuestasCalculadora" Multiplicity="*" />
@@ -600,18 +590,6 @@ warning 6002: The table/view 'MilEmpleos.dbo.AspNetUserRoles' does not have a pr
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Respuesta__UserI__025D5595">
-    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
-    <End Role="RespuestaPila" Type="Self.RespuestaPila" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUsers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="RespuestaPila">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__Resultado__Centr__7167D3BD">
     <End Role="Centros" Type="Self.Centros" Multiplicity="1" />
     <End Role="ResultadoCalculadora" Type="Self.ResultadoCalculadora" Multiplicity="*" />
@@ -709,7 +687,6 @@ warning 6002: The table/view 'MilEmpleos.dbo.AspNetUserRoles' does not have a pr
     <EntitySet Name="municipality" EntityType="Self.municipality" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="NivelEducativo" EntityType="Self.NivelEducativo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PassPrestadores" EntityType="Self.PassPrestadores" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Pila" EntityType="Self.Pila" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Ponderacion" EntityType="Self.Ponderacion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PonderacionMunicipio" EntityType="Self.PonderacionMunicipio" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RespuestaPila" EntityType="Self.RespuestaPila" Schema="dbo" store:Type="Tables" />
@@ -724,6 +701,21 @@ warning 6002: The table/view 'MilEmpleos.dbo.AspNetUserRoles' does not have a pr
     [AspNetUserRoles].[UserId] AS [UserId], 
     [AspNetUserRoles].[RoleId] AS [RoleId]
     FROM [dbo].[AspNetUserRoles] AS [AspNetUserRoles]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Pila" EntityType="Self.Pila" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Pila].[id] AS [id], 
+    [Pila].[TipoDocumento] AS [TipoDocumento], 
+    [Pila].[NumeroDocumento] AS [NumeroDocumento], 
+    [Pila].[PrimerNombre] AS [PrimerNombre], 
+    [Pila].[SegundoNombre] AS [SegundoNombre], 
+    [Pila].[PrimerApellido] AS [PrimerApellido], 
+    [Pila].[SegundoApellido] AS [SegundoApellido], 
+    [Pila].[TiempoTotalRegistroMeses] AS [TiempoTotalRegistroMeses], 
+    [Pila].[ultimo_periodo_cotizado_fecha_inicio] AS [ultimo_periodo_cotizado_fecha_inicio], 
+    [Pila].[ultimo_periodo_cotizado_fecha_fin] AS [ultimo_periodo_cotizado_fecha_fin], 
+    [Pila].[Meses_ultimo_periodo_cotizado] AS [Meses_ultimo_periodo_cotizado]
+    FROM [dbo].[Pila] AS [Pila]</DefiningQuery>
     </EntitySet>
     <AssociationSet Name="FK__Actividad__Activ__32767D0B" Association="Self.FK__Actividad__Activ__32767D0B">
       <End Role="ActividadesPuestoDeTrabajo" EntitySet="ActividadesPuestoDeTrabajo" />
@@ -773,10 +765,6 @@ warning 6002: The table/view 'MilEmpleos.dbo.AspNetUserRoles' does not have a pr
       <End Role="ActividadesPuestoDeTrabajo" EntitySet="ActividadesPuestoDeTrabajo" />
       <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
     </AssociationSet>
-    <AssociationSet Name="FK__Respuesta__Centr__035179CE" Association="Self.FK__Respuesta__Centr__035179CE">
-      <End Role="Centros" EntitySet="Centros" />
-      <End Role="RespuestaPila" EntitySet="RespuestaPila" />
-    </AssociationSet>
     <AssociationSet Name="FK__Respuesta__Centr__5772F790" Association="Self.FK__Respuesta__Centr__5772F790">
       <End Role="Centros" EntitySet="Centros" />
       <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
@@ -812,10 +800,6 @@ warning 6002: The table/view 'MilEmpleos.dbo.AspNetUserRoles' does not have a pr
     <AssociationSet Name="FK__Respuesta__TipoC__2610A626" Association="Self.FK__Respuesta__TipoC__2610A626">
       <End Role="TipoConocimientoRequerido" EntitySet="TipoConocimientoRequerido" />
       <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Respuesta__UserI__025D5595" Association="Self.FK__Respuesta__UserI__025D5595">
-      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-      <End Role="RespuestaPila" EntitySet="RespuestaPila" />
     </AssociationSet>
     <AssociationSet Name="FK__Resultado__Centr__7167D3BD" Association="Self.FK__Resultado__Centr__7167D3BD">
       <End Role="Centros" EntitySet="Centros" />

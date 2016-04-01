@@ -253,36 +253,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="RespuestasCalculadora">
-      <EntityTypeMapping TypeName="MilEmpleosModel.RespuestasCalculadora">
-        <MappingFragment StoreEntitySet="RespuestasCalculadora">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
-          <ScalarProperty Name="Nit" ColumnName="Nit" />
-          <ScalarProperty Name="TelefonoEmpresa" ColumnName="TelefonoEmpresa" />
-          <ScalarProperty Name="NombreContacto" ColumnName="NombreContacto" />
-          <ScalarProperty Name="DescripcionVacante" ColumnName="DescripcionVacante" />
-          <ScalarProperty Name="NivelEducativoRequeridoVacante" ColumnName="NivelEducativoRequeridoVacante" />
-          <ScalarProperty Name="NumeroPuestosTrabajo" ColumnName="NumeroPuestosTrabajo" />
-          <ScalarProperty Name="OficinaRecursosHumanos" ColumnName="OficinaRecursosHumanos" />
-          <ScalarProperty Name="TamanoPlantaEmpresa" ColumnName="TamanoPlantaEmpresa" />
-          <ScalarProperty Name="HabilidadRequerida" ColumnName="HabilidadRequerida" />
-          <ScalarProperty Name="DestrezasRequeridas" ColumnName="DestrezasRequeridas" />
-          <ScalarProperty Name="TipoConocimientoRequerido" ColumnName="TipoConocimientoRequerido" />
-          <ScalarProperty Name="ActividadesPuestoDeTrabajo" ColumnName="ActividadesPuestoDeTrabajo" />
-          <ScalarProperty Name="JovenesPorTutor" ColumnName="JovenesPorTutor" />
-          <ScalarProperty Name="VacanteNueva" ColumnName="VacanteNueva" />
-          <ScalarProperty Name="PuestoTrabajoPermanente" ColumnName="PuestoTrabajoPermanente" />
-          <ScalarProperty Name="ContenidoActividadFormacion" ColumnName="ContenidoActividadFormacion" />
-          <ScalarProperty Name="SalarioAdicional" ColumnName="SalarioAdicional" />
-          <ScalarProperty Name="SalarioAdicionalRango" ColumnName="SalarioAdicionalRango" />
-          <ScalarProperty Name="Municipio" ColumnName="Municipio" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="CentroId" ColumnName="CentroId" />
-          <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="ResultadoCalculadora">
       <EntityTypeMapping TypeName="MilEmpleosModel.ResultadoCalculadora">
         <MappingFragment StoreEntitySet="ResultadoCalculadora">
@@ -360,6 +330,36 @@
         <MappingFragment StoreEntitySet="actulizacionPila">
           <ScalarProperty Name="Fecha_Actualizacion" ColumnName="Fecha_Actualizacion" />
           <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RespuestasCalculadora">
+      <EntityTypeMapping TypeName="MilEmpleosModel.RespuestasCalculadora">
+        <MappingFragment StoreEntitySet="RespuestasCalculadora">
+          <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+          <ScalarProperty Name="CentroId" ColumnName="CentroId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Municipio" ColumnName="Municipio" />
+          <ScalarProperty Name="SalarioAdicionalRango" ColumnName="SalarioAdicionalRango" />
+          <ScalarProperty Name="SalarioAdicional" ColumnName="SalarioAdicional" />
+          <ScalarProperty Name="ContenidoActividadFormacion" ColumnName="ContenidoActividadFormacion" />
+          <ScalarProperty Name="PuestoTrabajoPermanente" ColumnName="PuestoTrabajoPermanente" />
+          <ScalarProperty Name="VacanteNueva" ColumnName="VacanteNueva" />
+          <ScalarProperty Name="JovenesPorTutor" ColumnName="JovenesPorTutor" />
+          <ScalarProperty Name="ActividadesPuestoDeTrabajo" ColumnName="ActividadesPuestoDeTrabajo" />
+          <ScalarProperty Name="TipoConocimientoRequerido" ColumnName="TipoConocimientoRequerido" />
+          <ScalarProperty Name="DestrezasRequeridas" ColumnName="DestrezasRequeridas" />
+          <ScalarProperty Name="HabilidadRequerida" ColumnName="HabilidadRequerida" />
+          <ScalarProperty Name="TamanoPlantaEmpresa" ColumnName="TamanoPlantaEmpresa" />
+          <ScalarProperty Name="OficinaRecursosHumanos" ColumnName="OficinaRecursosHumanos" />
+          <ScalarProperty Name="NumeroPuestosTrabajo" ColumnName="NumeroPuestosTrabajo" />
+          <ScalarProperty Name="NivelEducativoRequeridoVacante" ColumnName="NivelEducativoRequeridoVacante" />
+          <ScalarProperty Name="DescripcionVacante" ColumnName="DescripcionVacante" />
+          <ScalarProperty Name="NombreContacto" ColumnName="NombreContacto" />
+          <ScalarProperty Name="TelefonoEmpresa" ColumnName="TelefonoEmpresa" />
+          <ScalarProperty Name="Nit" ColumnName="Nit" />
+          <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

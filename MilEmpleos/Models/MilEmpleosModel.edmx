@@ -202,11 +202,15 @@ warning 6002: The table/view 'MilEmpleos.dbo.AspNetUserRoles' does not have a pr
           <Property Name="ClaveINI" Type="varchar" MaxLength="200" />
           <Property Name="UsurioCorreo" Type="varchar" MaxLength="200" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MilEmpleos.dbo.Pila' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Pila">
           <Key>
             <PropertyRef Name="id" />
+            
+            
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="TipoDocumento" Type="char" MaxLength="2" Nullable="false" />
           <Property Name="NumeroDocumento" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="PrimerNombre" Type="varchar" MaxLength="50" />
@@ -260,7 +264,7 @@ warning 6002: The table/view 'MilEmpleos.dbo.AspNetUserRoles' does not have a pr
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RazonSocial" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Nit" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="TelefonoEmpresa" Type="int" Nullable="false" />
+          <Property Name="TelefonoEmpresa" Type="varchar" MaxLength="20" />
           <Property Name="NombreContacto" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="DescripcionVacante" Type="varchar" MaxLength="1500" Nullable="false" />
           <Property Name="NivelEducativoRequeridoVacante" Type="int" Nullable="false" />
@@ -485,18 +489,6 @@ warning 6002: The table/view 'MilEmpleos.dbo.AspNetUserRoles' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Respuesta__Centr__035179CE">
-          <End Role="Centros" Type="Self.Centros" Multiplicity="1" />
-          <End Role="RespuestaPila" Type="Self.RespuestaPila" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Centros">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="RespuestaPila">
-              <PropertyRef Name="CentroId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Respuesta__Centr__5772F790">
           <End Role="Centros" Type="Self.Centros" Multiplicity="1" />
           <End Role="RespuestasCalculadora" Type="Self.RespuestasCalculadora" Multiplicity="*" />
@@ -605,18 +597,6 @@ warning 6002: The table/view 'MilEmpleos.dbo.AspNetUserRoles' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Respuesta__UserI__025D5595">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
-          <End Role="RespuestaPila" Type="Self.RespuestaPila" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="RespuestaPila">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Resultado__Centr__7167D3BD">
           <End Role="Centros" Type="Self.Centros" Multiplicity="1" />
           <End Role="ResultadoCalculadora" Type="Self.ResultadoCalculadora" Multiplicity="*" />
@@ -714,7 +694,6 @@ warning 6002: The table/view 'MilEmpleos.dbo.AspNetUserRoles' does not have a pr
           <EntitySet Name="municipality" EntityType="Self.municipality" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NivelEducativo" EntityType="Self.NivelEducativo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PassPrestadores" EntityType="Self.PassPrestadores" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Pila" EntityType="Self.Pila" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ponderacion" EntityType="Self.Ponderacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PonderacionMunicipio" EntityType="Self.PonderacionMunicipio" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RespuestaPila" EntityType="Self.RespuestaPila" Schema="dbo" store:Type="Tables" />
@@ -729,6 +708,21 @@ warning 6002: The table/view 'MilEmpleos.dbo.AspNetUserRoles' does not have a pr
     [AspNetUserRoles].[UserId] AS [UserId], 
     [AspNetUserRoles].[RoleId] AS [RoleId]
     FROM [dbo].[AspNetUserRoles] AS [AspNetUserRoles]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Pila" EntityType="Self.Pila" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Pila].[id] AS [id], 
+    [Pila].[TipoDocumento] AS [TipoDocumento], 
+    [Pila].[NumeroDocumento] AS [NumeroDocumento], 
+    [Pila].[PrimerNombre] AS [PrimerNombre], 
+    [Pila].[SegundoNombre] AS [SegundoNombre], 
+    [Pila].[PrimerApellido] AS [PrimerApellido], 
+    [Pila].[SegundoApellido] AS [SegundoApellido], 
+    [Pila].[TiempoTotalRegistroMeses] AS [TiempoTotalRegistroMeses], 
+    [Pila].[ultimo_periodo_cotizado_fecha_inicio] AS [ultimo_periodo_cotizado_fecha_inicio], 
+    [Pila].[ultimo_periodo_cotizado_fecha_fin] AS [ultimo_periodo_cotizado_fecha_fin], 
+    [Pila].[Meses_ultimo_periodo_cotizado] AS [Meses_ultimo_periodo_cotizado]
+    FROM [dbo].[Pila] AS [Pila]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK__Actividad__Activ__32767D0B" Association="Self.FK__Actividad__Activ__32767D0B">
             <End Role="ActividadesPuestoDeTrabajo" EntitySet="ActividadesPuestoDeTrabajo" />
@@ -778,10 +772,6 @@ warning 6002: The table/view 'MilEmpleos.dbo.AspNetUserRoles' does not have a pr
             <End Role="ActividadesPuestoDeTrabajo" EntitySet="ActividadesPuestoDeTrabajo" />
             <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
           </AssociationSet>
-          <AssociationSet Name="FK__Respuesta__Centr__035179CE" Association="Self.FK__Respuesta__Centr__035179CE">
-            <End Role="Centros" EntitySet="Centros" />
-            <End Role="RespuestaPila" EntitySet="RespuestaPila" />
-          </AssociationSet>
           <AssociationSet Name="FK__Respuesta__Centr__5772F790" Association="Self.FK__Respuesta__Centr__5772F790">
             <End Role="Centros" EntitySet="Centros" />
             <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
@@ -817,10 +807,6 @@ warning 6002: The table/view 'MilEmpleos.dbo.AspNetUserRoles' does not have a pr
           <AssociationSet Name="FK__Respuesta__TipoC__2610A626" Association="Self.FK__Respuesta__TipoC__2610A626">
             <End Role="TipoConocimientoRequerido" EntitySet="TipoConocimientoRequerido" />
             <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Respuesta__UserI__025D5595" Association="Self.FK__Respuesta__UserI__025D5595">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="RespuestaPila" EntitySet="RespuestaPila" />
           </AssociationSet>
           <AssociationSet Name="FK__Resultado__Centr__7167D3BD" Association="Self.FK__Resultado__Centr__7167D3BD">
             <End Role="Centros" EntitySet="Centros" />
@@ -860,7 +846,7 @@ warning 6002: The table/view 'MilEmpleos.dbo.AspNetUserRoles' does not have a pr
           <NavigationProperty Name="ActividadNivEduDes" Relationship="Self.FK__Actividad__Activ__32767D0B" FromRole="ActividadesPuestoDeTrabajo" ToRole="ActividadNivEduDes" />
           <NavigationProperty Name="ActNivEdu" Relationship="Self.FK__ActNivEdu__Activ__382F5661" FromRole="ActividadesPuestoDeTrabajo" ToRole="ActNivEdu" />
           <NavigationProperty Name="ActividadNivEduHab" Relationship="Self.FK__Multiplic__Activ__2BC97F7C" FromRole="ActividadesPuestoDeTrabajo" ToRole="ActividadNivEduHab" />
-          <NavigationProperty Name="RespuestasCalculadora" Relationship="Self.FK__Respuesta__Activ__373B3228" FromRole="ActividadesPuestoDeTrabajo" ToRole="RespuestasCalculadora" />
+          <NavigationProperty Name="RespuestasCalculadora" Relationship="MilEmpleosModel.FK__Respuesta__Activ__373B3228" FromRole="ActividadesPuestoDeTrabajo" ToRole="RespuestasCalculadora" />
         </EntityType>
         <EntityType Name="ActividadNivEduDes">
           <Key>
@@ -966,8 +952,8 @@ warning 6002: The table/view 'MilEmpleos.dbo.AspNetUserRoles' does not have a pr
           <Property Name="Dominio" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUsers" Relationship="Self.FK__Centro__UserID__4BAC3F29" FromRole="Centros" ToRole="AspNetUsers" />
           <NavigationProperty Name="RespuestaPila" Relationship="Self.FK__Respuesta__Centr__035179CE" FromRole="Centros" ToRole="RespuestaPila" />
-          <NavigationProperty Name="RespuestasCalculadora" Relationship="Self.FK__Respuesta__Centr__5772F790" FromRole="Centros" ToRole="RespuestasCalculadora" />
           <NavigationProperty Name="ResultadoCalculadora" Relationship="Self.FK__Resultado__Centr__7167D3BD" FromRole="Centros" ToRole="ResultadoCalculadora" />
+          <NavigationProperty Name="RespuestasCalculadora" Relationship="MilEmpleosModel.FK__Respuesta__Centr__5772F790" FromRole="Centros" ToRole="RespuestasCalculadora" />
         </EntityType>
         <EntityType Name="Consulta">
           <Key>
@@ -987,7 +973,7 @@ warning 6002: The table/view 'MilEmpleos.dbo.AspNetUserRoles' does not have a pr
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ContenidoActividadFormacion1" Type="String" MaxLength="400" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="RespuestasCalculadora" Relationship="Self.FK__Respuesta__Conte__54CB950F" FromRole="ContenidoActividadFormacion" ToRole="RespuestasCalculadora" />
+          <NavigationProperty Name="RespuestasCalculadora" Relationship="MilEmpleosModel.FK__Respuesta__Conte__54CB950F" FromRole="ContenidoActividadFormacion" ToRole="RespuestasCalculadora" />
         </EntityType>
         <EntityType Name="department">
           <Key>
@@ -1004,7 +990,7 @@ warning 6002: The table/view 'MilEmpleos.dbo.AspNetUserRoles' does not have a pr
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Destreza" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="ActividadNivEduDes" Relationship="Self.FK__Actividad__Destr__345EC57D" FromRole="Destrezas" ToRole="ActividadNivEduDes" />
-          <NavigationProperty Name="RespuestasCalculadora" Relationship="Self.FK__Respuesta__Destr__214BF109" FromRole="Destrezas" ToRole="RespuestasCalculadora" />
+          <NavigationProperty Name="RespuestasCalculadora" Relationship="MilEmpleosModel.FK__Respuesta__Destr__214BF109" FromRole="Destrezas" ToRole="RespuestasCalculadora" />
         </EntityType>
         <EntityType Name="Habilidad">
           <Key>
@@ -1013,7 +999,7 @@ warning 6002: The table/view 'MilEmpleos.dbo.AspNetUserRoles' does not have a pr
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="HabilidadRequerida" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="ActividadNivEduHab" Relationship="Self.FK__Multiplic__Habil__2EA5EC27" FromRole="Habilidad" ToRole="ActividadNivEduHab" />
-          <NavigationProperty Name="RespuestasCalculadora" Relationship="Self.FK__Respuesta__Habil__22401542" FromRole="Habilidad" ToRole="RespuestasCalculadora" />
+          <NavigationProperty Name="RespuestasCalculadora" Relationship="MilEmpleosModel.FK__Respuesta__Habil__22401542" FromRole="Habilidad" ToRole="RespuestasCalculadora" />
         </EntityType>
         <EntityType Name="JovenesPorTutor">
           <Key>
@@ -1021,7 +1007,7 @@ warning 6002: The table/view 'MilEmpleos.dbo.AspNetUserRoles' does not have a pr
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="JovenesPorTutor1" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="RespuestasCalculadora" Relationship="Self.FK__Respuesta__Joven__2334397B" FromRole="JovenesPorTutor" ToRole="RespuestasCalculadora" />
+          <NavigationProperty Name="RespuestasCalculadora" Relationship="MilEmpleosModel.FK__Respuesta__Joven__2334397B" FromRole="JovenesPorTutor" ToRole="RespuestasCalculadora" />
         </EntityType>
         <EntityType Name="LogsAudit">
           <Key>
@@ -1046,8 +1032,8 @@ warning 6002: The table/view 'MilEmpleos.dbo.AspNetUserRoles' does not have a pr
           <Property Name="nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="department_id" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="department" Relationship="Self.FK__municipal__depar__12FDD1B2" FromRole="municipality" ToRole="department" />
-          <NavigationProperty Name="RespuestasCalculadora" Relationship="Self.FK__Respuesta__Munic__2704CA5F" FromRole="municipality" ToRole="RespuestasCalculadora" />
           <NavigationProperty Name="PonderacionMunicipio" Relationship="Self.mucipio" FromRole="municipality" ToRole="PonderacionMunicipio" />
+          <NavigationProperty Name="RespuestasCalculadora" Relationship="MilEmpleosModel.FK__Respuesta__Munic__2704CA5F" FromRole="municipality" ToRole="RespuestasCalculadora" />
         </EntityType>
         <EntityType Name="NivelEducativo">
           <Key>
@@ -1056,7 +1042,7 @@ warning 6002: The table/view 'MilEmpleos.dbo.AspNetUserRoles' does not have a pr
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NivelEducativo1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ActNivEdu" Relationship="Self.FK__ActNivEdu__Nivel__39237A9A" FromRole="NivelEducativo" ToRole="ActNivEdu" />
-          <NavigationProperty Name="RespuestasCalculadora" Relationship="Self.FK__Respuesta__Nivel__24285DB4" FromRole="NivelEducativo" ToRole="RespuestasCalculadora" />
+          <NavigationProperty Name="RespuestasCalculadora" Relationship="MilEmpleosModel.FK__Respuesta__Nivel__24285DB4" FromRole="NivelEducativo" ToRole="RespuestasCalculadora" />
         </EntityType>
         <EntityType Name="PassPrestadores">
           <Key>
@@ -1121,46 +1107,6 @@ warning 6002: The table/view 'MilEmpleos.dbo.AspNetUserRoles' does not have a pr
           <NavigationProperty Name="AspNetUsers" Relationship="Self.FK__Respuesta__UserI__025D5595" FromRole="RespuestaPila" ToRole="AspNetUsers" />
           <NavigationProperty Name="Centros" Relationship="Self.FK__Respuesta__Centr__035179CE" FromRole="RespuestaPila" ToRole="Centros" />
         </EntityType>
-        <EntityType Name="RespuestasCalculadora">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RazonSocial" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Nit" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="TelefonoEmpresa" Type="Int32" Nullable="false" />
-          <Property Name="NombreContacto" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="DescripcionVacante" Type="String" MaxLength="1500" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="NivelEducativoRequeridoVacante" Type="Int32" Nullable="false" />
-          <Property Name="NumeroPuestosTrabajo" Type="Int32" Nullable="false" />
-          <Property Name="OficinaRecursosHumanos" Type="Boolean" Nullable="false" />
-          <Property Name="TamanoPlantaEmpresa" Type="Int32" Nullable="false" />
-          <Property Name="HabilidadRequerida" Type="Int32" Nullable="false" />
-          <Property Name="DestrezasRequeridas" Type="Int32" Nullable="false" />
-          <Property Name="TipoConocimientoRequerido" Type="Int32" Nullable="false" />
-          <Property Name="ActividadesPuestoDeTrabajo" Type="Int32" Nullable="false" />
-          <Property Name="JovenesPorTutor" Type="Int32" Nullable="false" />
-          <Property Name="VacanteNueva" Type="Boolean" Nullable="false" />
-          <Property Name="PuestoTrabajoPermanente" Type="Boolean" Nullable="false" />
-          <Property Name="ContenidoActividadFormacion" Type="Int32" Nullable="false" />
-          <Property Name="SalarioAdicional" Type="Boolean" Nullable="false" />
-          <Property Name="SalarioAdicionalRango" Type="Int32" Nullable="false" />
-          <Property Name="Municipio" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="CentroId" Type="Int32" Nullable="false" />
-          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="ActividadesPuestoDeTrabajo1" Relationship="Self.FK__Respuesta__Activ__373B3228" FromRole="RespuestasCalculadora" ToRole="ActividadesPuestoDeTrabajo" />
-          <NavigationProperty Name="Centros" Relationship="Self.FK__Respuesta__Centr__5772F790" FromRole="RespuestasCalculadora" ToRole="Centros" />
-          <NavigationProperty Name="ContenidoActividadFormacion1" Relationship="Self.FK__Respuesta__Conte__54CB950F" FromRole="RespuestasCalculadora" ToRole="ContenidoActividadFormacion" />
-          <NavigationProperty Name="Destrezas" Relationship="Self.FK__Respuesta__Destr__214BF109" FromRole="RespuestasCalculadora" ToRole="Destrezas" />
-          <NavigationProperty Name="Habilidad" Relationship="Self.FK__Respuesta__Habil__22401542" FromRole="RespuestasCalculadora" ToRole="Habilidad" />
-          <NavigationProperty Name="JovenesPorTutor1" Relationship="Self.FK__Respuesta__Joven__2334397B" FromRole="RespuestasCalculadora" ToRole="JovenesPorTutor" />
-          <NavigationProperty Name="municipality" Relationship="Self.FK__Respuesta__Munic__2704CA5F" FromRole="RespuestasCalculadora" ToRole="municipality" />
-          <NavigationProperty Name="NivelEducativo" Relationship="Self.FK__Respuesta__Nivel__24285DB4" FromRole="RespuestasCalculadora" ToRole="NivelEducativo" />
-          <NavigationProperty Name="SalarioAdicionalRango1" Relationship="Self.FK__Respuesta__Salar__251C81ED" FromRole="RespuestasCalculadora" ToRole="SalarioAdicionalRango" />
-          <NavigationProperty Name="TipoConocimientoRequerido1" Relationship="Self.FK__Respuesta__TipoC__2610A626" FromRole="RespuestasCalculadora" ToRole="TipoConocimientoRequerido" />
-          <NavigationProperty Name="ResultadoCalculadora" Relationship="Self.FK__Resultado__Respu__725BF7F6" FromRole="RespuestasCalculadora" ToRole="ResultadoCalculadora" />
-        </EntityType>
         <EntityType Name="ResultadoCalculadora">
           <Key>
             <PropertyRef Name="id" />
@@ -1176,7 +1122,7 @@ warning 6002: The table/view 'MilEmpleos.dbo.AspNetUserRoles' does not have a pr
           <Property Name="FechaCalculo" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="AspNetUsers" Relationship="Self.FK__Resultado__UserI__73501C2F" FromRole="ResultadoCalculadora" ToRole="AspNetUsers" />
           <NavigationProperty Name="Centros" Relationship="Self.FK__Resultado__Centr__7167D3BD" FromRole="ResultadoCalculadora" ToRole="Centros" />
-          <NavigationProperty Name="RespuestasCalculadora" Relationship="Self.FK__Resultado__Respu__725BF7F6" FromRole="ResultadoCalculadora" ToRole="RespuestasCalculadora" />
+          <NavigationProperty Name="RespuestasCalculadora" Relationship="MilEmpleosModel.FK__Resultado__Respu__725BF7F6" FromRole="ResultadoCalculadora" ToRole="RespuestasCalculadora" />
         </EntityType>
         <EntityType Name="SalarioAdicionalRango">
           <Key>
@@ -1184,7 +1130,7 @@ warning 6002: The table/view 'MilEmpleos.dbo.AspNetUserRoles' does not have a pr
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SalarioAdicionalRango1" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="RespuestasCalculadora" Relationship="Self.FK__Respuesta__Salar__251C81ED" FromRole="SalarioAdicionalRango" ToRole="RespuestasCalculadora" />
+          <NavigationProperty Name="RespuestasCalculadora" Relationship="MilEmpleosModel.FK__Respuesta__Salar__251C81ED" FromRole="SalarioAdicionalRango" ToRole="RespuestasCalculadora" />
         </EntityType>
         <EntityType Name="TipoConocimientoRequerido">
           <Key>
@@ -1192,7 +1138,7 @@ warning 6002: The table/view 'MilEmpleos.dbo.AspNetUserRoles' does not have a pr
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TipoConocimientoRequerido1" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="RespuestasCalculadora" Relationship="Self.FK__Respuesta__TipoC__2610A626" FromRole="TipoConocimientoRequerido" ToRole="RespuestasCalculadora" />
+          <NavigationProperty Name="RespuestasCalculadora" Relationship="MilEmpleosModel.FK__Respuesta__TipoC__2610A626" FromRole="TipoConocimientoRequerido" ToRole="RespuestasCalculadora" />
         </EntityType>
         <EntityType Name="TipoDocumento">
           <Key>
@@ -1259,18 +1205,6 @@ warning 6002: The table/view 'MilEmpleos.dbo.AspNetUserRoles' does not have a pr
             </Principal>
             <Dependent Role="ActividadNivEduHab">
               <PropertyRef Name="ActividadId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Respuesta__Activ__373B3228">
-          <End Role="ActividadesPuestoDeTrabajo" Type="Self.ActividadesPuestoDeTrabajo" Multiplicity="1" />
-          <End Role="RespuestasCalculadora" Type="Self.RespuestasCalculadora" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ActividadesPuestoDeTrabajo">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="RespuestasCalculadora">
-              <PropertyRef Name="ActividadesPuestoDeTrabajo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1386,18 +1320,6 @@ warning 6002: The table/view 'MilEmpleos.dbo.AspNetUserRoles' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Respuesta__Centr__5772F790">
-          <End Role="Centros" Type="Self.Centros" Multiplicity="1" />
-          <End Role="RespuestasCalculadora" Type="Self.RespuestasCalculadora" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Centros">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="RespuestasCalculadora">
-              <PropertyRef Name="CentroId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Resultado__Centr__7167D3BD">
           <End Role="Centros" Type="Self.Centros" Multiplicity="1" />
           <End Role="ResultadoCalculadora" Type="Self.ResultadoCalculadora" Multiplicity="*" />
@@ -1422,18 +1344,6 @@ warning 6002: The table/view 'MilEmpleos.dbo.AspNetUserRoles' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Respuesta__Conte__54CB950F">
-          <End Role="ContenidoActividadFormacion" Type="Self.ContenidoActividadFormacion" Multiplicity="1" />
-          <End Role="RespuestasCalculadora" Type="Self.RespuestasCalculadora" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ContenidoActividadFormacion">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="RespuestasCalculadora">
-              <PropertyRef Name="ContenidoActividadFormacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__municipal__depar__12FDD1B2">
           <End Role="department" Type="Self.department" Multiplicity="1" />
           <End Role="municipality" Type="Self.municipality" Multiplicity="*" />
@@ -1446,54 +1356,6 @@ warning 6002: The table/view 'MilEmpleos.dbo.AspNetUserRoles' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Respuesta__Destr__214BF109">
-          <End Role="Destrezas" Type="Self.Destrezas" Multiplicity="1" />
-          <End Role="RespuestasCalculadora" Type="Self.RespuestasCalculadora" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Destrezas">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="RespuestasCalculadora">
-              <PropertyRef Name="DestrezasRequeridas" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Respuesta__Habil__22401542">
-          <End Role="Habilidad" Type="Self.Habilidad" Multiplicity="1" />
-          <End Role="RespuestasCalculadora" Type="Self.RespuestasCalculadora" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Habilidad">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="RespuestasCalculadora">
-              <PropertyRef Name="HabilidadRequerida" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Respuesta__Joven__2334397B">
-          <End Role="JovenesPorTutor" Type="Self.JovenesPorTutor" Multiplicity="1" />
-          <End Role="RespuestasCalculadora" Type="Self.RespuestasCalculadora" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="JovenesPorTutor">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="RespuestasCalculadora">
-              <PropertyRef Name="JovenesPorTutor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Respuesta__Munic__2704CA5F">
-          <End Role="municipality" Type="Self.municipality" Multiplicity="1" />
-          <End Role="RespuestasCalculadora" Type="Self.RespuestasCalculadora" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="municipality">
-              <PropertyRef Name="IdCodigo" />
-            </Principal>
-            <Dependent Role="RespuestasCalculadora">
-              <PropertyRef Name="Municipio" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="mucipio">
           <End Role="municipality" Type="Self.municipality" Multiplicity="1" />
           <End Role="PonderacionMunicipio" Type="Self.PonderacionMunicipio" Multiplicity="0..1" />
@@ -1503,54 +1365,6 @@ warning 6002: The table/view 'MilEmpleos.dbo.AspNetUserRoles' does not have a pr
             </Principal>
             <Dependent Role="PonderacionMunicipio">
               <PropertyRef Name="IdCodigo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Respuesta__Nivel__24285DB4">
-          <End Role="NivelEducativo" Type="Self.NivelEducativo" Multiplicity="1" />
-          <End Role="RespuestasCalculadora" Type="Self.RespuestasCalculadora" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NivelEducativo">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="RespuestasCalculadora">
-              <PropertyRef Name="NivelEducativoRequeridoVacante" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Respuesta__Salar__251C81ED">
-          <End Role="SalarioAdicionalRango" Type="Self.SalarioAdicionalRango" Multiplicity="1" />
-          <End Role="RespuestasCalculadora" Type="Self.RespuestasCalculadora" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SalarioAdicionalRango">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="RespuestasCalculadora">
-              <PropertyRef Name="SalarioAdicionalRango" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Respuesta__TipoC__2610A626">
-          <End Role="TipoConocimientoRequerido" Type="Self.TipoConocimientoRequerido" Multiplicity="1" />
-          <End Role="RespuestasCalculadora" Type="Self.RespuestasCalculadora" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TipoConocimientoRequerido">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="RespuestasCalculadora">
-              <PropertyRef Name="TipoConocimientoRequerido" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Resultado__Respu__725BF7F6">
-          <End Role="RespuestasCalculadora" Type="Self.RespuestasCalculadora" Multiplicity="1" />
-          <End Role="ResultadoCalculadora" Type="Self.ResultadoCalculadora" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RespuestasCalculadora">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="ResultadoCalculadora">
-              <PropertyRef Name="RespuestasCalculadoraId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1582,7 +1396,6 @@ warning 6002: The table/view 'MilEmpleos.dbo.AspNetUserRoles' does not have a pr
           <EntitySet Name="Ponderacion" EntityType="Self.Ponderacion" />
           <EntitySet Name="PonderacionMunicipio" EntityType="Self.PonderacionMunicipio" />
           <EntitySet Name="RespuestaPila" EntityType="Self.RespuestaPila" />
-          <EntitySet Name="RespuestasCalculadora" EntityType="Self.RespuestasCalculadora" />
           <EntitySet Name="ResultadoCalculadora" EntityType="Self.ResultadoCalculadora" />
           <EntitySet Name="SalarioAdicionalRango" EntityType="Self.SalarioAdicionalRango" />
           <EntitySet Name="TipoConocimientoRequerido" EntityType="Self.TipoConocimientoRequerido" />
@@ -1599,10 +1412,6 @@ warning 6002: The table/view 'MilEmpleos.dbo.AspNetUserRoles' does not have a pr
           <AssociationSet Name="FK__Multiplic__Activ__2BC97F7C" Association="Self.FK__Multiplic__Activ__2BC97F7C">
             <End Role="ActividadesPuestoDeTrabajo" EntitySet="ActividadesPuestoDeTrabajo" />
             <End Role="ActividadNivEduHab" EntitySet="ActividadNivEduHab" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Respuesta__Activ__373B3228" Association="Self.FK__Respuesta__Activ__373B3228">
-            <End Role="ActividadesPuestoDeTrabajo" EntitySet="ActividadesPuestoDeTrabajo" />
-            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
           </AssociationSet>
           <AssociationSet Name="FK__Actividad__Destr__345EC57D" Association="Self.FK__Actividad__Destr__345EC57D">
             <End Role="Destrezas" EntitySet="Destrezas" />
@@ -1640,10 +1449,6 @@ warning 6002: The table/view 'MilEmpleos.dbo.AspNetUserRoles' does not have a pr
             <End Role="Centros" EntitySet="Centros" />
             <End Role="RespuestaPila" EntitySet="RespuestaPila" />
           </AssociationSet>
-          <AssociationSet Name="FK__Respuesta__Centr__5772F790" Association="Self.FK__Respuesta__Centr__5772F790">
-            <End Role="Centros" EntitySet="Centros" />
-            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
-          </AssociationSet>
           <AssociationSet Name="FK__Resultado__Centr__7167D3BD" Association="Self.FK__Resultado__Centr__7167D3BD">
             <End Role="Centros" EntitySet="Centros" />
             <End Role="ResultadoCalculadora" EntitySet="ResultadoCalculadora" />
@@ -1652,55 +1457,64 @@ warning 6002: The table/view 'MilEmpleos.dbo.AspNetUserRoles' does not have a pr
             <End Role="TipoDocumento" EntitySet="TipoDocumento" />
             <End Role="Consulta" EntitySet="Consulta" />
           </AssociationSet>
-          <AssociationSet Name="FK__Respuesta__Conte__54CB950F" Association="Self.FK__Respuesta__Conte__54CB950F">
-            <End Role="ContenidoActividadFormacion" EntitySet="ContenidoActividadFormacion" />
-            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
-          </AssociationSet>
           <AssociationSet Name="FK__municipal__depar__12FDD1B2" Association="Self.FK__municipal__depar__12FDD1B2">
             <End Role="department" EntitySet="department" />
             <End Role="municipality" EntitySet="municipality" />
           </AssociationSet>
-          <AssociationSet Name="FK__Respuesta__Destr__214BF109" Association="Self.FK__Respuesta__Destr__214BF109">
-            <End Role="Destrezas" EntitySet="Destrezas" />
-            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Respuesta__Habil__22401542" Association="Self.FK__Respuesta__Habil__22401542">
-            <End Role="Habilidad" EntitySet="Habilidad" />
-            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Respuesta__Joven__2334397B" Association="Self.FK__Respuesta__Joven__2334397B">
-            <End Role="JovenesPorTutor" EntitySet="JovenesPorTutor" />
-            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Respuesta__Munic__2704CA5F" Association="Self.FK__Respuesta__Munic__2704CA5F">
-            <End Role="municipality" EntitySet="municipality" />
-            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
-          </AssociationSet>
           <AssociationSet Name="mucipio" Association="Self.mucipio">
             <End Role="municipality" EntitySet="municipality" />
             <End Role="PonderacionMunicipio" EntitySet="PonderacionMunicipio" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Respuesta__Nivel__24285DB4" Association="Self.FK__Respuesta__Nivel__24285DB4">
-            <End Role="NivelEducativo" EntitySet="NivelEducativo" />
-            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Respuesta__Salar__251C81ED" Association="Self.FK__Respuesta__Salar__251C81ED">
-            <End Role="SalarioAdicionalRango" EntitySet="SalarioAdicionalRango" />
-            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Respuesta__TipoC__2610A626" Association="Self.FK__Respuesta__TipoC__2610A626">
-            <End Role="TipoConocimientoRequerido" EntitySet="TipoConocimientoRequerido" />
-            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Resultado__Respu__725BF7F6" Association="Self.FK__Resultado__Respu__725BF7F6">
-            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
-            <End Role="ResultadoCalculadora" EntitySet="ResultadoCalculadora" />
           </AssociationSet>
           <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
           <EntitySet Name="actulizacionPila" EntityType="MilEmpleosModel.actulizacionPila" />
+          <EntitySet Name="RespuestasCalculadora" EntityType="MilEmpleosModel.RespuestasCalculadora" />
+          <AssociationSet Name="FK__Respuesta__Activ__373B3228" Association="MilEmpleosModel.FK__Respuesta__Activ__373B3228">
+            <End Role="ActividadesPuestoDeTrabajo" EntitySet="ActividadesPuestoDeTrabajo" />
+            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Respuesta__Centr__5772F790" Association="MilEmpleosModel.FK__Respuesta__Centr__5772F790">
+            <End Role="Centros" EntitySet="Centros" />
+            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Respuesta__Conte__54CB950F" Association="MilEmpleosModel.FK__Respuesta__Conte__54CB950F">
+            <End Role="ContenidoActividadFormacion" EntitySet="ContenidoActividadFormacion" />
+            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Respuesta__Destr__214BF109" Association="MilEmpleosModel.FK__Respuesta__Destr__214BF109">
+            <End Role="Destrezas" EntitySet="Destrezas" />
+            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Respuesta__Habil__22401542" Association="MilEmpleosModel.FK__Respuesta__Habil__22401542">
+            <End Role="Habilidad" EntitySet="Habilidad" />
+            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Respuesta__Joven__2334397B" Association="MilEmpleosModel.FK__Respuesta__Joven__2334397B">
+            <End Role="JovenesPorTutor" EntitySet="JovenesPorTutor" />
+            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Respuesta__Munic__2704CA5F" Association="MilEmpleosModel.FK__Respuesta__Munic__2704CA5F">
+            <End Role="municipality" EntitySet="municipality" />
+            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Respuesta__Nivel__24285DB4" Association="MilEmpleosModel.FK__Respuesta__Nivel__24285DB4">
+            <End Role="NivelEducativo" EntitySet="NivelEducativo" />
+            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Respuesta__Salar__251C81ED" Association="MilEmpleosModel.FK__Respuesta__Salar__251C81ED">
+            <End Role="SalarioAdicionalRango" EntitySet="SalarioAdicionalRango" />
+            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Respuesta__TipoC__2610A626" Association="MilEmpleosModel.FK__Respuesta__TipoC__2610A626">
+            <End Role="TipoConocimientoRequerido" EntitySet="TipoConocimientoRequerido" />
+            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Resultado__Respu__725BF7F6" Association="MilEmpleosModel.FK__Resultado__Respu__725BF7F6">
+            <End Role="RespuestasCalculadora" EntitySet="RespuestasCalculadora" />
+            <End Role="ResultadoCalculadora" EntitySet="ResultadoCalculadora" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="actulizacionPila">
           <Key>
@@ -1709,6 +1523,178 @@ warning 6002: The table/view 'MilEmpleos.dbo.AspNetUserRoles' does not have a pr
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Fecha_Actualizacion" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
+        <EntityType Name="RespuestasCalculadora">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RazonSocial" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Nit" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TelefonoEmpresa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NombreContacto" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="DescripcionVacante" Type="String" Nullable="false" MaxLength="1500" FixedLength="false" Unicode="false" />
+          <Property Name="NivelEducativoRequeridoVacante" Type="Int32" Nullable="false" />
+          <Property Name="NumeroPuestosTrabajo" Type="Int32" Nullable="false" />
+          <Property Name="OficinaRecursosHumanos" Type="Boolean" Nullable="false" />
+          <Property Name="TamanoPlantaEmpresa" Type="Int32" Nullable="false" />
+          <Property Name="HabilidadRequerida" Type="Int32" Nullable="false" />
+          <Property Name="DestrezasRequeridas" Type="Int32" Nullable="false" />
+          <Property Name="TipoConocimientoRequerido" Type="Int32" Nullable="false" />
+          <Property Name="ActividadesPuestoDeTrabajo" Type="Int32" Nullable="false" />
+          <Property Name="JovenesPorTutor" Type="Int32" Nullable="false" />
+          <Property Name="VacanteNueva" Type="Boolean" Nullable="false" />
+          <Property Name="PuestoTrabajoPermanente" Type="Boolean" Nullable="false" />
+          <Property Name="ContenidoActividadFormacion" Type="Int32" Nullable="false" />
+          <Property Name="SalarioAdicional" Type="Boolean" Nullable="false" />
+          <Property Name="SalarioAdicionalRango" Type="Int32" Nullable="false" />
+          <Property Name="Municipio" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="true" Unicode="false" />
+          <Property Name="CentroId" Type="Int32" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ActividadesPuestoDeTrabajo1" Relationship="MilEmpleosModel.FK__Respuesta__Activ__373B3228" FromRole="RespuestasCalculadora" ToRole="ActividadesPuestoDeTrabajo" />
+          <NavigationProperty Name="Centros" Relationship="MilEmpleosModel.FK__Respuesta__Centr__5772F790" FromRole="RespuestasCalculadora" ToRole="Centros" />
+          <NavigationProperty Name="ContenidoActividadFormacion1" Relationship="MilEmpleosModel.FK__Respuesta__Conte__54CB950F" FromRole="RespuestasCalculadora" ToRole="ContenidoActividadFormacion" />
+          <NavigationProperty Name="Destrezas" Relationship="MilEmpleosModel.FK__Respuesta__Destr__214BF109" FromRole="RespuestasCalculadora" ToRole="Destrezas" />
+          <NavigationProperty Name="Habilidad" Relationship="MilEmpleosModel.FK__Respuesta__Habil__22401542" FromRole="RespuestasCalculadora" ToRole="Habilidad" />
+          <NavigationProperty Name="JovenesPorTutor1" Relationship="MilEmpleosModel.FK__Respuesta__Joven__2334397B" FromRole="RespuestasCalculadora" ToRole="JovenesPorTutor" />
+          <NavigationProperty Name="municipality" Relationship="MilEmpleosModel.FK__Respuesta__Munic__2704CA5F" FromRole="RespuestasCalculadora" ToRole="municipality" />
+          <NavigationProperty Name="NivelEducativo" Relationship="MilEmpleosModel.FK__Respuesta__Nivel__24285DB4" FromRole="RespuestasCalculadora" ToRole="NivelEducativo" />
+          <NavigationProperty Name="SalarioAdicionalRango1" Relationship="MilEmpleosModel.FK__Respuesta__Salar__251C81ED" FromRole="RespuestasCalculadora" ToRole="SalarioAdicionalRango" />
+          <NavigationProperty Name="TipoConocimientoRequerido1" Relationship="MilEmpleosModel.FK__Respuesta__TipoC__2610A626" FromRole="RespuestasCalculadora" ToRole="TipoConocimientoRequerido" />
+          <NavigationProperty Name="ResultadoCalculadora" Relationship="MilEmpleosModel.FK__Resultado__Respu__725BF7F6" FromRole="RespuestasCalculadora" ToRole="ResultadoCalculadora" />
+        </EntityType>
+        <Association Name="FK__Respuesta__Activ__373B3228">
+          <End Type="MilEmpleosModel.ActividadesPuestoDeTrabajo" Role="ActividadesPuestoDeTrabajo" Multiplicity="1" />
+          <End Type="MilEmpleosModel.RespuestasCalculadora" Role="RespuestasCalculadora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActividadesPuestoDeTrabajo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RespuestasCalculadora">
+              <PropertyRef Name="ActividadesPuestoDeTrabajo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Respuesta__Centr__5772F790">
+          <End Type="MilEmpleosModel.Centros" Role="Centros" Multiplicity="1" />
+          <End Type="MilEmpleosModel.RespuestasCalculadora" Role="RespuestasCalculadora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Centros">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RespuestasCalculadora">
+              <PropertyRef Name="CentroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Respuesta__Conte__54CB950F">
+          <End Type="MilEmpleosModel.ContenidoActividadFormacion" Role="ContenidoActividadFormacion" Multiplicity="1" />
+          <End Type="MilEmpleosModel.RespuestasCalculadora" Role="RespuestasCalculadora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContenidoActividadFormacion">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RespuestasCalculadora">
+              <PropertyRef Name="ContenidoActividadFormacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Respuesta__Destr__214BF109">
+          <End Type="MilEmpleosModel.Destrezas" Role="Destrezas" Multiplicity="1" />
+          <End Type="MilEmpleosModel.RespuestasCalculadora" Role="RespuestasCalculadora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Destrezas">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RespuestasCalculadora">
+              <PropertyRef Name="DestrezasRequeridas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Respuesta__Habil__22401542">
+          <End Type="MilEmpleosModel.Habilidad" Role="Habilidad" Multiplicity="1" />
+          <End Type="MilEmpleosModel.RespuestasCalculadora" Role="RespuestasCalculadora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Habilidad">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RespuestasCalculadora">
+              <PropertyRef Name="HabilidadRequerida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Respuesta__Joven__2334397B">
+          <End Type="MilEmpleosModel.JovenesPorTutor" Role="JovenesPorTutor" Multiplicity="1" />
+          <End Type="MilEmpleosModel.RespuestasCalculadora" Role="RespuestasCalculadora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JovenesPorTutor">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RespuestasCalculadora">
+              <PropertyRef Name="JovenesPorTutor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Respuesta__Munic__2704CA5F">
+          <End Type="MilEmpleosModel.municipality" Role="municipality" Multiplicity="1" />
+          <End Type="MilEmpleosModel.RespuestasCalculadora" Role="RespuestasCalculadora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="municipality">
+              <PropertyRef Name="IdCodigo" />
+            </Principal>
+            <Dependent Role="RespuestasCalculadora">
+              <PropertyRef Name="Municipio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Respuesta__Nivel__24285DB4">
+          <End Type="MilEmpleosModel.NivelEducativo" Role="NivelEducativo" Multiplicity="1" />
+          <End Type="MilEmpleosModel.RespuestasCalculadora" Role="RespuestasCalculadora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NivelEducativo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RespuestasCalculadora">
+              <PropertyRef Name="NivelEducativoRequeridoVacante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Respuesta__Salar__251C81ED">
+          <End Type="MilEmpleosModel.SalarioAdicionalRango" Role="SalarioAdicionalRango" Multiplicity="1" />
+          <End Type="MilEmpleosModel.RespuestasCalculadora" Role="RespuestasCalculadora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SalarioAdicionalRango">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RespuestasCalculadora">
+              <PropertyRef Name="SalarioAdicionalRango" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Respuesta__TipoC__2610A626">
+          <End Type="MilEmpleosModel.TipoConocimientoRequerido" Role="TipoConocimientoRequerido" Multiplicity="1" />
+          <End Type="MilEmpleosModel.RespuestasCalculadora" Role="RespuestasCalculadora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoConocimientoRequerido">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RespuestasCalculadora">
+              <PropertyRef Name="TipoConocimientoRequerido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Resultado__Respu__725BF7F6">
+          <End Type="MilEmpleosModel.RespuestasCalculadora" Role="RespuestasCalculadora" Multiplicity="1" />
+          <End Type="MilEmpleosModel.ResultadoCalculadora" Role="ResultadoCalculadora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RespuestasCalculadora">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ResultadoCalculadora">
+              <PropertyRef Name="RespuestasCalculadoraId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1967,36 +1953,6 @@ warning 6002: The table/view 'MilEmpleos.dbo.AspNetUserRoles' does not have a pr
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="RespuestasCalculadora">
-            <EntityTypeMapping TypeName="MilEmpleosModel.RespuestasCalculadora">
-              <MappingFragment StoreEntitySet="RespuestasCalculadora">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
-                <ScalarProperty Name="Nit" ColumnName="Nit" />
-                <ScalarProperty Name="TelefonoEmpresa" ColumnName="TelefonoEmpresa" />
-                <ScalarProperty Name="NombreContacto" ColumnName="NombreContacto" />
-                <ScalarProperty Name="DescripcionVacante" ColumnName="DescripcionVacante" />
-                <ScalarProperty Name="NivelEducativoRequeridoVacante" ColumnName="NivelEducativoRequeridoVacante" />
-                <ScalarProperty Name="NumeroPuestosTrabajo" ColumnName="NumeroPuestosTrabajo" />
-                <ScalarProperty Name="OficinaRecursosHumanos" ColumnName="OficinaRecursosHumanos" />
-                <ScalarProperty Name="TamanoPlantaEmpresa" ColumnName="TamanoPlantaEmpresa" />
-                <ScalarProperty Name="HabilidadRequerida" ColumnName="HabilidadRequerida" />
-                <ScalarProperty Name="DestrezasRequeridas" ColumnName="DestrezasRequeridas" />
-                <ScalarProperty Name="TipoConocimientoRequerido" ColumnName="TipoConocimientoRequerido" />
-                <ScalarProperty Name="ActividadesPuestoDeTrabajo" ColumnName="ActividadesPuestoDeTrabajo" />
-                <ScalarProperty Name="JovenesPorTutor" ColumnName="JovenesPorTutor" />
-                <ScalarProperty Name="VacanteNueva" ColumnName="VacanteNueva" />
-                <ScalarProperty Name="PuestoTrabajoPermanente" ColumnName="PuestoTrabajoPermanente" />
-                <ScalarProperty Name="ContenidoActividadFormacion" ColumnName="ContenidoActividadFormacion" />
-                <ScalarProperty Name="SalarioAdicional" ColumnName="SalarioAdicional" />
-                <ScalarProperty Name="SalarioAdicionalRango" ColumnName="SalarioAdicionalRango" />
-                <ScalarProperty Name="Municipio" ColumnName="Municipio" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="CentroId" ColumnName="CentroId" />
-                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ResultadoCalculadora">
             <EntityTypeMapping TypeName="MilEmpleosModel.ResultadoCalculadora">
               <MappingFragment StoreEntitySet="ResultadoCalculadora">
@@ -2074,6 +2030,36 @@ warning 6002: The table/view 'MilEmpleos.dbo.AspNetUserRoles' does not have a pr
               <MappingFragment StoreEntitySet="actulizacionPila">
                 <ScalarProperty Name="Fecha_Actualizacion" ColumnName="Fecha_Actualizacion" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RespuestasCalculadora">
+            <EntityTypeMapping TypeName="MilEmpleosModel.RespuestasCalculadora">
+              <MappingFragment StoreEntitySet="RespuestasCalculadora">
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="CentroId" ColumnName="CentroId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Municipio" ColumnName="Municipio" />
+                <ScalarProperty Name="SalarioAdicionalRango" ColumnName="SalarioAdicionalRango" />
+                <ScalarProperty Name="SalarioAdicional" ColumnName="SalarioAdicional" />
+                <ScalarProperty Name="ContenidoActividadFormacion" ColumnName="ContenidoActividadFormacion" />
+                <ScalarProperty Name="PuestoTrabajoPermanente" ColumnName="PuestoTrabajoPermanente" />
+                <ScalarProperty Name="VacanteNueva" ColumnName="VacanteNueva" />
+                <ScalarProperty Name="JovenesPorTutor" ColumnName="JovenesPorTutor" />
+                <ScalarProperty Name="ActividadesPuestoDeTrabajo" ColumnName="ActividadesPuestoDeTrabajo" />
+                <ScalarProperty Name="TipoConocimientoRequerido" ColumnName="TipoConocimientoRequerido" />
+                <ScalarProperty Name="DestrezasRequeridas" ColumnName="DestrezasRequeridas" />
+                <ScalarProperty Name="HabilidadRequerida" ColumnName="HabilidadRequerida" />
+                <ScalarProperty Name="TamanoPlantaEmpresa" ColumnName="TamanoPlantaEmpresa" />
+                <ScalarProperty Name="OficinaRecursosHumanos" ColumnName="OficinaRecursosHumanos" />
+                <ScalarProperty Name="NumeroPuestosTrabajo" ColumnName="NumeroPuestosTrabajo" />
+                <ScalarProperty Name="NivelEducativoRequeridoVacante" ColumnName="NivelEducativoRequeridoVacante" />
+                <ScalarProperty Name="DescripcionVacante" ColumnName="DescripcionVacante" />
+                <ScalarProperty Name="NombreContacto" ColumnName="NombreContacto" />
+                <ScalarProperty Name="TelefonoEmpresa" ColumnName="TelefonoEmpresa" />
+                <ScalarProperty Name="Nit" ColumnName="Nit" />
+                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

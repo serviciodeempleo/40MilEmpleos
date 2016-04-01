@@ -25,8 +25,8 @@ namespace MilEmpleos.Models
         public string department_id { get; set; }
     
         public virtual department department { get; set; }
+        public virtual PonderacionMunicipio PonderacionMunicipio { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RespuestasCalculadora> RespuestasCalculadora { get; set; }
-        public virtual PonderacionMunicipio PonderacionMunicipio { get; set; }
     }
 }

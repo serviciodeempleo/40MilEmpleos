@@ -48,12 +48,12 @@ namespace MilEmpleos.Models
         public virtual DbSet<Ponderacion> Ponderacion { get; set; }
         public virtual DbSet<PonderacionMunicipio> PonderacionMunicipio { get; set; }
         public virtual DbSet<RespuestaPila> RespuestaPila { get; set; }
-        public virtual DbSet<RespuestasCalculadora> RespuestasCalculadora { get; set; }
         public virtual DbSet<ResultadoCalculadora> ResultadoCalculadora { get; set; }
         public virtual DbSet<SalarioAdicionalRango> SalarioAdicionalRango { get; set; }
         public virtual DbSet<TipoConocimientoRequerido> TipoConocimientoRequerido { get; set; }
         public virtual DbSet<TipoDocumento> TipoDocumento { get; set; }
         public virtual DbSet<WSPila> WSPila { get; set; }
         public virtual DbSet<actulizacionPila> actulizacionPila { get; set; }
+        public virtual DbSet<RespuestasCalculadora> RespuestasCalculadora { get; set; }
     }
 }

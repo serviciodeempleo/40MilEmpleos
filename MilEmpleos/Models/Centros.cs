@@ -18,8 +18,8 @@ namespace MilEmpleos.Models
         public Centros()
         {
             this.RespuestaPila = new HashSet<RespuestaPila>();
-            this.RespuestasCalculadora = new HashSet<RespuestasCalculadora>();
             this.ResultadoCalculadora = new HashSet<ResultadoCalculadora>();
+            this.RespuestasCalculadora = new HashSet<RespuestasCalculadora>();
         }
     
         public int Id { get; set; }
@@ -31,8 +31,8 @@ namespace MilEmpleos.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RespuestaPila> RespuestaPila { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RespuestasCalculadora> RespuestasCalculadora { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ResultadoCalculadora> ResultadoCalculadora { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RespuestasCalculadora> RespuestasCalculadora { get; set; }
     }
 }

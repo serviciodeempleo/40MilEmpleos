@@ -33,7 +33,7 @@ namespace MilEmpleos.Models
         [Display(Name = "Teléfono Empresa")]
         [RegularExpression(@"^\d{3}\D?\d{2}\D?\d{2}\D?\d{3}$|^\d{3}\D?\d{2}\D?\d{2}$|\D*\d{1,2}\D*\d{3}\D?\d{2}\D?\d{2}$", ErrorMessage = "Debe ser un Teléfono o Celular")]
         [Required(ErrorMessage = "Campo Teléfono Empresa es obligatorio.")]
-        public int TelefonoEmpresa { get; set; }
+        public string TelefonoEmpresa { get; set; }
         [Display(Name = "Nombre Contacto")]
         [Required(ErrorMessage = "Campo Nombre Contacto es obligatorio.")]
         public string NombreContacto { get; set; }
