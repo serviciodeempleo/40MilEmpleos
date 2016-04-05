@@ -4,6 +4,9 @@
     ViewBag.Title = "VALIDACIÓN DE REQUISITOS MÍNIMOS DE LAS VACANTES";
     string rootpath = HttpContext.Current.Request.ApplicationPath;
     if (rootpath == "/") { rootpath = ""; }
+
+    var urlHelper = new UrlHelper(Html.ViewContext.RequestContext);
+    var baseurl = urlHelper.Content("~");
 }
 
 <h2>@ViewBag.Title</h2>
@@ -33,9 +36,11 @@
                     </select>
 
                 </div>
+                
                 <script type="text/javascript">
-                    function obtenerURLExcel() {
-                        $('#p_URLExcel').html('<a href="/RespuestasCalculadoras/excelrespuestas?class=btn%20btn-danger&amp;p_idCentro=' + $('#lst_centros_empleo').val() + '">Descargar listado completo</a> | <a href="/RespuestasCalculadoras/ExcelconsultasPila?class=btn%20btn-danger&amp;p_idCentro=' + $('#lst_centros_empleo').val() + '">Descargar listado Consultas Pila</a>');
+                    base_url = "@baseurl";
+                    function obtenerURLExcel() {                       
+                        $('#p_URLExcel').html('<a href="' + base_url + 'RespuestasCalculadoras/excelrespuestas?class=btn%20btn-danger&amp;p_idCentro=' + $('#lst_centros_empleo').val() + '">Descargar listado completo</a> | <a href="' + base_url + 'RespuestasCalculadoras/ExcelconsultasPila?class=btn%20btn-danger&amp;p_idCentro=' + $('#lst_centros_empleo').val() + '">Descargar listado Consultas Pila</a>');
                         //$('#p_URLExcel').html('<a href="/40MilPrimerosEmpleos/RespuestasCalculadoras/excelrespuestas?class=btn%20btn-danger&amp;p_idCentro=' + $('#lst_centros_empleo').val() + '">Descargar listado completo</a> | <a href="/40MilPrimerosEmpleos/RespuestasCalculadoras/ExcelconsultasPila?class=btn%20btn-danger&amp;p_idCentro=' + $('#lst_centros_empleo').val() + '">Descargar listado Consultas Pila</a>');
                     }
                 </script>

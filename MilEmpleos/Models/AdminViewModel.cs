@@ -37,6 +37,7 @@ namespace IdentitySample.Models
         [Required(AllowEmptyStrings = false)]
         [DataType(DataType.Password)]
         [Display(Name = "Contraseña")]
+        [RegularExpression(@"(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z])(?=.*\W+).*$", ErrorMessage = "Las contraseñas deben tener al menos 6 caracteres. Las contraseñas deben tener al menos un carácter que no sea una letra ni un dígito. Las contraseñas deben tener al menos una letra en minúscula('a' - 'z').Las contraseñas deben tener al menos una letra en mayúscula('A' - 'Z').")]
         public string Password { get; set; }
         [Required(AllowEmptyStrings = false)]
         [DataType(DataType.Password)]
