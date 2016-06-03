@@ -915,7 +915,7 @@ namespace MilEmpleos.Controllers
             if (User.IsInRole("Admin") || User.IsInRole("Unidad"))
             {
                 var result = (from res in db.ResultadoCalculadora where res.CentroId == p_idCentro select res).OrderByDescending(x => x.FechaCalculo).ToList();
-
+                //var result = (from res in db.ResultadoCalculadora select res).OrderByDescending(x => x.FechaCalculo).ToList();
                 foreach (var rescal in result)
                 {
                     ResCalcollection resCalcollection = new ResCalcollection();

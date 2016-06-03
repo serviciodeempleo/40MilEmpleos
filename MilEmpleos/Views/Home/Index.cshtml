@@ -33,11 +33,16 @@
                             @Html.ValidationMessageFor(model => model.DocumentoNumero,"", new { @class = "text-danger"})
                         </div>
                     </div>
+
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-12">
                         <input type="submit" value="Consultar" onsubmit="find();" class="btn btn-danger  btn-large active" />
                     </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="DocumentoNumero" style="font-size:11px">Información con fecha de corte: @ViewBag.fecha_Actualizacion</label>
+                    <div class="col-md-12"></div>
                 </div>
             </div>
         </form>
