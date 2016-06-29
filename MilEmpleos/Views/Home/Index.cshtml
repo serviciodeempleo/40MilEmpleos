@@ -72,8 +72,9 @@
     $("#accordion").accordion();
     function find() {
         if ($("#formID1").validationEngine('validate')) {
-            var Td = $('#TipoDocumento').val();
+            var td = $('#TipoDocumento').val();
             var documento = $('#NoDocumento').val();
+            // $.getJSON(uri + '/' + documento)
             $.getJSON(uri + '/' + documento)
               .done(function (data) {
                   $('#prosperidadpara').addClass("hidden");

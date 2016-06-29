@@ -23,14 +23,13 @@ namespace IdentitySample.Controllers
 
         private MilEmpleosEntities db = new MilEmpleosEntities();
 
-        //[Route("api/{controller}/{documento}/{id}")]
-
+        //[Route("api/{controller}/{documento}/{id}/{td}")]
         public IHttpActionResult GetWSPila(string id)
         {
             var USER_id = User.Identity.GetUserId();
             var existedocumento = (from p in db.Pila
                                    where p.NumeroDocumento == id
-                                           select p).ToList();
+                                   select p).ToList();
 
             var CE = (from item in db.AspNetUsers
                       where item.Id == USER_id
@@ -74,8 +73,8 @@ namespace IdentitySample.Controllers
                 return Ok(PilaNull);
             }
             var documentopila = (from p in db.Pila
-                        where p.NumeroDocumento.Contains(id)
-                        select p).First();
+                        where p.NumeroDocumento == id
+                                 select p).First();
             Pila pila = documentopila;
             //save consulta
 
